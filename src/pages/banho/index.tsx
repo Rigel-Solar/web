@@ -1,24 +1,15 @@
-import { Icons } from "../../assets/Icons";
-import Card from "../../components/card";
+import DataTable from "../../components/table";
+import { tableData } from "../../constants/table";
 import { DefaultPageContainer } from "../styles";
 import * as C from "./styles";
-
-const card = {
-	title: "Pedidos",
-	number: 128,
-	percentage: 20,
-	icon: <Icons.pedidos />,
-};
 
 const Banho = () => {
 	return (
 		<DefaultPageContainer>
 			<C.Container>
-				<div className="cards">
-					<Card card={card} />
-					<Card card={card} />
-					<Card card={card} />
-					<Card card={card} />
+				<h1>Banho</h1>
+				<div className="table">
+					<DataTable data={tableData} hasPagination />
 				</div>
 			</C.Container>
 		</DefaultPageContainer>

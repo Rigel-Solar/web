@@ -1,12 +1,17 @@
 import DataTable from "../../components/table";
 import { tableData } from "../../constants/table";
 import { DefaultPageContainer } from "../styles";
+import * as C from "./styles";
 
 const Fotovoltaico = () => {
 	return (
 		<DefaultPageContainer>
-			<p>Fotovoltaico</p>
-			<DataTable data={tableData} />
+			<C.Container>
+				<h1>Fotovoltaico</h1>
+				<div className="table">
+					<DataTable data={tableData} hasPagination />
+				</div>
+			</C.Container>
 		</DefaultPageContainer>
 	);
 };

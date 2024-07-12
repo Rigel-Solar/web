@@ -2,11 +2,16 @@ import styled from "styled-components";
 
 export const Container = styled.main`
 	flex: 1;
-	color: #fff;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	padding: 25px 40px;
 
-	.cards {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+	.table {
+		width: 100%;
+		border-collapse: collapse;
+		border-radius: 4px;
+		overflow: auto;
 	}
 `;

@@ -1,12 +1,16 @@
 import { Table } from "@radix-ui/themes";
 import styled from "styled-components";
 
+interface RootProps {
+	$background: boolean;
+}
+
 interface BadgeProps {
 	text: "Finalizado" | "Em andamento" | "Negada";
 }
 
-export const Root = styled(Table.Root)`
-	width: 90%;
+export const Root = styled(Table.Root)<RootProps>`
+	width: 100%;
 	max-height: 80vh;
 	overflow-y: auto;
 	margin: auto;
@@ -15,6 +19,10 @@ export const Root = styled(Table.Root)`
 		width: 100%;
 		border-collapse: collapse;
 	}
+
+	${({ $background }) =>
+		$background &&
+		`background-color: #121212; border: 1px solid #363636; border-radius: 6px; padding: 25px`}
 `;
 
 export const Header = styled(Table.Header)`
@@ -22,6 +30,7 @@ export const Header = styled(Table.Header)`
 	${({ theme }) => theme.font.p.normal}
 	th {
 		padding-bottom: 10px;
+		border-bottom: 1px solid #363636;
 	}
 `;
 
@@ -50,13 +59,13 @@ export const Row = styled(Table.Row)`
 	text-align: center;
 	border-bottom: 1px solid #27272a;
 
-  &:last-of-type {
-    border: 0;
-  }
+	&:last-of-type {
+		border: 0;
+	}
 `;
 
 export const Cell = styled(Table.Cell)`
-	padding: 20px;
+	padding: 16px;
 	${({ theme }) => theme.font.p.small}
 
 	button {
@@ -97,7 +106,7 @@ export const Pagination = styled.div`
 	flex-wrap: wrap;
 	color: #d4d4d8;
 	margin-top: 5px;
-  border-top: 1px solid #27272a;
+	border-top: 1px solid #27272a;
 	padding: 10px;
 
 	.pagination-left {

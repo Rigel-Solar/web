@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 export const Card = styled.article`
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
 	background-color: ${({ theme }) => theme.colors.brand.black};
 	border: 1px solid #363636;
 	border-radius: 6px;

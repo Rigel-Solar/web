@@ -21,6 +21,9 @@ export interface DataTableProps {
 			route: string;
 		};
 	}>;
+	$itemsPerPage?: number;
+	hasPagination?: boolean;
+	background?: boolean;
 }
 
 interface TableBodyProps {
@@ -35,9 +38,14 @@ interface PaginationProps {
 	onItemsPerPageChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const DataTable = ({ data }: DataTableProps) => {
+const DataTable = ({
+	data,
+	hasPagination,
+	$itemsPerPage = 10,
+	background = false,
+}: DataTableProps) => {
 	const [currentPage, setCurrentPage] = useState(1);
-	const [itemsPerPage, setItemsPerPage] = useState(10);
+	const [itemsPerPage, setItemsPerPage] = useState($itemsPerPage);
 
 	const handleChangePage = (newPage: number) => {
 		if (newPage > 0 && newPage <= Math.ceil(data.length / itemsPerPage)) {
@@ -59,17 +67,19 @@ const DataTable = ({ data }: DataTableProps) => {
 
 	return (
 		<>
-			<C.Root variant="surface">
+			<C.Root variant="surface" $background={background}>
 				<TableHeader />
 				<TableBody data={paginatedData} />
 			</C.Root>
-			<Pagination
-				currentPage={currentPage}
-				itemsPerPage={itemsPerPage}
-				totalItems={data.length}
-				onPageChange={handleChangePage}
-				onItemsPerPageChange={handleItemsPerPageChange}
-			/>
+			{hasPagination && (
+				<Pagination
+					currentPage={currentPage}
+					itemsPerPage={itemsPerPage}
+					totalItems={data.length}
+					onPageChange={handleChangePage}
+					onItemsPerPageChange={handleItemsPerPageChange}
+				/>
+			)}
 		</>
 	);
 };

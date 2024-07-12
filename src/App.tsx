@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components";
 import Header from "./components/header";
 import store from "./redux/store";
 import { MenuRoutes } from "./routes/routes";
+import { PageContainer } from "./routes/styles";
 import GlobalStyle from "./styles/globalStyle";
 import { theme } from "./styles/themes";
 export default function App() {
@@ -16,8 +17,10 @@ export default function App() {
 				<QueryClientProvider client={queryClient}>
 					<BrowserRouter>
 						<GlobalStyle />
-						<Header/>
-						<MenuRoutes />
+						<PageContainer>
+							<Header />
+							<MenuRoutes />
+						</PageContainer>
 					</BrowserRouter>
 				</QueryClientProvider>
 			</Provider>
