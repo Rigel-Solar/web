@@ -7,7 +7,8 @@ export const theme = {
 			black: "#121212",
 			background: "#0D0C0D",
 			pink: "#FF175B",
-			rigel: "#0066D2"
+			rigel: "#0066D2",
+			modal: "#09090B",
 		},
 		support: {
 			support_01: "#BEDCE4",

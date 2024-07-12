@@ -1,11 +1,11 @@
 import { DefaultPageContainer } from "../styles"
 
-const Home = () => {
+const Tecnicos = () => {
   return (
     <DefaultPageContainer>
-      <p>Home</p>
+      <p>Tecnicos</p>
     </DefaultPageContainer>
   )
 }
 
-export default Home
+export default Tecnicos
