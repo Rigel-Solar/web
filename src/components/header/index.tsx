@@ -1,6 +1,7 @@
 import React, { ReactNode, useMemo } from "react";
-import { AiFillAccountBook, AiOutlineLogout } from "react-icons/ai";
+import { AiOutlineLogout } from "react-icons/ai";
 import { NavLink, useLocation } from "react-router-dom";
+import { Icons } from "../../assets/Icons";
 import rigel from "../../assets/icon.png";
 import * as C from "./styles";
 import SwitchTheme from "./switchTheme";
@@ -20,11 +21,11 @@ const getMenuItems = (): MenuSection[] => [
   {
     title: "",
     items: [
-      { label: "Home", icon: <AiFillAccountBook />, route: "/" },
-      { label: "Fotovoltáico", icon: <AiFillAccountBook />, route: "/fotovoltaico" },
-      { label: "Banho", icon: <AiFillAccountBook />, route: "/banho" },
-      { label: "Piscina", icon: <AiFillAccountBook />, route: "/piscina" },
-      { label: "Técnicos", icon: <AiFillAccountBook />, route: "/tecnicos" },
+      { label: "Home", icon: <Icons.home />, route: "/" },
+      { label: "Fotovoltáico", icon: <Icons.fotovoltaico />, route: "/fotovoltaico" },
+      { label: "Banho", icon: <Icons.banho />, route: "/banho" },
+      { label: "Piscina", icon: <Icons.piscina />, route: "/piscina" },
+      { label: "Técnicos", icon: <Icons.tecnicos />, route: "/tecnicos" },
     ],
   },
 ];
