@@ -60,19 +60,23 @@ body{
 
 h1{
     ${({ theme }) => theme.font.h1}
-    color:${({ theme }) => theme.colors.brand.black} ;
+    font-size: clamp(20px, 2vw, 24px);
+    color:${({ theme }) => theme.colors.brand.white} ;
   }
   h2{
     ${({ theme }) => theme.font.h2}
-    color:${({ theme }) => theme.colors.brand.black} ;
+    font-size: clamp(18px, 2vw, 20px);
+    color:${({ theme }) => theme.colors.brand.white} ;
   }
   h3{
     ${({ theme }) => theme.font.h3}
-    color:${({ theme }) => theme.colors.brand.black} ;
+    font-size: clamp(16px, 2vw, 18px);
+    color:${({ theme }) => theme.colors.brand.white} ;
   }
   p{
     ${({ theme }) => theme.font.p.medium}
-    color:${({ theme }) => theme.colors.brand.black} ;
+    font-size: clamp(14px, 2vw, 16px);
+    color:${({ theme }) => theme.colors.brand.white} ;
 }
 
 input{

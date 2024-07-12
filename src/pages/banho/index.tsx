@@ -1,30 +1,26 @@
-import {
-	ActionAlertDialogContent,
-	ActionAlertDialogRoot,
-	ActionAlertDialogTriggerButtons,
-	ActionAlertDialogTriggerClose,
-	ActionAlertDialogTriggerSuccess,
-} from "../../components/modal/actionAlertModal";
+import { Icons } from "../../assets/Icons";
+import Card from "../../components/card";
 import { DefaultPageContainer } from "../styles";
 import * as C from "./styles";
+
+const card = {
+	title: "Pedidos",
+	number: 128,
+	percentage: 20,
+	icon: <Icons.pedidos />,
+};
 
 const Banho = () => {
 	return (
 		<DefaultPageContainer>
 			<C.Container>
-				<ActionAlertDialogRoot open>
-					<ActionAlertDialogContent>
-						This is an alert dialog content.
-					</ActionAlertDialogContent>
-					<ActionAlertDialogTriggerButtons>
-						<ActionAlertDialogTriggerClose>
-							Cancelar
-						</ActionAlertDialogTriggerClose>
-						<ActionAlertDialogTriggerSuccess>
-							Criar
-						</ActionAlertDialogTriggerSuccess>
-					</ActionAlertDialogTriggerButtons>
-				</ActionAlertDialogRoot>
+				Banho
+				<div className="cards">
+					<Card card={card} />
+					<Card card={card} />
+					<Card card={card} />
+					<Card card={card} />
+				</div>
 			</C.Container>
 		</DefaultPageContainer>
 	);

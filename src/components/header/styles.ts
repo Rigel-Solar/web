@@ -36,7 +36,7 @@ export const Header = styled.header`
 		ul {
       display: flex;
 			flex-direction: column;
-			gap: 30px;
+			gap: 20px;
 		}
     
     ul li a{

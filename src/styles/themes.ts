@@ -18,6 +18,8 @@ export const theme = {
 			error: "#E14141",
 			error_02: "#b81d1d",
 			warning: "#F9D934",
+			green_dark: '#2C372A',
+			green_light: '#A3E635',
 			//light
 			support_01_light: "#FBFDFD",
 			support_02_light: "#FDFFFC",
