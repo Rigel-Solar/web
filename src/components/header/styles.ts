@@ -75,7 +75,7 @@ export const Logout = styled.button `
     .white};
 `
 
-export const Theme = styled.button `
+export const Theme = styled.div `
   display: flex;
   align-items: center;
   justify-content: space-between;

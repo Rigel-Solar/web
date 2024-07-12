@@ -14,7 +14,6 @@ const Banho = () => {
 	return (
 		<DefaultPageContainer>
 			<C.Container>
-				Banho
 				<div className="cards">
 					<Card card={card} />
 					<Card card={card} />
