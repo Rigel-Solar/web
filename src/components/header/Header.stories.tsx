@@ -1,7 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import styled from "styled-components";
-import Header from "./index";
+import Header, { HeaderProps } from "./index";
 
 const meta: Meta<typeof Header> = {
 	title: "Components/Header",
@@ -13,36 +12,24 @@ const meta: Meta<typeof Header> = {
 			</BrowserRouter>
 		),
 	],
+	argTypes: {
+		open: {
+			control: "boolean",
+		},
+		setOpen: { action: "setOpen" },
+	},
 };
 
 export default meta;
 
-const Template: StoryFn = (args) => <Header {...args} />;
+const Template: StoryFn<HeaderProps> = (args) => <Header {...args} />;
 
-export const Default: StoryFn = Template.bind({});
-Default.args = {};
-
-const Styles = {
-	Header: styled.header`
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: center;
-		padding: 1rem;
-		background-color: #f5f5f5;
-	`,
-	Logout: styled.div`
-		display: flex;
-		align-items: center;
-		cursor: pointer;
-		color: #333;
-		font-size: 1rem;
-		svg {
-			margin-right: 0.5rem;
-		}
-	`,
+export const Default: StoryFn<HeaderProps> = Template.bind({});
+Default.args = {
+	open: true,
 };
 
-const SwitchTheme = () => <button>Switch Theme</button>;
-
-export { Styles as C, SwitchTheme };
+export const Closed: StoryFn<HeaderProps> = Template.bind({});
+Closed.args = {
+	open: false,
+};

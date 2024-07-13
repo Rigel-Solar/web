@@ -6,7 +6,7 @@ import rigel from "../../assets/icon.png";
 import * as C from "./styles";
 import SwitchTheme from "./switchTheme";
 
-interface HeaderProps {
+export interface HeaderProps {
 	open: boolean;
 	setOpen: (value: boolean) => void;
 }
