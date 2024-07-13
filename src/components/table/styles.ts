@@ -112,6 +112,12 @@ export const Pagination = styled.div`
 	border-top: 1px solid #27272a;
 	padding: 10px;
 
+	@media (width <= 540px) {
+		flex-direction: column;
+		align-items: start;
+		gap: 10px;
+	}
+
 	.pagination-left {
 		flex: 1;
 	}
@@ -121,6 +127,12 @@ export const Pagination = styled.div`
 		display: flex;
 		justify-content: end;
 		gap: 30px;
+
+		@media (width <= 540px) {
+			flex-direction: column;
+			justify-content: start;
+			gap: 10px;
+		}
 
 		.items-per-page {
 			display: flex;

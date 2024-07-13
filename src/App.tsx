@@ -3,10 +3,8 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "styled-components";
-import Header from "./components/header";
 import store from "./redux/store";
-import { MenuRoutes } from "./routes/routes";
-import { PageContainer } from "./routes/styles";
+import { MainRoutes } from "./routes/MainRoutes";
 import GlobalStyle from "./styles/globalStyle";
 import { theme } from "./styles/themes";
 export default function App() {
@@ -30,10 +28,7 @@ export default function App() {
 								},
 							}}
 						/>
-						<PageContainer>
-							<Header />
-							<MenuRoutes />
-						</PageContainer>
+						<MainRoutes />
 					</BrowserRouter>
 				</QueryClientProvider>
 			</Provider>

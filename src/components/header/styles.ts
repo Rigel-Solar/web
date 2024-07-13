@@ -1,16 +1,65 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-export const Header = styled.header`
+interface HeaderProps {
+	$open?: boolean;
+}
+
+const fadeIn = keyframes`
+	from {
+		opacity: 0.25;
+	}
+	to {
+		opacity: 1;
+	}
+`;
+
+const fadeOut = keyframes`
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0.25;
+	}
+`;
+
+export const Header = styled.header<HeaderProps>`
 	display: flex;
 	flex-direction: column;
-  height: 100vh;
+	height: 100vh;
 	flex: 1;
-	max-width: 420px;
-	min-width: 240px;
+	width: 420px;
 	padding: 60px 30px;
 	background-color: ${({ theme }) => theme.colors.brand.black};
 	border-top-right-radius: 12px;
 	border-bottom-right-radius: 12px;
+	transition: opacity 0.3s ease;
+
+	@media (max-width: 860px) {
+		width: 100%;
+		padding: 60px 40px;
+		opacity: ${(props) => (props.$open ? 1 : 0)};
+		animation: ${(props) => (props.$open ? fadeIn : fadeOut)} 0.3s forwards;
+		display: ${(props) => (props.$open ? "flex" : "none")};
+
+		.top {
+			height: fit-content !important;
+			gap: 30px;
+			margin-bottom: 30px;
+		}
+
+		.bottom {
+			height: fit-content;
+			> button:nth-child(1) {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border: 1px solid #272727;
+				border-radius: 20px;
+				padding: 10px;
+				gap: 10px;
+			}
+		}
+	}
 
 	.top {
 		height: 55%;
@@ -31,6 +80,12 @@ export const Header = styled.header`
 			h1 {
 				color: ${({ theme }) => theme.colors.brand.white};
 				font-size: clamp(16px, 2vw, 22px);
+			}
+
+			button {
+				position: relative;
+				left: 0;
+				top: 0;
 			}
 		}
 
