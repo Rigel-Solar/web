@@ -35,10 +35,11 @@ export const FormFieldsContainer = styled.div<formContainerProps>`
 `;
 
 export const FormButtonsContainer = styled.div`
+  flex: 1;
 	display: flex;
-	justify-content: flex-end;
-	gap: 20px;
-	margin-top: 20px;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
 `;
 
 export const ScrollView = styled.section`

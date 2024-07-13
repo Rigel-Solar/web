@@ -2,13 +2,9 @@ import styled, { css } from "styled-components";
 import { inputStyle } from ".";
 
 const primary = css`
-	${({ theme }) => {
-		return css`
-			background-color: ${theme.colors.support.support_01_light};
-			${theme.font.p.normal};
-			color: ${theme.colors.grayscale.gray_60};
-		`;
-	}}
+	background-color: #18181b;
+	color: #fafafa;
+	border: 1px solid #27272a;
 `;
 const secondary = css`
 	${({ theme }) => {
@@ -57,9 +53,8 @@ export const InputContainer = styled.div<inputStyleProps>`
 		padding: 12px 1.3em;
 		text-align: left;
 		justify-content: flex-start;
-		border: 1px solid ${({ theme }) => theme.colors.grayscale.gray_30};
 		border-radius: 4px;
-		color: ${({ theme }) => theme.colors.grayscale.gray_90};
+		color: #fafafa;
 		${({ theme }) => theme.font.p.normal};
 	}
 
@@ -75,11 +70,12 @@ export const InputContainer = styled.div<inputStyleProps>`
 
 	.input-label {
 		${({ theme }) => theme.font.p.small};
-		color: ${({ theme }) => theme.colors.grayscale.gray_70};
-		margin-bottom: 0.2em;
+		color: #fafafa;
+		margin-bottom: 0.5rem;
 		display: block;
 	}
 	.error-container {
+		margin-top: 0.5rem;
 		${({ theme }) => theme.font.p.small};
 		color: ${({ theme }) => theme.colors.support.error};
 	}

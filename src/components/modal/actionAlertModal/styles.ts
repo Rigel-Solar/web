@@ -43,12 +43,13 @@ export const ModalHeader = styled.section`
 	padding: 1em 1.5em;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	border-bottom: solid 1px ${({ theme }) => theme.colors.grayscale.gray_10};
+	justify-content: center;
+	gap: 20px;
+	border-bottom: solid 1px #27272a;
 	h2,
 	h3 {
-		${({ theme }) => theme.font.p.medium_bold};
-		color: ${({ theme }) => theme.colors.grayscale.gray_10};
+		${({ theme }) => theme.font.p.medium};
+		color: #fafafa;
 	}
 `;
 
@@ -77,12 +78,20 @@ export const ModalOverlay = styled(Dialog.Overlay)<modalProps>`
 
 export const ModalBody = styled.main`
 	flex: 1;
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	form {
+		padding: 0;
+	}
 `;
 
 export const ButtonArea = styled.div`
 	width: 100%;
 	display: grid;
-  grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
 	gap: 12px;
 `;
 
@@ -93,14 +102,14 @@ export const Cancel = styled.button`
 	gap: 10px;
 	background: transparent;
 	border: 1px solid #27272a;
-  ${({ theme }) => theme.font.p.small};
+	${({ theme }) => theme.font.p.small};
 	color: ${({ theme }) => theme.colors.grayscale.gray_10};
 	border-radius: 6px;
 	padding: 10px 20px;
 
-  &:hover {
-    opacity: 0.7;
-  }
+	&:hover {
+		opacity: 0.7;
+	}
 `;
 
 export const Success = styled.button`
@@ -114,9 +123,9 @@ export const Success = styled.button`
 	border-radius: 6px;
 	padding: 10px 20px;
 
-  &:hover {
-    opacity: 0.7;
-  }
+	&:hover {
+		opacity: 0.7;
+	}
 `;
 
 export interface modalProps {
