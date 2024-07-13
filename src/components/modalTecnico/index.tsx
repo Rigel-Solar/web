@@ -16,7 +16,7 @@ import {
 	ActionAlertDialogTriggerSuccess,
 } from "../modal/actionAlertModal";
 
-interface ModalTecnicoProps<T extends object = any> extends modalActions<T> {
+export interface ModalTecnicoProps<T extends object = any> extends modalActions<T> {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
 	onSuccess(): void;
