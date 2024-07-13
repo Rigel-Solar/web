@@ -1,4 +1,4 @@
-import { DataTableProps } from "../components/table";
+import { DataTableProps } from "../models/data-table";
 
 export const tableData: DataTableProps["data"] = [
 	{

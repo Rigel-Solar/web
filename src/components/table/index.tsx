@@ -7,24 +7,8 @@ import {
 	FaAnglesRight,
 } from "react-icons/fa6";
 import { SlOptions } from "react-icons/sl";
+import { DataTableProps } from "../../models/data-table";
 import * as C from "./styles";
-
-export interface DataTableProps {
-	data: Array<{
-		address: string;
-		person: string;
-		code: string;
-		status: "Finalizado" | "Em andamento" | "Negada";
-		createdAt: string;
-		options: {
-			text: string;
-			route: string;
-		};
-	}>;
-	$itemsPerPage?: number;
-	hasPagination?: boolean;
-	background?: boolean;
-}
 
 interface TableBodyProps {
 	data: DataTableProps["data"];
