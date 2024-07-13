@@ -27,10 +27,11 @@ export const Root = styled(Table.Root)<RootProps>`
 
 export const Header = styled(Table.Header)`
 	text-align: start;
-	${({ theme }) => theme.font.p.normal}
 	th {
-		padding-bottom: 10px;
+		${({ theme }) => theme.font.p.normal}
+		padding: 10px 0;
 		border-bottom: 1px solid #363636;
+		border-top: 1px solid #363636;
 	}
 `;
 
@@ -98,7 +99,6 @@ export const Badge = styled.div<BadgeProps>`
 `;
 
 export const Pagination = styled.div`
-	width: 90%;
 	margin: 0 auto;
 	display: flex;
 	align-items: center;
