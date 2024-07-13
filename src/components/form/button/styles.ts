@@ -20,7 +20,7 @@ to{
 
 const primary = css`
 	color: #fff;
-	background-color: ${({ theme }) => theme.colors.brand.pink};
+	background-color: ${({ theme }) => theme.colors.brand.rigel};
 `;
 const secondary = css`
 	color: ${({ theme }) => theme.colors.grayscale.gray_80};

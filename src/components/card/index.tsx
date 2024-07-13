@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { FaArrowUp } from "react-icons/fa6";
 import * as C from "./styles";
 
-interface CardProps {
+export interface CardProps {
 	card: {
 		title: string;
 		number: number;
