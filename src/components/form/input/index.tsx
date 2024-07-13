@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { InputHTMLAttributes, ReactNode, forwardRef, useMemo } from "react";
 import { InputContainer } from "./styles";
-import { useTranslation } from "react-i18next";
 
 export type inputStyle = "primary" | "secondary";
 
@@ -29,7 +28,6 @@ const Input = forwardRef(
     }: InputProps,
     ref
   ) => {
-    const { t } = useTranslation();
 
     const prefix = useMemo(() => {
       if (affix?.prefix) {
@@ -58,7 +56,7 @@ const Input = forwardRef(
         {label && <label className="input-label">{label}</label>}
         <div
           className="input-container"
-          data-required-text={t("global.required")}
+          data-required-text="Obrigatório"
         >
           {prefix}
           <input type="text" ref={ref} {...register} {...props} />
