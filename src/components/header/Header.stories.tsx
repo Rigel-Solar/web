@@ -22,7 +22,6 @@ const Template: StoryFn = (args) => <Header {...args} />;
 export const Default: StoryFn = Template.bind({});
 Default.args = {};
 
-// Estilos de exemplo (Certifique-se de que `styles` tem esses componentes)
 const Styles = {
 	Header: styled.header`
 		display: flex;
@@ -44,8 +43,6 @@ const Styles = {
 	`,
 };
 
-// Componente SwitchTheme fictício para exemplo
 const SwitchTheme = () => <button>Switch Theme</button>;
 
-// Importe os componentes utilizados no Header (ajuste conforme necessário)
 export { Styles as C, SwitchTheme };
