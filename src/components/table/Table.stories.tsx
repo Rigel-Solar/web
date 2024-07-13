@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from "@storybook/react";
-import DataTable, { DataTableProps } from "./index"; 
 import { tableData } from "../../constants/table";
+import { DataTableProps } from "../../models/data-table";
+import DataTable from "./index";
 
 const meta: Meta<typeof DataTable> = {
 	title: "Components/DataTable",
