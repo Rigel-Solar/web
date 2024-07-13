@@ -22,7 +22,10 @@ export const Root = styled(Table.Root)<RootProps>`
 
 	${({ $background }) =>
 		$background &&
-		`background-color: #121212; border: 1px solid #363636; border-radius: 6px; padding: 25px`}
+		`background-color: #121212; border: 1px solid #363636; border-radius: 6px; padding: 15px; tr th {
+			border-top: 0;
+			padding-top: 0;
+		}`}
 `;
 
 export const Header = styled(Table.Header)`
