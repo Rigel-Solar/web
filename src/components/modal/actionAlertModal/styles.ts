@@ -81,7 +81,9 @@ export const ModalBody = styled.main`
 	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
+	gap: 60px;
+	${({ theme }) => theme.font.p.small};
+	color: ${({ theme }) => theme.colors.brand.white};
 
 	form {
 		padding: 0;

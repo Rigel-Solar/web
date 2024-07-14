@@ -15,10 +15,6 @@ export const Container = styled.main`
 		width: fit-content;
 		max-height: 280px;
 		margin-bottom: 80px;
-
-		input {
-			width: 100%;
-		}
 	}
 
 	.top-area {

@@ -1,33 +1,44 @@
-import { Decorator, Meta, StoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
+import { Modal } from "../modal";
 import ModalTecnico, { ModalTecnicoProps } from "./index";
-
-const withReactHookForm: Decorator = (Story) => <Story />;
 
 const meta: Meta<typeof ModalTecnico> = {
 	title: "Components/ModalTecnico",
 	component: ModalTecnico,
 	argTypes: {
-		open: {
-			control: "boolean",
-		},
-		onOpenChange: { action: "onOpenChange" },
-		onSuccess: { action: "onSuccess" },
+		onSetEditedData: { action: "setEditedData" },
+		onSuccess: { action: "success" },
+		onClose: { action: "close" },
 	},
-	decorators: [withReactHookForm],
 };
 
 export default meta;
 
-const Template: StoryFn<ModalTecnicoProps> = (args) => (
-	<ModalTecnico {...args} />
-);
+const Template: StoryFn<ModalTecnicoProps> = (args) => {
+	return (
+		<Modal open>
+			<ModalTecnico {...args} />
+		</Modal>
+	);
+};
 
 export const Default: StoryFn<ModalTecnicoProps> = Template.bind({});
 Default.args = {
-	open: true,
+	onSetEditedData: (edited) => console.log("Edited:", edited),
+	onSuccess: () => console.log("Success!"),
+	onClose: () => console.log("Modal closed"),
 };
 
-export const Closed: StoryFn<ModalTecnicoProps> = Template.bind({});
-Closed.args = {
-	open: false,
+export const ValidData: StoryFn<ModalTecnicoProps> = Template.bind({});
+ValidData.args = {
+	onSetEditedData: (edited) => console.log("Edited:", edited),
+	onSuccess: () => console.log("Success!"),
+	onClose: () => console.log("Modal closed"),
+};
+
+export const WithErrors: StoryFn<ModalTecnicoProps> = Template.bind({});
+WithErrors.args = {
+	onSetEditedData: (edited) => console.log("Edited:", edited),
+	onSuccess: () => console.log("Success!"),
+	onClose: () => console.log("Modal closed"),
 };

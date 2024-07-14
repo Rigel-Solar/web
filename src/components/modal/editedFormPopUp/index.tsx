@@ -1,6 +1,6 @@
 import { DialogProps } from "@radix-ui/react-dialog";
 import Button from "../../form/button";
-import { PopUp, PopUpHeader } from "../popUp";
+import { PopUp, PopUpHeader, PopUpTriggerClose } from "../popUp";
 import { EditedFormContainer } from "./styles";
 
 export interface editedFormPopUp extends DialogProps {
@@ -18,20 +18,18 @@ const EditedFormPopUp = ({
 	return (
 		<PopUp {...props} hasPortal>
 			<PopUpHeader>
-				<h2>Sair</h2>
+				<h2>Fechar</h2>
 			</PopUpHeader>
 
 			<EditedFormContainer>
-				<p>Tem certeza que deseja sair ?</p>
+				<p>Tem certeza que deseja fechar ?</p>
 
 				<div className="buttons-container">
-					<Button buttonStyle="text" onClick={handleConfirmClose}>
+					<PopUpTriggerClose $buttonStyle="text" $buttonState="normal">
 						Voltar
-					</Button>
+					</PopUpTriggerClose>
 
-					<Button onClick={handleConfirmClose}>
-						Fechar
-					</Button>
+					<Button onClick={handleConfirmClose}>Fechar</Button>
 				</div>
 			</EditedFormContainer>
 		</PopUp>
