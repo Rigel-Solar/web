@@ -10,7 +10,7 @@ import {
 } from "./index";
 
 const meta: Meta<typeof ActionAlertDialogRoot> = {
-	title: "Components/ActionAlertDialog",
+	title: "Components/Modal/ActionAlertDialog",
 	component: ActionAlertDialogRoot,
 	argTypes: {
 		contentStyle: {

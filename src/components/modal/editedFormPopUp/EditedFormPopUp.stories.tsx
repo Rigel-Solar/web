@@ -2,7 +2,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import EditedFormPopUp, { editedFormPopUp } from "./index";
 
 const meta: Meta<typeof EditedFormPopUp> = {
-	title: "Components/EditedFormPopUp",
+	title: "Components/Modal/EditedFormPopUp",
 	component: EditedFormPopUp,
 	argTypes: {
 		open: {

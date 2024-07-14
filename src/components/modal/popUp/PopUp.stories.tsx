@@ -2,7 +2,7 @@ import { Meta, StoryFn } from "@storybook/react";
 import { PopUp, PopUpContent, PopUpHeader, popUpModalprops } from "./index";
 
 const meta: Meta<typeof PopUp> = {
-	title: "Components/PopUp",
+	title: "Components/Modal/PopUp",
 	component: PopUp,
 	argTypes: {
 		contentStyle: {

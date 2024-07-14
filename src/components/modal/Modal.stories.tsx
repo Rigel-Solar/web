@@ -10,7 +10,7 @@ import {
 } from "./index";
 
 const meta: Meta<typeof Modal> = {
-	title: "Components/Modal",
+	title: "Components/Modal/Modal",
 	component: Modal,
 	argTypes: {
 		contentStyle: {

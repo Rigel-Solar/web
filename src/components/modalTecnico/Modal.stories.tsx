@@ -3,7 +3,7 @@ import { Modal } from "../modal";
 import ModalTecnico, { ModalTecnicoProps } from "./index";
 
 const meta: Meta<typeof ModalTecnico> = {
-	title: "Components/ModalTecnico",
+	title: "Components/Modal/ModalTecnico",
 	component: ModalTecnico,
 	argTypes: {
 		onSetEditedData: { action: "setEditedData" },
