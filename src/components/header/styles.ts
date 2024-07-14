@@ -27,7 +27,7 @@ export const Header = styled.header<HeaderProps>`
 	flex-direction: column;
 	height: 100vh;
 	flex: 1;
-	width: 420px;
+	width: 320px;
 	padding: 60px 30px;
 	background-color: ${({ theme }) => theme.colors.brand.black};
 	border-top-right-radius: 12px;

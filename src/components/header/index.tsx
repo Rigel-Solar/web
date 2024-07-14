@@ -3,6 +3,8 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { NavLink, useLocation } from "react-router-dom";
 import { Icons } from "../../assets/Icons";
 import rigel from "../../assets/icon.png";
+import { useAppDispatch } from "../../redux/hooks/useApp";
+import { onLogout } from "../../redux/reducers/user-reducer";
 import * as C from "./styles";
 import SwitchTheme from "./switchTheme";
 
@@ -75,6 +77,7 @@ const Menu: React.FC<{
 
 const Header = ({ open = true, setOpen }: HeaderProps) => {
 	const menuItems: MenuSection[] = useMemo(getMenuItems, []);
+	const dispatch = useAppDispatch();
 
 	return (
 		<C.Header $open={open}>
@@ -86,7 +89,7 @@ const Header = ({ open = true, setOpen }: HeaderProps) => {
 				<Menu sections={menuItems} setOpen={setOpen} />
 			</div>
 			<div className="bottom">
-				<C.Logout>
+				<C.Logout onClick={() => dispatch(onLogout())}>
 					<AiOutlineLogout />
 					Sair
 				</C.Logout>
