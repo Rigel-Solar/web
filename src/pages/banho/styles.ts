@@ -6,7 +6,7 @@ export const Container = styled.main`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: start;
 	padding: 25px 40px;
 
 	section {
@@ -14,6 +14,8 @@ export const Container = styled.main`
 		flex-direction: column;
 		gap: 20px;
 		width: fit-content;
+		max-height: 280px;
+		margin-bottom: 80px;
 
 		input {
 			width: 100%;
@@ -24,6 +26,7 @@ export const Container = styled.main`
 		display: flex;
 		align-items: center;
 		gap: 20px;
+
 		button {
 			border-radius: 50px;
 			gap: 6px;

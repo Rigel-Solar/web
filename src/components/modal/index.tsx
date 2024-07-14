@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { CSSProperties } from "styled-components";
 import {
 	ButtonArea,
+	Cancel,
 	ModalBody,
 	ModalHeaderContainer,
 	ModalOverlay,
 	ModalPortal,
 	ModalRoot,
-	ModalTriggerCloseStyle,
 	StyledModalContent,
 	Success,
 } from "./styles";
@@ -16,7 +16,7 @@ import {
 export interface actionModalRootProps extends DialogProps {
 	contentStyle?: CSSProperties | undefined;
 	overlayStyle?: CSSProperties | undefined;
-	position?: "left" | "right";
+	position?: "left" | "right" | "center";
 }
 
 export const Modal = ({
@@ -58,5 +58,5 @@ export const Modal = ({
 export const ModalContent = ModalBody;
 export const ModalHeader = ModalHeaderContainer;
 export const ModalTriggerButtons = ButtonArea;
-export const ModalTriggerClose = ModalTriggerCloseStyle;
+export const ModalTriggerClose = Cancel;
 export const ModalTriggerSuccess = Success;

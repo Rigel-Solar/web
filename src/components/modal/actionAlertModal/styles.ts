@@ -129,7 +129,7 @@ export const Success = styled.button`
 `;
 
 export interface modalProps {
-	position?: "left" | "right";
+	position?: "left" | "right" | "center";
 	$closeAnimation: boolean;
 }
 

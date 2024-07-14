@@ -11,8 +11,6 @@ interface BadgeProps {
 
 export const Root = styled(Table.Root)<RootProps>`
 	width: 100%;
-	max-height: 80vh;
-	overflow-y: auto;
 	margin: auto;
 
 	table {

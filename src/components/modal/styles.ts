@@ -12,40 +12,34 @@ export const ModalPortal = styled(Dialog.Portal)``;
 
 export const ModalHeaderContainer = styled.section`
 	padding: 0.6em 1em;
-	display: flex;
+	display: grid;
+	grid-template-columns: 2fr 3fr;
 	gap: 20px;
-	align-items: center;
-	justify-content: space-between;
 	border-bottom: solid 1px ${({ theme }) => theme.colors.grayscale.gray_10};
 
-	h3 {
+	color: ${({ theme }) => theme.colors.brand.white};
+
+	button {
+		margin: auto 0;
+		padding: 0.35em 0.6em 0.25em 0.6em;
+		height: fit-content;
+		width: fit-content;
+	}
+
+	:is(h1, h2, h3, h4) {
+		${({ theme }) => theme.font.h1};
+		font-size: clamp(18px, 2vw, 20px);
 		max-width: 400px;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
 		font-weight: 500;
-		font-size: 1em;
+		margin: 10px 0;
 	}
 
 	@media screen and (max-width: 1000px) {
 		padding: 7px 1.2em;
 	}
-`;
-
-export const ModalTriggerCloseStyle = styled(Dialog.Close)`
-  padding: 0.4em;
-  border-radius: 0.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  transition: 0.3s;
-  ${({ theme }) => theme.font.p.large};
-  color: ${({ theme }) => theme.colors.grayscale.gray_80};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.grayscale.gray_10};
-  }
 `;
 
 export const ModalOverlay = styled(Dialog.Overlay)<modalProps>`
@@ -71,13 +65,18 @@ export const ModalOverlay = styled(Dialog.Overlay)<modalProps>`
 	}}
 `;
 
-export const ModalBody = styled.main``;
+export const ModalBody = styled.main`
+	flex: 1;
+	color: ${({ theme }) => theme.colors.brand.white};
+	${({ theme }) => theme.font.p.normal};
+	padding: 20px;
+`;
 
 export const ButtonArea = styled.div`
-	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 12px;
+	padding: 20px;
 `;
 
 export const Cancel = styled(Dialog.Close)`
@@ -136,6 +135,13 @@ export const StyledModalContent = styled(Dialog.Content)<modalProps>`
 			return css`
 				left: 0.7em;
 				transform-origin: left;
+			`;
+		}
+		if (position == "center") {
+			return css`
+				min-width: 70vw;
+				height: 70vh;
+				margin: auto;
 			`;
 		}
 		return css`

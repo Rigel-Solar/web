@@ -187,6 +187,7 @@ export const Theme = styled.div`
 			background: transparent;
 			display: grid;
 			justify-content: center;
+			width: 100%;
 		}
 		button:not(.active) {
 			display: none;
