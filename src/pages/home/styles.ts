@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.main`
 	display: grid;
-	height: 100svh;
 	padding: 25px 40px;
+	height: 100%;
 	grid-template-rows: 1fr 3fr 3fr;
 	gap: 30px;
 	flex: 1;

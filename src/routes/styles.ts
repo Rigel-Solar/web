@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const PageContainer = styled.section`
+export const PageContainer = styled.main`
 	position: relative;
 	display: flex;
 	width: 100%;
-	min-height: 100dvh;
+	height: 100%;
 	background-color: ${({ theme }) => theme.colors.brand.background};
 
 	> button {

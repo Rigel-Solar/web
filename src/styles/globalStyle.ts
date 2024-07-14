@@ -11,8 +11,9 @@ export default createGlobalStyle`
 
   #root {
     width: 100%;
-    min-height: 100% !important;
     display: flex;
+    height: 100dvh;
+    background-color: ${({ theme }) => theme.colors.brand.background};
   }
 
 

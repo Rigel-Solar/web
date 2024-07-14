@@ -5,4 +5,5 @@ export const DefaultPageContainer = styled.section`
 	${({ theme }) => theme.font.p.normal};
 	color: ${({ theme }) => theme.colors.brand.white};
 	margin-top: 30px;
+	background-color: ${({ theme }) => theme.colors.brand.background};
 `;
