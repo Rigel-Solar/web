@@ -1,6 +1,8 @@
 import { ChangeEvent, useMemo, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import Button from "../../components/form/button";
+import { Modal } from "../../components/modal";
+import EditedFormPopUp from "../../components/modal/editedFormPopUp";
 import ModalTecnico from "../../components/modalTecnico";
 import Search from "../../components/search";
 import DataTable from "../../components/table";
@@ -10,11 +12,30 @@ import { DefaultPageContainer } from "../styles";
 import * as C from "./styles";
 
 const Tecnicos = () => {
-	const [isModalOpen, setModalOpen] = useState(false);
+	const [openModal, setOpenModal] = useState(false);
+	const [hasEditedData, setHasEditedData] = useState(false);
+	const [openConfirmCloseModal, setOpenConfirmCloseModal] = useState(false);
 	const [searchTerm, setSearchTerm] = useState("");
 
-	const handleOpenModal = () => setModalOpen(true);
-	const handleCloseModal = () => setModalOpen(false);
+	const handleOpenModal = () => setOpenModal(true);
+	const handleCloseModal = () => setOpenModal(false);
+
+	const onOpenChange = () => {
+		if (hasEditedData) {
+			setOpenConfirmCloseModal(true);
+
+			return;
+		}
+
+		setOpenModal(!openModal);
+	};
+
+	const onConfirmCloseModal = () => {
+		setHasEditedData(false);
+		setOpenConfirmCloseModal(false);
+		setOpenModal(false);
+	};
+
 	const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
 		setSearchTerm(e.target.value);
 
@@ -44,14 +65,18 @@ const Tecnicos = () => {
 				/>
 				<DataTableContainer data={filteredData} />
 			</C.Container>
-			{isModalOpen && (
+			<EditedFormPopUp
+				open={hasEditedData && openConfirmCloseModal}
+				onOpenChange={() => setOpenConfirmCloseModal(!openConfirmCloseModal)}
+				onConfirmCloseModal={onConfirmCloseModal}
+			/>
+			<Modal open={openModal} onOpenChange={onOpenChange}>
 				<ModalTecnico
-					open={isModalOpen}
-					onOpenChange={setModalOpen}
 					onClose={handleCloseModal}
 					onSuccess={handleCloseModal}
+					onSetEditedData={setHasEditedData}
 				/>
-			)}
+			</Modal>
 		</DefaultPageContainer>
 	);
 };
@@ -65,7 +90,7 @@ interface HeaderProps {
 const Header = ({ onOpenModal, searchTerm, onSearchChange }: HeaderProps) => (
 	<section>
 		<div className="top-area">
-			<h1>Técnicos</h1>
+			<h1>Tecnicos</h1>
 			<Button buttonStyle="primary" onClick={onOpenModal}>
 				<FiPlus size={16} />
 				Cadastrar Técnico

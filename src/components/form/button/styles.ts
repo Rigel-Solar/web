@@ -28,7 +28,7 @@ const secondary = css`
 	background-color: transparent;
 `;
 const text = css`
-	color: ${({ theme }) => theme.colors.brand.black};
+	color: ${({ theme }) => theme.colors.brand.white};
 	padding: 0px;
 `;
 const link = css`
@@ -107,6 +107,10 @@ export const ButtonStyles = css<buttonStyleProps>`
 			`;
 		}
 	}}
+
+	&:hover {
+		opacity: 0.7;
+	}
 
 	.loading-button {
 		display: flex;

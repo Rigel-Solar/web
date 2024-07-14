@@ -1,7 +1,6 @@
 import { ChangeEvent, useMemo, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import Button from "../../components/form/button";
-import ModalTecnico from "../../components/modalTecnico";
 import Search from "../../components/search";
 import DataTable from "../../components/table";
 import { tableData } from "../../constants/table";
@@ -10,11 +9,8 @@ import { DefaultPageContainer } from "../styles";
 import * as C from "./styles";
 
 const Fotovoltaico = () => {
-	const [isModalOpen, setModalOpen] = useState(false);
 	const [searchTerm, setSearchTerm] = useState("");
 
-	const handleOpenModal = () => setModalOpen(true);
-	const handleCloseModal = () => setModalOpen(false);
 	const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
 		setSearchTerm(e.target.value);
 
@@ -37,36 +33,23 @@ const Fotovoltaico = () => {
 	return (
 		<DefaultPageContainer>
 			<C.Container>
-				<Header
-					onOpenModal={handleOpenModal}
-					searchTerm={searchTerm}
-					onSearchChange={handleSearchChange}
-				/>
+				<Header searchTerm={searchTerm} onSearchChange={handleSearchChange} />
 				<DataTableContainer data={filteredData} />
 			</C.Container>
-			{isModalOpen && (
-				<ModalTecnico
-					open={isModalOpen}
-					onOpenChange={setModalOpen}
-					onClose={handleCloseModal}
-					onSuccess={handleCloseModal}
-				/>
-			)}
 		</DefaultPageContainer>
 	);
 };
 
 interface HeaderProps {
-	onOpenModal: () => void;
 	searchTerm: string;
 	onSearchChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Header = ({ onOpenModal, searchTerm, onSearchChange }: HeaderProps) => (
+const Header = ({ searchTerm, onSearchChange }: HeaderProps) => (
 	<section>
 		<div className="top-area">
 			<h1>Fotovoltaico</h1>
-			<Button buttonStyle="primary" onClick={onOpenModal}>
+			<Button buttonStyle="primary">
 				<FiPlus size={16} />
 				Criar Pedido
 			</Button>

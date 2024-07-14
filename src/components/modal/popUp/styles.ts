@@ -1,8 +1,8 @@
 import styled, { css, keyframes } from "styled-components";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { closeOverlayAnimation, modalProps } from "../actionAlertModal/styles";
 import { ButtonStyles, buttonStyleProps } from "../../form/button/styles";
+import { closeOverlayAnimation, modalProps } from "../actionAlertModal/styles";
 
 const entranceAnimation = keyframes`
 to{
@@ -36,7 +36,7 @@ export const PopUpHeaderContainer = styled.section`
 
 	h2 {
 		${({ theme }) => theme.font.p.medium_bold};
-		color: ${({ theme }) => theme.colors.grayscale.gray_80};
+		color: ${({ theme }) => theme.colors.brand.white};
 	}
 `;
 
@@ -68,7 +68,7 @@ export const PopUpBody = styled.main``;
 export const StyledPopUpContent = styled(Dialog.Content)<modalProps>`
 	min-width: 100px;
 	max-height: 98vh;
-	background: ${({ theme }) => theme.colors.brand.white};
+	background: ${({ theme }) => theme.colors.brand.modal};
 	position: relative;
 	transition: 0.3s;
 	box-shadow:
@@ -80,9 +80,6 @@ export const StyledPopUpContent = styled(Dialog.Content)<modalProps>`
 	flex-direction: column;
 	opacity: 0;
 	transform-origin: 50%;
-	/* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
 	scale: 0.4;
 
 	${({ $closeAnimation }) => {

@@ -1,52 +1,57 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { MdDone } from "react-icons/md";
 import { toast } from "sonner";
-import { modalActions } from "../../models/modal";
+import { addNewProps } from "../../models/add-new";
 import { tecnicoSchema, tecnicoTS } from "../../utils/tecnicoSchema";
 import Input from "../form/input";
 import { FormContainer, FormFieldsContainer } from "../form/styles";
 import {
 	ActionAlertDialogContent,
 	ActionAlertDialogHeader,
-	ActionAlertDialogRoot,
 	ActionAlertDialogTriggerButtons,
 	ActionAlertDialogTriggerClose,
 	ActionAlertDialogTriggerSuccess,
 } from "../modal/actionAlertModal";
+import { Modal } from "./styles";
 
-export interface ModalTecnicoProps<T extends object = any>
-	extends modalActions<T> {
-	open: boolean;
-	onOpenChange: (open: boolean) => void;
-	onSuccess(): void;
-}
+export interface ModalTecnicoProps extends addNewProps {}
 
 const ModalTecnico = ({
-	onOpenChange,
+	onSetEditedData,
 	onSuccess,
-	open,
 	...props
 }: ModalTecnicoProps) => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors, isDirty },
 	} = useForm<tecnicoTS>({
 		resolver: zodResolver(tecnicoSchema),
+		defaultValues: {
+			name: "",
+			email: "",
+			password: "",
+		},
 	});
+
+	useEffect(() => {
+		if (isDirty) {
+			onSetEditedData?.(true);
+		}
+	}, [isDirty]);
 
 	const onSubmit = (data: tecnicoTS) => {
 		console.log("Form submitted:", data);
 		toast.success("Técnico cadastrado!", {
 			duration: 2500,
 		});
-		onSuccess();
+		onSuccess?.();
 	};
 
 	return (
-		<ActionAlertDialogRoot open={open} onOpenChange={() => onOpenChange(!open)}>
+		<Modal>
 			<ActionAlertDialogHeader>
 				<h2>Cadastrar Técnico</h2>
 			</ActionAlertDialogHeader>
@@ -87,7 +92,7 @@ const ModalTecnico = ({
 					Cadastrar
 				</ActionAlertDialogTriggerSuccess>
 			</ActionAlertDialogTriggerButtons>
-		</ActionAlertDialogRoot>
+		</Modal>
 	);
 };
 

@@ -7,7 +7,8 @@ import {
 	modalProps,
 } from "./actionAlertModal/styles";
 
-export const ModalRoot = styled(Dialog.Root)``;
+export const ModalRoot = styled(Dialog.Root)`
+`;
 export const ModalPortal = styled(Dialog.Portal)``;
 
 export const ModalHeaderContainer = styled.section`
