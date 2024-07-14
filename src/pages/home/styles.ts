@@ -39,7 +39,6 @@ export const Container = styled.main`
 	}
 
 	@media (width <= 1280px) {
-		height: auto;
 		grid-template-rows: 1fr 2fr 2fr;
 		.cards {
 			display: grid;

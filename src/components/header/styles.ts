@@ -34,7 +34,12 @@ export const Header = styled.header<HeaderProps>`
 	border-bottom-right-radius: 12px;
 	transition: opacity 0.3s ease;
 
-	@media (max-width: 860px) {
+	@media (width <= 1280px) {
+		padding: 30px 20px;
+		width: 80px;
+	}
+
+	@media (width <= 860px) {
 		width: 100%;
 		padding: 60px 40px;
 		opacity: ${(props) => (props.$open ? 1 : 0)};
@@ -72,6 +77,14 @@ export const Header = styled.header<HeaderProps>`
 			align-items: center;
 			gap: 10px;
 
+			@media (width <= 1280px) {
+				justify-content: center;
+
+				h1 {
+					display: none;
+				}
+			}
+
 			img {
 				width: 28px;
 				height: 28px;
@@ -103,6 +116,12 @@ export const Header = styled.header<HeaderProps>`
 			text-decoration: none;
 			${({ theme }) => theme.font.p.normal};
 			color: ${({ theme }) => theme.colors.brand.white};
+
+			p {
+				@media (min-width: 860px) and (max-width: 1279px) {
+					display: none;
+				}
+			}
 		}
 
 		ul li.active {
@@ -126,6 +145,10 @@ export const Logout = styled.button`
 	gap: 8px;
 	padding: 6px 8px;
 	color: ${({ theme }) => theme.colors.brand.white};
+
+	@media (width <= 1280px) {
+		padding: 0;
+	}
 `;
 
 export const Theme = styled.div`
@@ -144,10 +167,29 @@ export const Theme = styled.div`
 		padding: 6px 16px;
 		gap: 6px;
 		color: ${({ theme }) => theme.colors.brand.white};
+
+		p {
+			${({ theme }) => theme.font.p.small}
+		}
 	}
 
 	button.active {
 		background-color: ${({ theme }) => theme.colors.brand.black};
 		border-radius: 50px;
+	}
+
+	@media (width <= 1280px) {
+		justify-content: center;
+		p {
+			display: none;
+		}
+		button.active {
+			background: transparent;
+			display: grid;
+			justify-content: center;
+		}
+		button:not(.active) {
+			display: none;
+		}
 	}
 `;

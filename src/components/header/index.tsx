@@ -64,7 +64,7 @@ const Menu: React.FC<{
 							>
 								<NavLink to={item.route} onClick={handleNavLinkClick}>
 									{item.icon}
-									{item.label}
+									<p>{item.label}</p>
 								</NavLink>
 							</li>
 						))}
