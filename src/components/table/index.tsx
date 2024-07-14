@@ -1,4 +1,4 @@
-import { Table } from "@radix-ui/themes";
+import { Table, Theme } from "@radix-ui/themes";
 import React, { useState } from "react";
 import {
 	FaAngleLeft,
@@ -6,8 +6,8 @@ import {
 	FaAnglesLeft,
 	FaAnglesRight,
 } from "react-icons/fa6";
-import { SlOptions } from "react-icons/sl";
 import { DataTableProps } from "../../models/data-table";
+import Dropdown from "../dropdown";
 import * as C from "./styles";
 
 interface TableBodyProps {
@@ -50,7 +50,7 @@ const DataTable = ({
 	);
 
 	return (
-		<>
+		<Theme>
 			<C.Root variant="surface" $background={background}>
 				<TableHeader />
 				<TableBody data={paginatedData} />
@@ -64,7 +64,7 @@ const DataTable = ({
 					onItemsPerPageChange={handleItemsPerPageChange}
 				/>
 			)}
-		</>
+		</Theme>
 	);
 };
 
@@ -153,9 +153,9 @@ const Pagination = ({
 
 const Options = () => (
 	<C.Cell>
-		<button>
-			<SlOptions />
-		</button>
+		<div className="dropdown">
+			<Dropdown />
+		</div>
 	</C.Cell>
 );
 

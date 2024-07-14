@@ -16,6 +16,7 @@ export const Root = styled(Table.Root)<RootProps>`
 	table {
 		width: 100%;
 		border-collapse: collapse;
+		white-space: nowrap;
 	}
 
 	${({ $background }) =>
@@ -67,18 +68,25 @@ export const Row = styled(Table.Row)`
 `;
 
 export const Cell = styled(Table.Cell)`
-	padding: 16px;
+	padding: 14px;
 	${({ theme }) => theme.font.p.small}
 
-	button {
-		display: flex;
-		align-items: center;
-		background-color: #18181b;
+	&:last-of-type {
+		padding: 0;
+	}
+
+	.dropdown {
 		border: 1px solid #27272a;
-		font-size: 10px;
 		border-radius: 6px;
 		color: #fff;
-		padding: 6px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 8px 1px;
+
+		@media (width <= 1280px) {
+			padding: 8px;
+		}
 	}
 `;
 
