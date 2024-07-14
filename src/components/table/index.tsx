@@ -8,6 +8,9 @@ import {
 } from "react-icons/fa6";
 import { DataTableProps } from "../../models/data-table";
 import Dropdown from "../dropdown";
+import { Modal } from "../modal";
+import EditedFormPopUp from "../modal/editedFormPopUp";
+import ModalPedido from "../modal/modalPedido";
 import * as C from "./styles";
 
 interface TableBodyProps {
@@ -151,12 +154,45 @@ const Pagination = ({
 	);
 };
 
-const Options = () => (
-	<C.Cell>
-		<div className="dropdown">
-			<Dropdown />
-		</div>
-	</C.Cell>
-);
+const Options = () => {
+	const [openModal, setOpenModal] = useState(false);
+	const [hasEditedData, setHasEditedData] = useState(false);
+	const [openConfirmCloseModal, setOpenConfirmCloseModal] = useState(false);
+
+	const handleOpenModal = () => setOpenModal(true);
+
+	const onOpenChange = () => {
+		if (hasEditedData) {
+			setOpenConfirmCloseModal(true);
+
+			return;
+		}
+
+		setOpenModal(!openModal);
+	};
+
+	const onConfirmCloseModal = () => {
+		setHasEditedData(false);
+		setOpenConfirmCloseModal(false);
+		setOpenModal(false);
+	};
+
+	return (
+		<C.Cell>
+			<div className="dropdown">
+				<Dropdown handleOpenModal={handleOpenModal} />
+			</div>
+
+			<EditedFormPopUp
+				open={hasEditedData && openConfirmCloseModal}
+				onOpenChange={() => setOpenConfirmCloseModal(!openConfirmCloseModal)}
+				onConfirmCloseModal={onConfirmCloseModal}
+			/>
+			<Modal open={openModal} onOpenChange={onOpenChange} position="center">
+				<ModalPedido />
+			</Modal>
+		</C.Cell>
+	);
+};
 
 export default DataTable;
