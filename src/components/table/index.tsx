@@ -6,15 +6,18 @@ import {
 	FaAnglesLeft,
 	FaAnglesRight,
 } from "react-icons/fa6";
+import { technicians } from "../../constants/technician";
 import { DataTableProps } from "../../models/data-table";
 import Dropdown from "../dropdown";
 import { Modal } from "../modal";
 import EditedFormPopUp from "../modal/editedFormPopUp";
 import ModalPedido from "../modal/modalPedido";
+import ViewTecnico from "../modalTecnico/viewTecnico";
 import * as C from "./styles";
 
 interface TableBodyProps {
 	data: DataTableProps["data"];
+	isTechnician?: boolean;
 }
 
 interface PaginationProps {
@@ -30,6 +33,7 @@ const DataTable = ({
 	hasPagination,
 	$itemsPerPage = 10,
 	background = false,
+	isTechnician = false,
 }: DataTableProps) => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [itemsPerPage, setItemsPerPage] = useState($itemsPerPage);
@@ -56,7 +60,7 @@ const DataTable = ({
 		<Theme>
 			<C.Root variant="surface" $background={background}>
 				<TableHeader />
-				<TableBody data={paginatedData} />
+				<TableBody data={paginatedData} isTechnician={isTechnician} />
 			</C.Root>
 			{hasPagination && (
 				<Pagination
@@ -84,7 +88,7 @@ const TableHeader = () => (
 	</C.Header>
 );
 
-const TableBody: React.FC<TableBodyProps> = ({ data }) => (
+const TableBody = ({ data, isTechnician }: TableBodyProps) => (
 	<C.Body>
 		{data.map((item, index) => (
 			<C.Row key={index}>
@@ -100,7 +104,7 @@ const TableBody: React.FC<TableBodyProps> = ({ data }) => (
 					<C.Badge text={item.status}>{item.status}</C.Badge>
 				</C.Cell>
 				<C.Cell>{item.createdAt}</C.Cell>
-				<Options />
+				<Options isTechnician={isTechnician} />
 			</C.Row>
 		))}
 	</C.Body>
@@ -154,7 +158,11 @@ const Pagination = ({
 	);
 };
 
-const Options = () => {
+interface OptionsProps {
+	isTechnician?: boolean;
+}
+
+const Options = ({ isTechnician }: OptionsProps) => {
 	const [openModal, setOpenModal] = useState(false);
 	const [hasEditedData, setHasEditedData] = useState(false);
 	const [openConfirmCloseModal, setOpenConfirmCloseModal] = useState(false);
@@ -188,9 +196,15 @@ const Options = () => {
 				onOpenChange={() => setOpenConfirmCloseModal(!openConfirmCloseModal)}
 				onConfirmCloseModal={onConfirmCloseModal}
 			/>
-			<Modal open={openModal} onOpenChange={onOpenChange} position="center">
-				<ModalPedido />
-			</Modal>
+			{isTechnician ? (
+				<Modal open={openModal} onOpenChange={onOpenChange} position="right">
+					<ViewTecnico data={technicians[0]} />
+				</Modal>
+			) : (
+				<Modal open={openModal} onOpenChange={onOpenChange} position="center">
+					<ModalPedido />
+				</Modal>
+			)}
 		</C.Cell>
 	);
 };

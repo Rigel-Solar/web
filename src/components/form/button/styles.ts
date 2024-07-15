@@ -23,7 +23,7 @@ const primary = css`
 	background-color: ${({ theme }) => theme.colors.brand.rigel};
 `;
 const secondary = css`
-	color: ${({ theme }) => theme.colors.grayscale.gray_80};
+	color: #f0f0f0;
 	border: 1px solid ${({ theme }) => theme.colors.grayscale.gray_20};
 	background-color: transparent;
 `;

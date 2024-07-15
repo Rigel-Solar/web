@@ -1,6 +1,12 @@
 import styled, { css, keyframes } from "styled-components";
 
 import * as Dialog from "@radix-ui/react-alert-dialog";
+import { ReactNode } from "react";
+
+export interface ModalHeaderProps {
+	$between?: boolean;
+	children: ReactNode;
+}
 
 export const entranceAnimation = keyframes`
 from{
@@ -38,17 +44,33 @@ from{
 export const ModalRoot = styled(Dialog.Root)``;
 export const ModalPortal = styled(Dialog.Portal)``;
 
-export const ModalHeader = styled.section`
+export const ModalHeader = styled.section<ModalHeaderProps>`
 	margin: 0 -30px;
 	padding: 1em 1.5em;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
 	gap: 20px;
 	border-bottom: solid 1px #27272a;
+
+	${(props) =>
+		props.$between &&
+		css`
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		`}
+
 	h2,
 	h3 {
 		${({ theme }) => theme.font.p.medium};
+		color: #fafafa;
+	}
+
+	button {
+		text-align: start;
+	}
+
+	svg {
 		color: #fafafa;
 	}
 `;

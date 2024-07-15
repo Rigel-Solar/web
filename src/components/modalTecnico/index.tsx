@@ -1,10 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { DialogClose } from "@radix-ui/react-dialog";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { AiOutlineLeftCircle } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
+import { PiTrashLight } from "react-icons/pi";
 import { toast } from "sonner";
 import { addNewProps } from "../../models/add-new";
+import { Technician } from "../../models/technician";
 import { tecnicoSchema, tecnicoTS } from "../../utils/tecnicoSchema";
+import Button from "../form/button";
 import Input from "../form/input";
 import { FormContainer, FormFieldsContainer } from "../form/styles";
 import {
@@ -14,13 +19,16 @@ import {
 	ActionAlertDialogTriggerClose,
 	ActionAlertDialogTriggerSuccess,
 } from "../modal/actionAlertModal";
-import { Modal } from "./styles";
+import { ModalContainer } from "./styles";
 
-export interface ModalTecnicoProps extends addNewProps {}
+export interface ModalTecnicoProps extends addNewProps {
+	data?: Technician;
+}
 
 const ModalTecnico = ({
 	onSetEditedData,
 	onSuccess,
+	data,
 	...props
 }: ModalTecnicoProps) => {
 	const {
@@ -44,19 +52,34 @@ const ModalTecnico = ({
 
 	const onSubmit = (data: tecnicoTS) => {
 		console.log("Form submitted:", data);
-		toast.success("Técnico cadastrado!", {
-			duration: 2500,
-		});
+		{
+			data
+				? toast.success("Técnico atualizado!", {
+						duration: 2500,
+					})
+				: toast.success("Técnico cadastrado!", {
+						duration: 2500,
+					});
+		}
+
 		onSuccess?.();
 	};
 
 	return (
-		<Modal>
-			<ActionAlertDialogHeader>
-				<h2>Cadastrar Técnico</h2>
+		<ModalContainer>
+			<ActionAlertDialogHeader $between={!!data}>
+				<DialogClose>
+					<AiOutlineLeftCircle size={20} />
+				</DialogClose>
+				<h2>{data ? "Atualizar" : "Cadastrar"} Técnico</h2>
+				{data && (
+					<Button buttonStyle="text">
+						<PiTrashLight size={20} color="#ff4d4d" />
+					</Button>
+				)}
 			</ActionAlertDialogHeader>
 			<ActionAlertDialogContent>
-				<p>Você pode usar essa tela para cadastrar os técnicos</p>
+				{!data && <p>Você pode usar essa tela para cadastrar os técnicos</p>}
 				<FormContainer>
 					<FormFieldsContainer>
 						<Input
@@ -89,10 +112,10 @@ const ModalTecnico = ({
 					style={{ gap: 4 }}
 				>
 					<MdDone size={18} />
-					Cadastrar
+					{data ? "Atualizar" : "Cadastrar"}
 				</ActionAlertDialogTriggerSuccess>
 			</ActionAlertDialogTriggerButtons>
-		</Modal>
+		</ModalContainer>
 	);
 };
 
