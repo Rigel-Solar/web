@@ -56,11 +56,11 @@ const Login = () => {
 					<h2>Rigel Solar</h2>
 				</div>
 				<div className="bottom">
-					<h2>
+					<em>
 						"Transforme a luz do sol em economia e sustentabilidade para sua
 						casa ou empresa. Com a energia solar fotovoltaica, você reduz sua
 						conta de luz e contribui para um futuro mais verde."
-					</h2>
+					</em>
 					<p>Rigel Solar</p>
 				</div>
 			</Left>
