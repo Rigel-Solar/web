@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineLeftCircle } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
@@ -19,7 +19,6 @@ import {
 	ActionAlertDialogTriggerClose,
 	ActionAlertDialogTriggerSuccess,
 } from "../modal/actionAlertModal";
-import PopUpDelete from "../modal/popUp/popUpDelete";
 import { ModalContainer } from "./styles";
 
 export interface ModalTecnicoProps extends addNewProps {
@@ -32,14 +31,6 @@ const ModalTecnico = ({
 	data,
 	...props
 }: ModalTecnicoProps) => {
-	const [openModal, setOpenModal] = useState(false);
-
-	const handleOpenModal = () => setOpenModal(true);
-
-	const onOpenChange = () => {
-		setOpenModal(!openModal);
-	};
-
 	const {
 		register,
 		handleSubmit,
@@ -83,10 +74,9 @@ const ModalTecnico = ({
 				<h2>{data ? "Atualizar" : "Cadastrar"} Técnico</h2>
 				{data && (
 					<>
-						<Button buttonStyle="text" onClick={handleOpenModal}>
+						<Button buttonStyle="text">
 							<PiTrashLight size={20} color="#ff4d4d" />
 						</Button>
-						<PopUpDelete open={openModal} onOpenChange={onOpenChange} />
 					</>
 				)}
 			</ActionAlertDialogHeader>
