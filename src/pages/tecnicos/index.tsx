@@ -24,10 +24,8 @@ const Tecnicos = () => {
 	const onOpenChange = () => {
 		if (hasEditedData) {
 			setOpenConfirmCloseModal(true);
-
 			return;
 		}
-
 		setOpenModal(!openModal);
 	};
 

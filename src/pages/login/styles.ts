@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.main`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	width: 100%;
@@ -34,8 +34,10 @@ export const Left = styled.article`
 	}
 
 	.bottom {
-		h2 {
-			${({ theme }) => theme.font.p.medium}
+		em {
+			font-family: "Outfit", sans-serif;
+			font-size: clamp(14px, 2vw, 18px);
+			color: ${({ theme }) => theme.colors.brand.white};
 		}
 		p {
 			margin-top: 10px;

@@ -96,4 +96,5 @@ export const StyledPopUpContent = styled(Dialog.Content)<modalProps>`
 
 export const PopUpCloseButton = styled(Dialog.Close)<buttonStyleProps>`
 	${ButtonStyles}
+	
 `;
