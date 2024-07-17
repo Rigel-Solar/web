@@ -21,7 +21,6 @@ import {
 } from "../modal/actionAlertModal";
 import PopUpDelete from "../modal/popUp/popUpDelete";
 import { ModalContainer } from "./styles";
-import PopUpDelete from "../modal/popUp/popUpDelete";
 
 export interface ModalTecnicoProps extends addNewProps {
 	data?: Technician;
