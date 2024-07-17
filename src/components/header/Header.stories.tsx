@@ -2,7 +2,7 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import store from "../../redux/store";
+import { store } from "../../redux/store";
 import Header, { HeaderProps } from "./index";
 
 const meta: Meta<typeof Header> = {
