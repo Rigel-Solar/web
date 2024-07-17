@@ -18,8 +18,8 @@ export const theme = {
 			error: "#E14141",
 			error_02: "#b81d1d",
 			warning: "#F9D934",
-			green_dark: '#2C372A',
-			green_light: '#A3E635',
+			green_dark: "#2C372A",
+			green_light: "#A3E635",
 			//light
 			support_01_light: "#FBFDFD",
 			support_02_light: "#FDFFFC",
@@ -55,46 +55,46 @@ export const theme = {
 
 	font: {
 		h1: [
-			"font: 3em 'Ubuntu', sans-serif; font-weight: 400; line-height: 1.2em;",
+			"font: 3em 'Outfit', sans-serif; font-weight: 400; line-height: 1.2em;",
 		],
 		h2: [
-			"font: 2.4em 'Ubuntu', sans-serif; font-weight: 400; line-height: 1.2em; ",
+			"font: 2.4em 'Outfit', sans-serif; font-weight: 400; line-height: 1.2em; ",
 		],
 		h3: [
-			"font: 1.5em 'Ubuntu', sans-serif; font-weight: 400; line-height: 1.2em; ",
+			"font: 1.5em 'Outfit', sans-serif; font-weight: 400; line-height: 1.2em; ",
 		],
 		p: {
 			//normal
 			large: [
-				"font: 1.3em 'Ubuntu', sans-serif; font-weight: 400; line-height: 1.2em;",
+				"font: 1.3em 'Outfit', sans-serif; font-weight: 400; line-height: 1.2em;",
 			],
 			medium: [
-				"font: 1.2em  'Ubuntu', sans-serif; font-weight: 400; line-height: 1.2em;",
+				"font: 1.2em  'Outfit', sans-serif; font-weight: 400; line-height: 1.2em;",
 			],
 			normal: [
-				"font: 1em 'Ubuntu', sans-serif; font-weight: 400; line-height: 1.3em;",
+				"font: 1em 'Outfit', sans-serif; font-weight: 400; line-height: 1.3em;",
 			],
 			small: [
-				"font: 0.9em 'Ubuntu', sans-serif; font-weight: 400; line-height: 1.2em;",
+				"font: 0.9em 'Outfit', sans-serif; font-weight: 400; line-height: 1.2em;",
 			],
 			extra_small: [
-				"font: 0.8em 'Ubuntu', sans-serif; font-weight: 400; line-height: 1.2em;",
+				"font: 0.8em 'Outfit', sans-serif; font-weight: 400; line-height: 1.2em;",
 			],
 			//bold
 			large_bold: [
-				"font: 1.3em 'Ubuntu', sans-serif; font-weight: 700; line-height: 1.2em;",
+				"font: 1.3em 'Outfit', sans-serif; font-weight: 700; line-height: 1.2em;",
 			],
 			medium_bold: [
-				"font: 1.2em 'Ubuntu', sans-serif; font-weight: 700; line-height: 1.2em;",
+				"font: 1.2em 'Outfit', sans-serif; font-weight: 700; line-height: 1.2em;",
 			],
 			normal_bold: [
-				"font: 1em 'Ubuntu', sans-serif; font-weight: 700; line-height: 1.3em;",
+				"font: 1em 'Outfit', sans-serif; font-weight: 700; line-height: 1.3em;",
 			],
 			small_bold: [
-				"font: 0.9em 'Ubuntu', sans-serif; font-weight: 700; line-height: 1.2em;",
+				"font: 0.9em 'Outfit', sans-serif; font-weight: 700; line-height: 1.2em;",
 			],
 			extra_small_bold: [
-				"font: 0.8em 'Ubuntu', sans-serif; font-weight: 700; line-height: 1.2em;",
+				"font: 0.8em 'Outfit', sans-serif; font-weight: 700; line-height: 1.2em;",
 			],
 		},
 	},

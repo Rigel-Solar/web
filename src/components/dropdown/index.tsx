@@ -18,7 +18,7 @@ const Dropdown = ({ handleOpenModal }: DropdownProps) => {
 					<Item onClick={handleOpenModal}>
 						<p>Ver</p> <IoChevronForward size={12} color="#E0E0E0" />
 					</Item>
-					<Item>
+					<Item onClick={handleOpenModal}>
 						<p>Editar</p> <IoChevronForward size={12} color="#E0E0E0" />
 					</Item>
 				</Flex>

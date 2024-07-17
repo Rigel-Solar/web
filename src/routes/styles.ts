@@ -20,7 +20,7 @@ export const PageContainer = styled.main`
 		flex-direction: column;
 
 		button {
-			display: block;
+			display: flex;
 		}
 	}
 `;

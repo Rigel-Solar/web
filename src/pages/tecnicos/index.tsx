@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import Button from "../../components/form/button";
 import { Modal } from "../../components/modal";
@@ -7,6 +7,7 @@ import ModalTecnico from "../../components/modalTecnico";
 import Search from "../../components/search";
 import DataTable from "../../components/table";
 import { tableData } from "../../constants/table";
+import useSearch from "../../functions/search-filter";
 import { DataTableProps } from "../../models/data-table";
 import { DefaultPageContainer } from "../styles";
 import * as C from "./styles";
@@ -15,7 +16,7 @@ const Tecnicos = () => {
 	const [openModal, setOpenModal] = useState(false);
 	const [hasEditedData, setHasEditedData] = useState(false);
 	const [openConfirmCloseModal, setOpenConfirmCloseModal] = useState(false);
-	const [searchTerm, setSearchTerm] = useState("");
+	const { searchTerm, handleSearchChange, filteredData } = useSearch(tableData);
 
 	const handleOpenModal = () => setOpenModal(true);
 	const handleCloseModal = () => setOpenModal(false);
@@ -35,25 +36,6 @@ const Tecnicos = () => {
 		setOpenConfirmCloseModal(false);
 		setOpenModal(false);
 	};
-
-	const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
-		setSearchTerm(e.target.value);
-
-	const filterData = (data: typeof tableData, term: string) => {
-		const lowerCaseTerm = term.toLowerCase();
-		return data.filter((item) =>
-			Object.values(item).some(
-				(value) =>
-					typeof value === "string" &&
-					value.toLowerCase().includes(lowerCaseTerm)
-			)
-		);
-	};
-
-	const filteredData = useMemo(
-		() => filterData(tableData, searchTerm),
-		[searchTerm]
-	);
 
 	return (
 		<DefaultPageContainer>
