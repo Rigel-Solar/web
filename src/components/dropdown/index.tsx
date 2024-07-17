@@ -2,7 +2,6 @@ import { DropdownMenu, Flex } from "@radix-ui/themes";
 import { IoChevronForward } from "react-icons/io5";
 import { Content, Item, Root, Trigger } from "./styles";
 
-
 export interface DropdownProps {
 	handleOpenModal(): void;
 }
