@@ -6,9 +6,10 @@ import {
 	FaAnglesLeft,
 	FaAnglesRight,
 } from "react-icons/fa6";
+import { SlOptions } from "react-icons/sl";
 import { technicians } from "../../constants/technician";
 import { DataTableProps } from "../../models/data-table";
-import Dropdown from "../dropdown";
+import Button from "../form/button";
 import { Modal } from "../modal";
 import EditedFormPopUp from "../modal/editedFormPopUp";
 import ModalPedido from "../modal/modalPedido";
@@ -188,7 +189,10 @@ const Options = ({ isTechnician }: OptionsProps) => {
 	return (
 		<C.Cell>
 			<div className="dropdown">
-				<Dropdown handleOpenModal={handleOpenModal} />
+				<Button buttonStyle="text" onClick={handleOpenModal}>
+					<SlOptions size={10} />
+				</Button>
+				{/* <Dropdown handleOpenModal={handleOpenModal} /> */}
 			</div>
 
 			<EditedFormPopUp
