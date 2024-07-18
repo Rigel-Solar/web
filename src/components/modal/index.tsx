@@ -4,6 +4,7 @@ import { CSSProperties } from "styled-components";
 import {
 	ButtonArea,
 	Cancel,
+	Description,
 	ModalBody,
 	ModalHeaderContainer,
 	ModalOverlay,
@@ -11,6 +12,7 @@ import {
 	ModalRoot,
 	StyledModalContent,
 	Success,
+	Title,
 } from "./styles";
 
 export interface actionModalRootProps extends DialogProps {
@@ -57,6 +59,8 @@ export const Modal = ({
 
 export const ModalContent = ModalBody;
 export const ModalHeader = ModalHeaderContainer;
+export const ModalTitle = Title;
+export const ModalDescription = Description;
 export const ModalTriggerButtons = ButtonArea;
 export const ModalTriggerClose = Cancel;
 export const ModalTriggerSuccess = Success;

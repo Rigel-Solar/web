@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { VisuallyHidden } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineLeftCircle } from "react-icons/ai";
@@ -14,13 +15,15 @@ import Input from "../form/input";
 import { FormContainer, FormFieldsContainer } from "../form/styles";
 import {
 	ActionAlertDialogContent,
+	ActionAlertDialogDescription,
 	ActionAlertDialogHeader,
+	ActionAlertDialogTitle,
 	ActionAlertDialogTriggerButtons,
 	ActionAlertDialogTriggerClose,
 	ActionAlertDialogTriggerSuccess,
 } from "../modal/actionAlertModal";
-import { ModalContainer } from "./styles";
 import PopUpDelete from "../modal/popUp/popUpDelete";
+import { ModalContainer } from "./styles";
 
 export interface ModalTecnicoProps extends addNewProps {
 	data?: Technician;
@@ -80,7 +83,9 @@ const ModalTecnico = ({
 				<DialogClose>
 					<AiOutlineLeftCircle size={20} />
 				</DialogClose>
-				<h2>{data ? "Atualizar" : "Cadastrar"} Técnico</h2>
+				<ActionAlertDialogTitle>
+					{data ? "Atualizar" : "Cadastrar"} Técnico
+				</ActionAlertDialogTitle>
 				{data && (
 					<>
 						<Button buttonStyle="text" onClick={handleOpenModal}>
@@ -127,6 +132,11 @@ const ModalTecnico = ({
 					{data ? "Atualizar" : "Cadastrar"}
 				</ActionAlertDialogTriggerSuccess>
 			</ActionAlertDialogTriggerButtons>
+			<VisuallyHidden>
+				<ActionAlertDialogDescription>
+					Modal do técnico
+				</ActionAlertDialogDescription>
+			</VisuallyHidden>
 		</ModalContainer>
 	);
 };

@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import {
 	ModalContent,
+	ModalDescription,
 	ModalHeader,
+	ModalTitle,
 	ModalTriggerButtons,
 	ModalTriggerClose,
 	ModalTriggerSuccess,
@@ -9,6 +11,8 @@ import {
 
 export const Header = styled(ModalHeader)``;
 export const Content = styled(ModalContent)``;
+export const Title = styled(ModalTitle)``;
+export const Description = styled(ModalDescription)``;
 export const TriggerButtons = styled(ModalTriggerButtons)`
 	display: flex;
 	justify-content: flex-end;

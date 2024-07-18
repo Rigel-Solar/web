@@ -6,7 +6,7 @@ interface RootProps {
 }
 
 interface BadgeProps {
-	text: "Finalizado" | "Em andamento" | "Negada";
+	$text: "Finalizado" | "Em andamento" | "Negada";
 }
 
 export const Root = styled(Table.Root)<RootProps>`
@@ -76,13 +76,15 @@ export const Cell = styled(Table.Cell)`
 	}
 
 	.dropdown {
-		border: 1px solid #27272a;
-		border-radius: 6px;
-		color: #fff;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 8px 1px;
+		button {
+			border: 1px solid #27272a;
+			border-radius: 6px;
+			color: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 8px;
+		}
 
 		@media (width <= 1280px) {
 			padding: 8px;
@@ -93,15 +95,16 @@ export const Cell = styled(Table.Cell)`
 export const Badge = styled.div<BadgeProps>`
 	margin: 0 auto;
 	width: 50%;
+	min-width: fit-content;
 	display: flex;
 	align-items: center !important;
 	${({ theme }) => theme.font.p.extra_small}
 	padding: 6px;
 	border-radius: 30px;
 	${(props) => {
-		if (props.text == "Finalizado")
+		if (props.$text == "Finalizado")
 			return "background-color: #042F2E; color: #2DD4BF";
-		else if (props.text == "Em andamento")
+		else if (props.$text == "Em andamento")
 			return "background-color: #422006; color: #FACC15";
 		else return "background-color: #450A0A; color: #FF8888";
 	}}

@@ -2,6 +2,7 @@ import { DialogProps } from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
 import { CSSProperties } from "styled-components";
 import {
+	Description,
 	PopUpBody,
 	PopUpCloseButton,
 	PopUpHeaderContainer,
@@ -9,6 +10,7 @@ import {
 	PopUpPortal,
 	PopUpRoot,
 	StyledPopUpContent,
+	Title,
 } from "./styles";
 
 export interface popUpModalprops extends DialogProps {
@@ -64,7 +66,7 @@ export const PopUp = ({
 };
 
 export const PopUpTriggerClose = PopUpCloseButton;
-
 export const PopUpContent = PopUpBody;
-
 export const PopUpHeader = PopUpHeaderContainer;
+export const PopUpTitle = Title;
+export const PopUpDescription = Description;

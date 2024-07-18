@@ -13,6 +13,7 @@ import {
 	StyledModalContent,
 	Success,
 } from "./styles";
+import { Description, Title } from "../styles";
 
 export interface actionModalRootProps extends AlertDialogProps {
 	contentStyle?: CSSProperties | undefined;
@@ -65,3 +66,7 @@ export const ActionAlertDialogTriggerSuccess = Success;
 export const ActionAlertDialogContent = ModalBody;
 
 export const ActionAlertDialogHeader: React.FC<ModalHeaderProps> = ModalHeader;
+
+export const ActionAlertDialogTitle = Title;
+export const ActionAlertDialogDescription = Description;
+

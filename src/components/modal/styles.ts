@@ -7,8 +7,7 @@ import {
 	modalProps,
 } from "./actionAlertModal/styles";
 
-export const ModalRoot = styled(Dialog.Root)`
-`;
+export const ModalRoot = styled(Dialog.Root)``;
 export const ModalPortal = styled(Dialog.Portal)``;
 
 export const ModalHeaderContainer = styled.section`
@@ -71,6 +70,14 @@ export const ModalBody = styled.main`
 	color: ${({ theme }) => theme.colors.brand.white};
 	${({ theme }) => theme.font.p.normal};
 	padding: 20px;
+`;
+
+export const Title = styled(Dialog.Title)`
+	${({ theme }) => theme.font.h3}
+`;
+
+export const Description = styled(Dialog.Description)`
+	${({ theme }) => theme.font.p.normal}
 `;
 
 export const ButtonArea = styled.div`
@@ -143,6 +150,10 @@ export const StyledModalContent = styled(Dialog.Content)<modalProps>`
 				min-width: 70vw;
 				height: 70vh;
 				margin: auto;
+
+				@media (width <= 768px) {
+					min-width: 90vw !important;
+				}
 			`;
 		}
 		return css`
@@ -152,7 +163,7 @@ export const StyledModalContent = styled(Dialog.Content)<modalProps>`
 	}}
 
 
-@media screen and (max-width: 760px) {
+@media (width <= 768px) {
 		max-width: 100vw;
 		min-width: 50px;
 	}

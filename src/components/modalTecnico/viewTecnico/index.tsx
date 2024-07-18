@@ -1,4 +1,5 @@
 import { DialogClose } from "@radix-ui/react-dialog";
+import { VisuallyHidden } from "@radix-ui/themes";
 import { useState } from "react";
 import { AiOutlineEdit, AiOutlineLeftCircle } from "react-icons/ai";
 import ModalTecnico from "..";
@@ -10,7 +11,9 @@ import { FormContainer, FormFieldsContainer } from "../../form/styles";
 import { Modal } from "../../modal";
 import {
 	ActionAlertDialogContent,
+	ActionAlertDialogDescription,
 	ActionAlertDialogHeader,
+	ActionAlertDialogTitle,
 	ActionAlertDialogTriggerButtons,
 } from "../../modal/actionAlertModal";
 import EditedFormPopUp from "../../modal/editedFormPopUp";
@@ -70,7 +73,7 @@ const ViewTecnico = ({ data }: ViewTecnicoProps) => {
 				<DialogClose>
 					<AiOutlineLeftCircle size={20} />
 				</DialogClose>
-				<h2>Perfil do Técnico</h2>
+				<ActionAlertDialogTitle>Perfil do Técnico</ActionAlertDialogTitle>
 				<Button
 					buttonStyle="text"
 					style={{ padding: 5, fontSize: 20 }}
@@ -93,6 +96,11 @@ const ViewTecnico = ({ data }: ViewTecnicoProps) => {
 					Histórico de pedidos
 				</Button>
 			</ActionAlertDialogTriggerButtons>
+			<VisuallyHidden>
+				<ActionAlertDialogDescription>
+					Modal do técnico
+				</ActionAlertDialogDescription>
+			</VisuallyHidden>
 		</ModalContainer>
 	);
 };

@@ -102,7 +102,7 @@ const TableBody = ({ data, isTechnician }: TableBodyProps) => (
 				<C.Cell>{item.person}</C.Cell>
 				<C.Cell>{item.code}</C.Cell>
 				<C.Cell>
-					<C.Badge text={item.status}>{item.status}</C.Badge>
+					<C.Badge $text={item.status}>{item.status}</C.Badge>
 				</C.Cell>
 				<C.Cell>{item.createdAt}</C.Cell>
 				<Options isTechnician={isTechnician} />

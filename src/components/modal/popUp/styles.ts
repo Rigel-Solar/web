@@ -65,6 +65,14 @@ export const PopUpOverlay = styled(Dialog.Overlay)<modalProps>`
 
 export const PopUpBody = styled.main``;
 
+export const Title = styled(Dialog.Title)`
+	${({ theme }) => theme.font.h3}
+`;
+
+export const Description = styled(Dialog.Description)`
+	${({ theme }) => theme.font.p.normal}
+`;
+
 export const StyledPopUpContent = styled(Dialog.Content)<modalProps>`
 	min-width: 100px;
 	max-height: 98vh;
