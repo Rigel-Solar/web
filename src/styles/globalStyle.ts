@@ -13,7 +13,6 @@ export default createGlobalStyle`
     width: 100%;
     display: flex;
     height: 100dvh;
-    background-color: ${({ theme }) => theme.colors.brand.background};
   }
 
 
