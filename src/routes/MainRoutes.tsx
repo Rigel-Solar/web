@@ -1,22 +1,36 @@
 import { useState } from "react";
 import { LuListMinus, LuListPlus } from "react-icons/lu";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
 import Header from "../components/header";
 import Home from "../pages/home";
 import Login from "../pages/login";
 import { useAppSelector } from "../redux/hooks/useApp";
+import GlobalStyle from "../styles/globalStyle";
+import themes from "../styles/themes";
 import { MenuRoutes } from "./routes";
 import { PageContainer } from "./styles";
 
 export const MainRoutes = () => {
 	const { token } = useAppSelector((state) => state.user);
+	const { status } = useAppSelector((state) => state.theme);
+	const theme = themes[status] || "dark";
 
-	if (!token) return <AuthRoute />;
+	if (!token)
+		return (
+			<ThemeProvider theme={theme}>
+				<GlobalStyle />
+				<AuthRoute />
+			</ThemeProvider>
+		);
 
 	return (
-		<PageContainer>
-			<HomeRoute />
-		</PageContainer>
+		<ThemeProvider theme={theme}>
+			<GlobalStyle />
+			<PageContainer>
+				<HomeRoute />
+			</PageContainer>
+		</ThemeProvider>
 	);
 };
 

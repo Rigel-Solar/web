@@ -25,6 +25,9 @@ export const Container = styled.main`
 		display: flex;
 		align-items: center;
 		gap: 20px;
+		h1 {
+			color: ${({ theme }) => theme.colors.brand.text};
+		}
 		button {
 			border-radius: 50px;
 			gap: 6px;

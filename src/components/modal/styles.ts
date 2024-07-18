@@ -17,13 +17,15 @@ export const ModalHeaderContainer = styled.section`
 	gap: 20px;
 	border-bottom: solid 1px ${({ theme }) => theme.colors.grayscale.gray_10};
 
-	color: ${({ theme }) => theme.colors.brand.white};
-
 	button {
 		margin: auto 0;
 		padding: 0.35em 0.6em 0.25em 0.6em;
 		height: fit-content;
 		width: fit-content;
+	}
+
+	svg {
+		color: ${({ theme }) => theme.colors.brand.text};
 	}
 
 	:is(h1, h2, h3, h4) {
@@ -35,6 +37,7 @@ export const ModalHeaderContainer = styled.section`
 		overflow: hidden;
 		font-weight: 500;
 		margin: 10px 0;
+		color: ${({ theme }) => theme.colors.brand.text};
 	}
 
 	@media screen and (max-width: 1000px) {
@@ -67,17 +70,21 @@ export const ModalOverlay = styled(Dialog.Overlay)<modalProps>`
 
 export const ModalBody = styled.main`
 	flex: 1;
-	color: ${({ theme }) => theme.colors.brand.white};
+	color: ${({ theme }) => theme.colors.brand.text};
 	${({ theme }) => theme.font.p.normal};
 	padding: 20px;
 `;
 
 export const Title = styled(Dialog.Title)`
 	${({ theme }) => theme.font.h3}
+	& {
+		color: ${({ theme }) => theme.colors.brand.text};
+	}
 `;
 
 export const Description = styled(Dialog.Description)`
 	${({ theme }) => theme.font.p.normal}
+	color: ${({ theme }) => theme.colors.brand.text};
 `;
 
 export const ButtonArea = styled.div`
@@ -98,6 +105,10 @@ export const Cancel = styled(Dialog.Close)`
 	color: ${({ theme }) => theme.colors.grayscale.gray_10};
 	border-radius: 6px;
 	padding: 10px 20px;
+
+	& + svg {
+		color: ${({ theme }) => theme.colors.brand.text};
+	}
 `;
 
 export const Success = styled.button`
@@ -127,6 +138,9 @@ export const StyledModalContent = styled(Dialog.Content)<modalProps>`
 	display: flex;
 	flex-direction: column;
 	border-radius: 0.8em;
+	p {
+		color: ${({ theme }) => theme.colors.brand.text};
+	}
 
 	${({ $closeAnimation }) => {
 		if ($closeAnimation) {

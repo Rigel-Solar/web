@@ -23,8 +23,8 @@ const primary = css`
 	background-color: ${({ theme }) => theme.colors.brand.rigel};
 `;
 const secondary = css`
-	color: #f0f0f0;
-	border: 1px solid ${({ theme }) => theme.colors.grayscale.gray_20};
+	color: ${({ theme }) => theme.colors.brand.text};
+	border: 1px solid ${({ theme }) => theme.colors.brand.text};
 	background-color: transparent;
 `;
 const text = css`

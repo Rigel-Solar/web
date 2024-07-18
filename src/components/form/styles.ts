@@ -8,7 +8,7 @@ export const FormContainer = styled.form`
 
 	legend {
 		${({ theme }) => theme.font.p.normal};
-		color: #202020;
+		color: ${({ theme }) => theme.colors.brand.text};
 	}
 
 	fieldset {
@@ -30,7 +30,7 @@ export const FormFieldsContainer = styled.div<formContainerProps>`
 
 	.sub-title {
 		${({ theme }) => theme.font.p.normal};
-		color: #202020;
+		color: ${({ theme }) => theme.colors.brand.text};
 	}
 `;
 

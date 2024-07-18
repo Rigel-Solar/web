@@ -52,6 +52,10 @@ export const ModalHeader = styled.section<ModalHeaderProps>`
 	gap: 20px;
 	border-bottom: solid 1px #27272a;
 
+	* {
+		color: ${({ theme }) => theme.colors.brand.text};
+	}
+
 	${(props) =>
 		props.$between &&
 		css`
@@ -63,7 +67,7 @@ export const ModalHeader = styled.section<ModalHeaderProps>`
 	h2,
 	h3 {
 		${({ theme }) => theme.font.p.medium};
-		color: #fafafa;
+		color: ${({ theme }) => theme.colors.brand.text};
 	}
 
 	button {
@@ -127,7 +131,7 @@ export const Cancel = styled.button`
 	background: transparent;
 	border: 1px solid #27272a;
 	${({ theme }) => theme.font.p.small};
-	color: ${({ theme }) => theme.colors.grayscale.gray_10};
+	color: ${({ theme }) => theme.colors.brand.text};
 	border-radius: 6px;
 	padding: 10px 20px;
 

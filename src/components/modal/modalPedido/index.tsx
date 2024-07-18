@@ -26,7 +26,7 @@ const ModalPedido = () => {
 				<p>Aqui está os detalhes do pedido</p>
 			</Content>
 			<Description>
-				<VisuallyHidden>teste</VisuallyHidden>
+				<VisuallyHidden>Detalhes do pedido</VisuallyHidden>
 			</Description>
 			<TriggerButtons>
 				<TriggerSuccess>Salvar</TriggerSuccess>

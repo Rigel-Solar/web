@@ -20,12 +20,12 @@ export const Container = styled.main`
 		grid-template-columns: 2fr 1fr;
 		gap: 30px;
 		.graph-1 {
-			background-color: #121212;
+			background-color: ${({ theme }) => theme.colors.brand.background};
 			border: 1px solid #363636;
 			border-radius: 6px;
 		}
 		.graph-2 {
-			background-color: #121212;
+			background-color: ${({ theme }) => theme.colors.brand.background};
 			border: 1px solid #363636;
 			border-radius: 6px;
 		}

@@ -10,16 +10,18 @@ import {
 	REHYDRATE,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import themeReducer from "./reducers/theme-reducer";
 import userReducer from "./reducers/user-reducer";
 
 const rootReducer = combineReducers({
 	user: userReducer,
+	theme: themeReducer,
 });
 
 const persistConfig = {
 	key: "root",
 	storage: storage,
-	whitelist: ["user"],
+	whitelist: ["user", "theme"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -36,7 +36,7 @@ export const PopUpHeaderContainer = styled.section`
 
 	h2 {
 		${({ theme }) => theme.font.p.medium_bold};
-		color: ${({ theme }) => theme.colors.brand.white};
+		color: ${({ theme }) => theme.colors.brand.text};
 	}
 `;
 
@@ -67,10 +67,12 @@ export const PopUpBody = styled.main``;
 
 export const Title = styled(Dialog.Title)`
 	${({ theme }) => theme.font.h3}
+	color: ${({ theme }) => theme.colors.brand.text};
 `;
 
 export const Description = styled(Dialog.Description)`
 	${({ theme }) => theme.font.p.normal}
+	color: ${({ theme }) => theme.colors.brand.text};
 `;
 
 export const StyledPopUpContent = styled(Dialog.Content)<modalProps>`

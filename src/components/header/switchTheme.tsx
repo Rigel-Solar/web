@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineMoon, AiOutlineSun } from "react-icons/ai";
+import { useAppDispatch } from "../../redux/hooks/useApp";
+import { setThemeStatus } from "../../redux/reducers/theme-reducer";
 import * as C from "./styles";
 
 type ThemeType = "light" | "dark";
@@ -28,10 +30,14 @@ const ThemeButton: React.FC<ThemeButtonProps> = ({
 };
 
 const SwitchTheme: React.FC = () => {
+	const dispatch = useAppDispatch();
 	const [activeTheme, setActiveTheme] = useState<ThemeType>("dark");
 
 	const toggleTheme = () => {
-		setActiveTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+		const newTheme = activeTheme === "light" ? "dark" : "light";
+		setActiveTheme(newTheme);
+		dispatch(setThemeStatus(newTheme));
+		console.log(newTheme);
 	};
 
 	return (

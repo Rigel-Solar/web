@@ -1,8 +1,15 @@
 import { Table } from "@radix-ui/themes";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface RootProps {
 	$background: boolean;
+	theme: {
+		colors: {
+			brand: {
+				background: string;
+			};
+		};
+	};
 }
 
 interface BadgeProps {
@@ -19,17 +26,27 @@ export const Root = styled(Table.Root)<RootProps>`
 		white-space: nowrap;
 	}
 
-	${({ $background }) =>
-		$background &&
-		`background-color: #121212; border: 1px solid #363636; border-radius: 6px; padding: 15px; tr th {
-			border-top: 0;
-			padding-top: 0;
-		}`}
+	${({ theme, $background }) => {
+		if ($background) {
+			return css`
+				background-color: ${theme.colors.brand.background};
+				border: 1px solid #363636;
+				border-radius: 6px;
+				padding: 15px;
+
+				tr th {
+					border-top: 0;
+					padding-top: 0;
+				}
+			`;
+		}
+	}}
 `;
 
 export const Header = styled(Table.Header)`
 	text-align: start;
 	th {
+		color: ${({ theme }) => theme.colors.brand.text};
 		${({ theme }) => theme.font.p.normal}
 		padding: 10px 0;
 		border-bottom: 1px solid #363636;
@@ -50,8 +67,11 @@ export const Body = styled(Table.Body)`
 		align-items: start;
 		text-align: start;
 
+		p {
+			color: ${({ theme }) => theme.colors.brand.text};
+		}
+
 		p:nth-child(2) {
-			color: #d4d4d8;
 			${({ theme }) => theme.font.p.extra_small}
 			margin-top: 4px;
 		}
@@ -70,6 +90,7 @@ export const Row = styled(Table.Row)`
 export const Cell = styled(Table.Cell)`
 	padding: 14px;
 	${({ theme }) => theme.font.p.small}
+	color: ${({ theme }) => theme.colors.brand.text};
 
 	&:last-of-type {
 		padding: 0;
@@ -79,7 +100,7 @@ export const Cell = styled(Table.Cell)`
 		button {
 			border: 1px solid #27272a;
 			border-radius: 6px;
-			color: #fff;
+			color: ${({ theme }) => theme.colors.brand.text};
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -116,7 +137,7 @@ export const Pagination = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	color: #d4d4d8;
+	color: ${({ theme }) => theme.colors.brand.text};
 	margin-top: 5px;
 	border-top: 1px solid #27272a;
 	padding: 10px;
@@ -149,11 +170,11 @@ export const Pagination = styled.div`
 			gap: 10px;
 
 			select {
-				background-color: #18181b;
-				border: 1px solid #27272a;
+				background-color: ${({ theme }) => theme.colors.brand.background};
+				border: 1px solid ${({ theme }) => theme.colors.brand.text};
 				border-radius: 4px;
 				padding: 2px 6px;
-				color: #d4d4d8;
+				color: ${({ theme }) => theme.colors.brand.text};
 			}
 		}
 
@@ -171,9 +192,9 @@ export const Pagination = styled.div`
 					align-items: center;
 
 					padding: 4px;
-					color: #e7e2e9;
+					color: ${({ theme }) => theme.colors.brand.text};
 					border: 1px solid #27272a;
-					background-color: #18181b;
+					background-color: ${({ theme }) => theme.colors.brand.background};
 					border-radius: 6px;
 				}
 			}

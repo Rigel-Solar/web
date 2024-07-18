@@ -1,6 +1,7 @@
 import { AlertDialogProps } from "@radix-ui/react-alert-dialog";
 import { useEffect, useState } from "react";
 import { CSSProperties } from "styled-components";
+import { Description, Title } from "../styles";
 import {
 	ButtonArea,
 	Cancel,
@@ -13,7 +14,6 @@ import {
 	StyledModalContent,
 	Success,
 } from "./styles";
-import { Description, Title } from "../styles";
 
 export interface actionModalRootProps extends AlertDialogProps {
 	contentStyle?: CSSProperties | undefined;
@@ -69,4 +69,3 @@ export const ActionAlertDialogHeader: React.FC<ModalHeaderProps> = ModalHeader;
 
 export const ActionAlertDialogTitle = Title;
 export const ActionAlertDialogDescription = Description;
-

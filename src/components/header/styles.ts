@@ -29,7 +29,7 @@ export const Header = styled.header<HeaderProps>`
 	flex: 1;
 	width: 320px;
 	padding: 60px 30px;
-	background-color: ${({ theme }) => theme.colors.brand.black};
+	background-color: ${({ theme }) => theme.colors.brand.background};
 	border-top-right-radius: 12px;
 	border-bottom-right-radius: 12px;
 	transition: opacity 0.3s ease;
@@ -91,7 +91,7 @@ export const Header = styled.header<HeaderProps>`
 			}
 
 			h1 {
-				color: ${({ theme }) => theme.colors.brand.white};
+				color: ${({ theme }) => theme.colors.brand.text};
 				font-size: clamp(16px, 2vw, 22px);
 			}
 
@@ -115,9 +115,12 @@ export const Header = styled.header<HeaderProps>`
 			padding: 8px 12px;
 			text-decoration: none;
 			${({ theme }) => theme.font.p.normal};
-			color: ${({ theme }) => theme.colors.brand.white};
-
+			color: ${({ theme }) => theme.colors.brand.text};
+			svg {
+				color: ${({ theme }) => theme.colors.brand.text};
+			}
 			p {
+				color: ${({ theme }) => theme.colors.brand.text};
 				@media (min-width: 860px) and (max-width: 1279px) {
 					display: none;
 				}
@@ -127,6 +130,10 @@ export const Header = styled.header<HeaderProps>`
 		ul li.active {
 			background-color: ${({ theme }) => theme.colors.brand.rigel};
 			border-radius: 8px;
+			a p,
+			svg {
+				color: white;
+			}
 		}
 	}
 
@@ -144,7 +151,7 @@ export const Logout = styled.button`
 	align-items: center;
 	gap: 8px;
 	padding: 6px 8px;
-	color: ${({ theme }) => theme.colors.brand.white};
+	color: ${({ theme }) => theme.colors.brand.text};
 
 	@media (width <= 1280px) {
 		padding: 0;
@@ -155,7 +162,7 @@ export const Theme = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background-color: ${({ theme }) => theme.colors.brand.background};
+	background-color: ${({ theme }) => theme.colors.brand.background2};
 	border-radius: 50px;
 	padding: 6px 8px;
 
@@ -166,15 +173,19 @@ export const Theme = styled.div`
 		background: transparent;
 		padding: 6px 16px;
 		gap: 6px;
-		color: ${({ theme }) => theme.colors.brand.white};
+
+		svg {
+			color: ${({ theme }) => theme.colors.brand.text};
+		}
 
 		p {
+			color: ${({ theme }) => theme.colors.brand.text};
 			${({ theme }) => theme.font.p.small}
 		}
 	}
 
 	button.active {
-		background-color: ${({ theme }) => theme.colors.brand.black};
+		background-color: ${({ theme }) => theme.colors.brand.background};
 		border-radius: 50px;
 	}
 

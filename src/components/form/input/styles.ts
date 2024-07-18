@@ -2,8 +2,8 @@ import styled, { css } from "styled-components";
 import { inputStyle } from ".";
 
 const primary = css`
-	background-color: #18181b;
-	color: #fafafa;
+	background-color: ${({ theme }) => theme.colors.brand.background};
+	color: ${({ theme }) => theme.colors.brand.text};
 	border: 1px solid #27272a;
 `;
 const secondary = css`
@@ -54,8 +54,7 @@ export const InputContainer = styled.div<inputStyleProps>`
 		text-align: left;
 		justify-content: flex-start;
 		border-radius: 4px;
-		color: #fafafa;
-		${({ theme }) => theme.font.p.normal};
+		color: ${({ theme }) => theme.colors.brand.text};
 	}
 
 	.button-mimic-input > div {
@@ -70,7 +69,7 @@ export const InputContainer = styled.div<inputStyleProps>`
 
 	.input-label {
 		${({ theme }) => theme.font.p.small};
-		color: #fafafa;
+		color: ${({ theme }) => theme.colors.brand.text};
 		margin-bottom: 0.5rem;
 		display: block;
 	}

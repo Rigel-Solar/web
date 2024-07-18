@@ -5,14 +5,14 @@ export const Card = styled.article`
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	background-color: ${({ theme }) => theme.colors.brand.black};
+	background-color: ${({ theme }) => theme.colors.brand.background};
 	border: 1px solid #363636;
 	border-radius: 6px;
 	padding: 20px 40px;
 
 	.left {
 		p {
-			color: #a1a1aa;
+			color: ${({ theme }) => theme.colors.brand.text};
 			${({ theme }) => theme.font.p.normal};
 		}
 
@@ -22,7 +22,7 @@ export const Card = styled.article`
 			gap: 10px;
 			.big-number {
 				font-size: clamp(18px, 2vw, 28px);
-				color: #e7e2e9;
+				color: ${({ theme }) => theme.colors.brand.text};
 			}
 
 			.percentage {

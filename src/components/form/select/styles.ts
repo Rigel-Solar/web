@@ -27,7 +27,7 @@ const primary = css`
 			background-color: #18181b;
 			border: 1px solid ${theme.colors.grayscale.gray_10};
 			${theme.font.p.normal};
-			color: #fafafa;
+			color: ${({ theme }) => theme.colors.brand.text};
 		`;
 	}}
 `;
@@ -71,7 +71,7 @@ export const Container = styled.div<ContainerProp>`
 			return css`
 				&:after {
 					content: attr(data-required-text);
-					color: #fafafa;
+					color: ${({ theme }) => theme.colors.brand.text};
 					background-color: #18181b;
 					padding: 0.2em 0.5em;
 					border-radius: 0.2em;
@@ -158,7 +158,7 @@ export const StyledItem = styled(Select.Item)<ContainerProp>`
 	padding: 0.5em 0.7em 0.5em 30px;
 	cursor: pointer;
 	${({ theme }) => theme.font.p.normal};
-	color: #fafafa;
+	color: ${({ theme }) => theme.colors.brand.text};
 	transition: 0.2s;
 	border-radius: 0.5em;
 	position: relative;

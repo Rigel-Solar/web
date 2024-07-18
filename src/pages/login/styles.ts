@@ -6,6 +6,10 @@ export const Container = styled.div`
 	width: 100%;
 	background-color: ${({ theme }) => theme.colors.brand.background};
 
+	* {
+		color: ${({ theme }) => theme.colors.brand.text};
+	}
+
 	@media (max-width: 960px) {
 		grid-template-columns: 1fr;
 		grid-auto-flow: row;
@@ -25,7 +29,7 @@ export const Left = styled.article`
 	flex-direction: column;
 	justify-content: space-between;
 	padding: 30px 40px;
-	background-color: ${({ theme }) => theme.colors.brand.black};
+	background-color: ${({ theme }) => theme.colors.brand.background2};
 
 	.top {
 		display: flex;
@@ -71,5 +75,6 @@ export const Right = styled.article`
 		margin-top: 20px;
 		padding: 10px 16px;
 		${({ theme }) => theme.font.p.small}
+		color: #fff
 	}
 `;

@@ -79,7 +79,7 @@ const ViewTecnico = ({ data }: ViewTecnicoProps) => {
 					style={{ padding: 5, fontSize: 20 }}
 					onClick={handleOpenModal}
 				>
-					<AiOutlineEdit color={"#fafafa"} />
+					<AiOutlineEdit />
 				</Button>
 			</ActionAlertDialogHeader>
 			<ActionAlertDialogContent>

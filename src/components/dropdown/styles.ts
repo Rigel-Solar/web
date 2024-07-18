@@ -33,7 +33,7 @@ export const Item = styled(DropdownMenu.Item)`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	color: #fafafa;
+	color: ${({ theme }) => theme.colors.brand.text};
 	cursor: pointer;
 	padding: 8px 12px;
 	border-radius: 4px;
