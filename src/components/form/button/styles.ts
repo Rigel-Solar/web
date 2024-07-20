@@ -28,11 +28,11 @@ const secondary = css`
 	background-color: transparent;
 `;
 const text = css`
-	color: ${({ theme }) => theme.colors.brand.white};
+	color: ${({ theme }) => theme.colors.brand.text};
 	padding: 0px;
 `;
 const link = css`
-	color: ${({ theme }) => theme.colors.brand.pink};
+	color: ${({ theme }) => theme.colors.brand.rigel};
 	text-decoration: underline;
 	padding: 0;
 `;

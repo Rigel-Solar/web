@@ -19,7 +19,7 @@ const Card = ({ card }: CardProps) => {
 				<div className="numbers">
 					<p className="big-number">{card.number}</p>
 					<p className="percentage">
-						<FaArrowUp />
+						<FaArrowUp size={12}/>
 						{card.percentage}%
 					</p>
 				</div>

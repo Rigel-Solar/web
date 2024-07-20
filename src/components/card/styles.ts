@@ -30,10 +30,10 @@ export const Card = styled.article`
 				align-items: center;
 				width: fit-content;
 				height: fit-content;
-				padding: 6px 10px;
+				padding: 4px 6px;
 				border-radius: 20px;
 				gap: 4px;
-				${({ theme }) => theme.font.p.small};
+				${({ theme }) => theme.font.p.extra_small};
 				color: ${({ theme }) => theme.colors.support.green_light};
 				background-color: ${({ theme }) => theme.colors.support.green_dark};
 			}

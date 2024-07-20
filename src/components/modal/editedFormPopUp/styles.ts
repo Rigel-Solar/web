@@ -6,7 +6,7 @@ export const EditedFormContainer = styled.div`
 	p {
 		text-align: left;
 		${({ theme }) => theme.font.p.small};
-		color: #fafafa;
+		color: ${({ theme }) => theme.colors.brand.text};
 	}
 
 	.buttons-container {

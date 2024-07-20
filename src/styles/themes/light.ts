@@ -6,8 +6,8 @@ export default {
 			tiffany: "#3EB3BE",
 			tiffany_dark: "#218891",
 			white: "#FFFFFF",
-			background: "#F5F5F5",
-			background2: "#EDEDED",
+			background2: "#F5F5F5",
+			background: "#EDEDED",
 			pink: "#FF175B",
 			rigel: "#0066D2",
 			modal: "#E0E0E0",
@@ -37,6 +37,10 @@ export default {
 			gray_70: "#646D6D",
 			gray_80: "#4D5859",
 			gray_90: "#374344",
+		},
+		fake_input: {
+			label: "#646D6D",
+			value: "#374344",
 		},
 		animation: {
 			skeleton_100: "rgba(0, 0, 0, 0)",

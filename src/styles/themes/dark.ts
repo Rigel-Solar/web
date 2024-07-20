@@ -38,6 +38,10 @@ export default {
 			gray_80: "#4D5859",
 			gray_90: "#374344",
 		},
+		fake_input: {
+			label: "#BCC0C1",
+			value: "#7A8282",
+		},
 		animation: {
 			skeleton_100: "rgba(255, 255, 255, 0)",
 			skeleton_50: "rgba(255, 255, 255, 0.5)",
