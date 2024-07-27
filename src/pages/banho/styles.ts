@@ -6,7 +6,7 @@ export const Container = styled.main`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: start;
+	justify-content: space-around;
 	padding: 25px 40px;
 
 	section {
@@ -15,7 +15,6 @@ export const Container = styled.main`
 		gap: 20px;
 		width: fit-content;
 		max-height: 280px;
-		margin-bottom: 80px;
 
 		input {
 			width: 100%;

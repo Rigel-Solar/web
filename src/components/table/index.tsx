@@ -9,11 +9,11 @@ import {
 import { SlOptions } from "react-icons/sl";
 import { technicians } from "../../constants/technician";
 import { DataTableProps } from "../../models/data-table";
+import ViewTecnico from "../../pages/tecnicos/modalTecnico/viewTecnico";
 import Button from "../form/button";
 import { Modal } from "../modal";
 import EditedFormPopUp from "../modal/editedFormPopUp";
 import ModalPedido from "../modal/modalPedido";
-import ViewTecnico from "../modalTecnico/viewTecnico";
 import * as C from "./styles";
 
 interface TableBodyProps {

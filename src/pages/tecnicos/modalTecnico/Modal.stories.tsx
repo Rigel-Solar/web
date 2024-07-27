@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { Modal } from "../modal";
 import ModalTecnico, { ModalTecnicoProps } from "./index";
+import { Modal } from "../../../components/modal";
 
 const meta: Meta<typeof ModalTecnico> = {
 	title: "Components/Modal/ModalTecnico",

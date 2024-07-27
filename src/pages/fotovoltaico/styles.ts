@@ -5,6 +5,7 @@ export const Container = styled.main`
 	height: 100%;
 	width: 100%;
 	display: flex;
+	justify-content: space-around;
 	flex-direction: column;
 	padding: 25px 40px;
 
@@ -14,7 +15,6 @@ export const Container = styled.main`
 		gap: 20px;
 		width: fit-content;
 		max-height: 280px;
-		margin-bottom: 80px;
 
 		input {
 			width: 100%;

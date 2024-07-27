@@ -3,7 +3,7 @@ import { FiPlus } from "react-icons/fi";
 import Button from "../../components/form/button";
 import { Modal } from "../../components/modal";
 import EditedFormPopUp from "../../components/modal/editedFormPopUp";
-import ModalTecnico from "../../components/modalTecnico";
+import ModalTecnico from "./modalTecnico";
 import Search from "../../components/search";
 import DataTable from "../../components/table";
 import { tableData } from "../../constants/table";
