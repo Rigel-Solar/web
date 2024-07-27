@@ -1,19 +1,12 @@
-import { Icons } from "../../assets/Icons";
 import Card from "../../components/card";
 import DoughnutChart from "../../components/charts/barChart";
 import LineChart from "../../components/charts/lineChart";
 import { registerCharts } from "../../components/charts/registerCharts";
 import DataTable from "../../components/table";
+import { cards } from "../../constants/cards";
 import { tableData } from "../../constants/table";
 import { DefaultPageContainer } from "../styles";
 import * as C from "./styles";
-
-const card = {
-	title: "Pedidos",
-	number: 128,
-	percentage: 20,
-	icon: <Icons.pedidos />,
-};
 
 registerCharts();
 
@@ -22,10 +15,9 @@ const Home = () => {
 		<DefaultPageContainer>
 			<C.Container>
 				<div className="cards">
-					<Card card={card} />
-					<Card card={card} />
-					<Card card={card} />
-					<Card card={card} />
+					{cards.map((card) => (
+						<Card key={card.title} card={card} />
+					))}
 				</div>
 				<div className="graphs">
 					<div className="graph-1">
