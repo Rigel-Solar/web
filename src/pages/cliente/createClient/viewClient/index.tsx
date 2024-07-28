@@ -3,20 +3,23 @@ import { VisuallyHidden } from "@radix-ui/themes";
 import { useState } from "react";
 import { AiOutlineEdit, AiOutlineLeftCircle } from "react-icons/ai";
 import ModalClient from "..";
-import { addNewProps } from "../../../models/add-new";
-import { ClientTS } from "../../../utils/clientSchema";
-import Button from "../../form/button";
-import FakeInput from "../../form/fakeInput";
-import { FormContainer, FormFieldsContainer } from "../../form/styles";
-import { Modal } from "../../modal";
+import Button from "../../../../components/form/button";
+import FakeInput from "../../../../components/form/fakeInput";
+import {
+	FormContainer,
+	FormFieldsContainer,
+} from "../../../../components/form/styles";
+import { Modal } from "../../../../components/modal";
 import {
 	ActionAlertDialogContent,
 	ActionAlertDialogDescription,
 	ActionAlertDialogHeader,
 	ActionAlertDialogTitle,
 	ActionAlertDialogTriggerButtons,
-} from "../../modal/actionAlertModal";
-import EditedFormPopUp from "../../modal/editedFormPopUp";
+} from "../../../../components/modal/actionAlertModal";
+import EditedFormPopUp from "../../../../components/modal/editedFormPopUp";
+import { addNewProps } from "../../../../models/add-new";
+import { ClientTS } from "../../../../utils/clientSchema";
 import { ModalContainer } from "../styles";
 
 export interface ViewClientProps extends addNewProps {

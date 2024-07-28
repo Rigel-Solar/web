@@ -1,26 +1,26 @@
-import { Table, Theme } from '@radix-ui/themes';
-import React, { useState } from 'react';
+import { Table, Theme } from "@radix-ui/themes";
+import React, { useState } from "react";
 import {
 	FaAngleLeft,
 	FaAngleRight,
 	FaAnglesLeft,
 	FaAnglesRight,
-} from 'react-icons/fa6';
-import { SlOptions } from 'react-icons/sl';
-import { technicians } from '../../constants/technician';
-import { clients } from '../../constants/client';
-import { DataTableProps } from '../../models/data-table';
-import ViewTecnico from '../../pages/tecnicos/modalTecnico/viewTecnico';
-import Button from '../form/button';
-import { Modal } from '../modal';
-import EditedFormPopUp from '../modal/editedFormPopUp';
-import ModalPedido from '../modal/modalPedido';
-import ViewClient from '../createClient/viewClient';
-import * as C from './styles';
+} from "react-icons/fa6";
+import { SlOptions } from "react-icons/sl";
+import { clients } from "../../constants/client";
+import { technicians } from "../../constants/technician";
+import { DataTableProps } from "../../models/data-table";
+import ViewClient from "../../pages/cliente/createClient/viewClient";
+import ViewTecnico from "../../pages/tecnicos/modalTecnico/viewTecnico";
+import Button from "../form/button";
+import { Modal } from "../modal";
+import EditedFormPopUp from "../modal/editedFormPopUp";
+import ModalPedido from "../modal/modalPedido";
+import * as C from "./styles";
 
 interface TableBodyProps {
-	data: DataTableProps['data'];
-	modalType?: 'tecnico' | 'pedido' | 'cliente';
+	data: DataTableProps["data"];
+	modalType?: "tecnico" | "pedido" | "cliente";
 }
 
 interface PaginationProps {
@@ -36,7 +36,7 @@ const DataTable = ({
 	hasPagination,
 	$itemsPerPage = 10,
 	background = false,
-	modalType = 'pedido',
+	modalType = "pedido",
 }: DataTableProps) => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [itemsPerPage, setItemsPerPage] = useState($itemsPerPage);
@@ -125,8 +125,8 @@ const Pagination = ({
 	return (
 		<C.Pagination>
 			<div className="pagination-left">
-				Mostrando{' '}
-				{Math.min(itemsPerPage, totalItems - (currentPage - 1) * itemsPerPage)}{' '}
+				Mostrando{" "}
+				{Math.min(itemsPerPage, totalItems - (currentPage - 1) * itemsPerPage)}{" "}
 				de {totalItems} pedidos
 			</div>
 			<div className="pagination-right">
@@ -162,10 +162,10 @@ const Pagination = ({
 };
 
 interface OptionsProps {
-	modalType?: 'tecnico' | 'pedido' | 'cliente';
+	modalType?: "tecnico" | "pedido" | "cliente";
 }
 
-const Options = ({ modalType = 'pedido' }: OptionsProps) => {
+const Options = ({ modalType = "pedido" }: OptionsProps) => {
 	const [openModal, setOpenModal] = useState(false);
 	const [hasEditedData, setHasEditedData] = useState(false);
 	const [openConfirmCloseModal, setOpenConfirmCloseModal] = useState(false);
@@ -194,7 +194,7 @@ const Options = ({ modalType = 'pedido' }: OptionsProps) => {
 		pedido: <ModalPedido />,
 	};
 
-	const modalPosition = modalType === 'pedido' ? 'center' : 'right';
+	const modalPosition = modalType === "pedido" ? "center" : "right";
 
 	return (
 		<C.Cell>
@@ -216,7 +216,7 @@ const Options = ({ modalType = 'pedido' }: OptionsProps) => {
 				onOpenChange={onOpenChange}
 				position={modalPosition}
 			>
-				{modalComponents[modalType || 'pedido']}
+				{modalComponents[modalType || "pedido"]}
 			</Modal>
 		</C.Cell>
 	);

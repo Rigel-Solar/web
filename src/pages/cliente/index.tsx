@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { FiPlus } from "react-icons/fi";
-import ModalClient from "../../components/createClient";
+import ModalClient from "./createClient";
 import Button from "../../components/form/button";
 import { Modal } from "../../components/modal";
 import EditedFormPopUp from "../../components/modal/editedFormPopUp";

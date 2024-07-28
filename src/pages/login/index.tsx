@@ -31,8 +31,6 @@ const Login = () => {
 	} = useMutationQuery(`/login/`, "post");
 
 	const onSubmit = (data: TecnicoTS) => {
-		console.log("Form submitted:", data);
-
 		onLogin(data, {
 			onSuccess: (response) => {
 				dispatch(addToken(response.data.token));
