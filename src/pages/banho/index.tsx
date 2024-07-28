@@ -1,12 +1,17 @@
 import { ChangeEvent } from "react";
 import { FiPlus } from "react-icons/fi";
 import Button from "../../components/form/button";
+import { Modal } from "../../components/modal";
+import EditedFormPopUp from "../../components/modal/editedFormPopUp";
 import Search from "../../components/search";
 import DataTable from "../../components/table";
+import { banho } from "../../constants/banho";
 import { tableData } from "../../constants/table";
+import useModal from "../../functions/use-modal";
 import useSearch from "../../functions/use-search";
 import { DataTableProps } from "../../models/data-table";
 import { DefaultPageContainer } from "../styles";
+import ModalBanho from "./modalBanho";
 import * as C from "./styles";
 
 const Banho = () => {
@@ -44,10 +49,37 @@ const Header = ({ searchTerm, onSearchChange }: HeaderProps) => (
 	</section>
 );
 
-const DataTableContainer = ({ data }: DataTableProps) => (
-	<div className="table">
-		<DataTable data={data} hasPagination />
-	</div>
-);
+const DataTableContainer = ({ data }: DataTableProps) => {
+	const {
+		openModal,
+		hasEditedData,
+		openConfirmCloseModal,
+		onOpenChange,
+		onConfirmCloseModal,
+		setOpenConfirmCloseModal,
+		handleCloseModal,
+		setHasEditedData,
+	} = useModal();
+
+	return (
+		<div className="table">
+			<DataTable data={data} hasPagination onOpenChange={onOpenChange} />
+
+			<EditedFormPopUp
+				open={hasEditedData && openConfirmCloseModal}
+				onOpenChange={() => setOpenConfirmCloseModal(!openConfirmCloseModal)}
+				onConfirmCloseModal={onConfirmCloseModal}
+			/>
+			<Modal open={openModal} onOpenChange={onOpenChange} position="center">
+				<ModalBanho
+					data={banho}
+					onClose={handleCloseModal}
+					onSuccess={handleCloseModal}
+					onSetEditedData={setHasEditedData}
+				/>
+			</Modal>
+		</div>
+	);
+};
 
 export default Banho;
