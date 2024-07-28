@@ -1,43 +1,49 @@
 import { Banho } from "../models/banho";
 
 export const banho: Banho = {
-	pedidoId: 142,
-	tecnico: "Gaam",
-	nome: "Malcolm Lima",
-	cidade: "Jundiaí",
-	estado: "São Silvestre",
-	rua: "São Caetano do Sul",
-	numero: 120,
-	bairro: "Bairro de São Caetano",
-	tipo: "Pessoa Física",
-	celular: "11 94002-8922",
-	itensDeVistoria: [
+	orderId: 123,
+	technician: "Gaam",
+	name: "Malcolm Lima",
+	city: "Jundiaí",
+	state: "São Silvestre",
+	street: "São Caetano do Sul",
+	number: 120,
+	neighborhood: "Bairro de São Caetano",
+	type: "Individual",
+	cellphone: "11 94002-8922",
+	imgUrl: [
+		"https://via.placeholder.com/1000",
+		"https://via.placeholder.com/2000",
+		"https://via.placeholder.com/500",
+		"https://via.placeholder.com/300",
+	],
+	inspectionItems: [
 		{
-			quantidade: null,
-			descricao: "Base da caixa d'agua em relação a laje",
+			quantity: null,
+			description: "Base of the water tank in relation to the slab",
 		},
 		{
-			quantidade: null,
-			descricao: "Base do Boiler em relação a laje",
+			quantity: null,
+			description: "Base of the Boiler in relation to the slab",
 		},
 		{
-			quantidade: null,
-			descricao:
-				"Distância do boiler para conexão de distribuição de água quente",
+			quantity: null,
+			description:
+				"Distance from the boiler to the hot water distribution connection",
 		},
 		{
-			quantidade: "01",
-			descricao:
-				"Registro de 1\" na saída da caixa d'agua, exclusivo para alimentação do boiler",
+			quantity: "01",
+			description:
+				'1" valve at the water tank outlet, exclusively for boiler supply',
 		},
 		{
-			quantidade: "01",
-			descricao:
-				'Registro de 1" no barrilete de água quente a + ou - 1 metro do boiler',
+			quantity: "01",
+			description:
+				'1" valve on the hot water pipe approximately 1 meter from the boiler',
 		},
 		{
-			quantidade: "01",
-			descricao: "Disjuntor bipolar de 20A para resistência (Boiler)",
+			quantity: "01",
+			description: "20A bipolar circuit breaker for boiler resistance",
 		},
 	],
 };

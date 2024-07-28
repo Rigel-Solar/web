@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { Toaster } from "sonner";

@@ -1,18 +1,19 @@
-interface ItemDeVistoria {
-  quantidade: string | null;
-  descricao: string;
+interface InspectionItem {
+	quantity: string | null;
+	description: string;
 }
 
 export interface Banho {
-	pedidoId: number;
-	tecnico: string;
-	nome: string;
-	cidade: string;
-	estado: string;
-	rua: string;
-	numero: number;
-	bairro: string;
-	tipo: string;
-	celular: string;
-	itensDeVistoria: ItemDeVistoria[];
+	orderId: number;
+	technician: string;
+	name: string;
+	city: string;
+	state: string;
+	street: string;
+	number: number;
+	imgUrl: Array<string>;
+	neighborhood: string;
+	type: string;
+	cellphone: string;
+	inspectionItems: InspectionItem[];
 }

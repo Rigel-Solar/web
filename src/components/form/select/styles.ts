@@ -140,7 +140,7 @@ export const StyledContent = styled(Select.Content)<ContainerProp>`
 	animation: 0.4s ${entranceAnimation} ease;
 	z-index: 999999;
 	position: relative;
-	background-color: #18181b;
+	background-color: ${({theme}) => theme.colors.brand.background2};
 `;
 
 export const StyledViewPort = styled(Select.Viewport)`
