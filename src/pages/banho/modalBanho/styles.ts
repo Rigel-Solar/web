@@ -39,10 +39,6 @@ export const Content = styled(ModalContent)`
 			grid-template-columns: repeat(2, 1fr);
 			gap: 10px;
 			padding: 10px;
-
-			img {
-				border-radius: 10px;
-			}
 		}
 	}
 	.bottom {

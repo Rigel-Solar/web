@@ -165,6 +165,12 @@ export const StyledModalContent = styled(Dialog.Content)<modalProps>`
 				height: 80vh;
 				margin: auto;
 
+				.img-modal {
+					width: 100%;
+					height: 100%;
+					object-fit: scale-down;
+				}
+
 				@media (width <= 768px) {
 					min-width: 90vw !important;
 				}

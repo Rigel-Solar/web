@@ -5,6 +5,7 @@ import {
 	FormContainer,
 	FormFieldsContainer,
 } from "../../../components/form/styles";
+import Image from "../../../components/image";
 import { addNewProps } from "../../../models/add-new";
 import { Banho } from "../../../models/banho";
 import {
@@ -35,22 +36,10 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 			<Content>
 				<div className="top">
 					<div className="left-side">
-						<img
-							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPh0plnJJIz9HuHiZJoru2ZHn54pkD01e-1Q&s"
-							alt=""
-						/>
-						<img
-							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPh0plnJJIz9HuHiZJoru2ZHn54pkD01e-1Q&s"
-							alt=""
-						/>
-						<img
-							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPh0plnJJIz9HuHiZJoru2ZHn54pkD01e-1Q&s"
-							alt=""
-						/>
-						<img
-							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPh0plnJJIz9HuHiZJoru2ZHn54pkD01e-1Q&s"
-							alt=""
-						/>
+						<Image src="https://via.placeholder.com/1000" alt="random image" />
+						<Image src="https://via.placeholder.com/2000" alt="random image" />
+						<Image src="https://via.placeholder.com/1000" alt="random image" />
+						<Image src="https://via.placeholder.com/2000" alt="random image" />
 					</div>
 					<FormContainer>
 						<FormFieldsContainer>
@@ -90,7 +79,7 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 				<VisuallyHidden>Detalhes do pedido</VisuallyHidden>
 			</Description>
 			<TriggerButtons>
-				<TriggerSuccess>Salvar</TriggerSuccess>
+				<TriggerSuccess onClick={props.onClose}>Salvar</TriggerSuccess>
 			</TriggerButtons>
 		</>
 	);
