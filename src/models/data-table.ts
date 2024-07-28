@@ -13,5 +13,5 @@ export interface DataTableProps {
 	$itemsPerPage?: number;
 	hasPagination?: boolean;
 	background?: boolean;
-	modalType?: "tecnico" | "pedido" | "cliente";
+	onOpenChange?: () => void;
 }

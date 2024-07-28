@@ -1,41 +1,34 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import { FiPlus } from "react-icons/fi";
 import Button from "../../components/form/button";
 import { Modal } from "../../components/modal";
 import EditedFormPopUp from "../../components/modal/editedFormPopUp";
-import ModalTecnico from "./modalTecnico";
 import Search from "../../components/search";
 import DataTable from "../../components/table";
 import { tableData } from "../../constants/table";
+import { technicians } from "../../constants/technician";
+import useModal from "../../functions/use-modal";
 import useSearch from "../../functions/use-search";
 import { DataTableProps } from "../../models/data-table";
 import { DefaultPageContainer } from "../styles";
+import ModalTecnico from "./modalTecnico";
+import ViewTecnico from "./modalTecnico/viewTecnico";
 import * as C from "./styles";
 
 const Tecnicos = () => {
-	const [openModal, setOpenModal] = useState(false);
-	const [hasEditedData, setHasEditedData] = useState(false);
-	const [openConfirmCloseModal, setOpenConfirmCloseModal] = useState(false);
+	const {
+		openModal,
+		hasEditedData,
+		openConfirmCloseModal,
+		handleOpenModal,
+		handleCloseModal,
+		onOpenChange,
+		onConfirmCloseModal,
+		setHasEditedData,
+		setOpenConfirmCloseModal,
+	} = useModal();
+
 	const { searchTerm, handleSearchChange, filteredData } = useSearch(tableData);
-
-	const handleOpenModal = () => setOpenModal(true);
-	const handleCloseModal = () => setOpenModal(false);
-
-	const onOpenChange = () => {
-		if (hasEditedData) {
-			setOpenConfirmCloseModal(true);
-
-			return;
-		}
-
-		setOpenModal(!openModal);
-	};
-
-	const onConfirmCloseModal = () => {
-		setHasEditedData(false);
-		setOpenConfirmCloseModal(false);
-		setOpenModal(false);
-	};
 
 	return (
 		<DefaultPageContainer>
@@ -86,10 +79,31 @@ const Header = ({ onOpenModal, searchTerm, onSearchChange }: HeaderProps) => (
 	</section>
 );
 
-const DataTableContainer = ({ data }: DataTableProps) => (
-	<div className="table">
-		<DataTable data={data} modalType="tecnico" hasPagination />
-	</div>
-);
+const DataTableContainer = ({ data }: DataTableProps) => {
+	const {
+		openModal,
+		hasEditedData,
+		openConfirmCloseModal,
+		onOpenChange,
+		onConfirmCloseModal,
+		setOpenConfirmCloseModal,
+	} = useModal();
+
+	return (
+		<div className="table">
+			<DataTable data={data} onOpenChange={onOpenChange} hasPagination />
+
+			<EditedFormPopUp
+				open={hasEditedData && openConfirmCloseModal}
+				onOpenChange={() => setOpenConfirmCloseModal(!openConfirmCloseModal)}
+				onConfirmCloseModal={onConfirmCloseModal}
+			/>
+
+			<Modal open={openModal} onOpenChange={onOpenChange} position={"right"}>
+				<ViewTecnico data={technicians[0]} />
+			</Modal>
+		</div>
+	);
+};
 
 export default Tecnicos;
