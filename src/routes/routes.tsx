@@ -15,5 +15,5 @@ export const MenuRoutes: RouteType[] = [
 	{ path: "/banho", element: <Banho /> },
 	{ path: "/piscina", element: <Piscina /> },
 	{ path: "/tecnicos", element: <Tecnicos /> },
-	{ path: "/cliente", element: <Cliente /> },
+	{ path: "/clientes", element: <Cliente /> },
 ];

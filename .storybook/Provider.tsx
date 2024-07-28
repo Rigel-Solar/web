@@ -1,4 +1,3 @@
-// .storybook/Provider.tsx
 import React, { ReactNode } from "react";
 import { ThemeProvider } from "styled-components";
 import themes from "../src/styles/themes";

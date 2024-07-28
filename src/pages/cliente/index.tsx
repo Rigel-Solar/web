@@ -57,14 +57,14 @@ const Header = ({ searchTerm, onSearchChange }: HeaderProps) => {
 	return (
 		<section>
 			<div className="top-area">
-				<h1>Cliente</h1>
+				<h1>Clientes</h1>
 				<Button buttonStyle="primary" onClick={handleOpenModal}>
 					<FiPlus size={16} />
 					Cadastrar Cliente
 				</Button>
 			</div>
 			<Search
-				placeholder="Procurar cliente..."
+				placeholder="Procurar clientes..."
 				value={searchTerm}
 				onChange={onSearchChange}
 			/>

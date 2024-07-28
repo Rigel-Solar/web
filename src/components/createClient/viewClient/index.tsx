@@ -3,12 +3,11 @@ import { VisuallyHidden } from "@radix-ui/themes";
 import { useState } from "react";
 import { AiOutlineEdit, AiOutlineLeftCircle } from "react-icons/ai";
 import ModalClient from "..";
+import { addNewProps } from "../../../models/add-new";
+import { ClientTS } from "../../../utils/clientSchema";
 import Button from "../../form/button";
 import FakeInput from "../../form/fakeInput";
-import {
-	FormContainer,
-	FormFieldsContainer,
-} from "../../form/styles";
+import { FormContainer, FormFieldsContainer } from "../../form/styles";
 import { Modal } from "../../modal";
 import {
 	ActionAlertDialogContent,
@@ -18,8 +17,6 @@ import {
 	ActionAlertDialogTriggerButtons,
 } from "../../modal/actionAlertModal";
 import EditedFormPopUp from "../../modal/editedFormPopUp";
-import { addNewProps } from "../../../models/add-new";
-import { ClientTS } from "../../../utils/clientSchema"
 import { ModalContainer } from "../styles";
 
 export interface ViewClientProps extends addNewProps {
@@ -91,10 +88,15 @@ const ViewClient = ({ data }: ViewClientProps) => {
 						<FakeInput value={data.name} label="Nome do Cliente" />
 						<FakeInput value={data.email} label="E-mail" />
 						<FakeInput value={data.type} label="Tipo de Cliente" />
+						<FormFieldsContainer columns={2}>
+							<FakeInput value={data.address.city} label="Cidade" />
+							<FakeInput value={data.address.neighbourhood} label="Bairro" />
+						</FormFieldsContainer>
 						<FakeInput value={data.address.street} label="Rua" />
-						<FakeInput value={data.address.neighbourhood} label="Bairro" />
-						<FakeInput value={data.address.zipCode} label="CEP" />
-						<FakeInput value={data.address.number} label="Nº" />
+						<FormFieldsContainer columns={2}>
+							<FakeInput value={data.address.zipCode} label="CEP" />
+							<FakeInput value={data.address.number} label="Nº" />
+						</FormFieldsContainer>
 					</FormFieldsContainer>
 				</FormContainer>
 			</ActionAlertDialogContent>

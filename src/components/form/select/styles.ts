@@ -99,9 +99,9 @@ export const Container = styled.div<ContainerProp>`
 	}
 
 	p {
-		word-break: break-word;
+		margin-top: 0.5rem;
+		${({ theme }) => theme.font.p.normal};
 		color: ${errorColor};
-		${({ theme }) => theme.font.p.small};
 	}
 `;
 
