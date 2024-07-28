@@ -15,7 +15,7 @@ import Button from '../form/button';
 import { Modal } from '../modal';
 import EditedFormPopUp from '../modal/editedFormPopUp';
 import ModalPedido from '../modal/modalPedido';
-import ViewClient from '../createClient';
+import ViewClient from '../createClient/viewClient';
 import * as C from './styles';
 
 interface TableBodyProps {

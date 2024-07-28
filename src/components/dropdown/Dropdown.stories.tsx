@@ -1,4 +1,3 @@
-// Dropdown.stories.tsx
 import { Theme } from "@radix-ui/themes";
 import { Meta, StoryFn } from "@storybook/react";
 import Dropdown, { DropdownProps } from "./index";

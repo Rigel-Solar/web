@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { AiOutlineLeftCircle } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { PiTrashLight } from "react-icons/pi";
@@ -57,14 +57,10 @@ const ModalClient = ({
 	const {
 		register,
 		handleSubmit,
+		control,
 		formState: { errors, isDirty },
 	} = useForm<ClientTS>({
 		resolver: zodResolver(clientSchema),
-		defaultValues: {
-			name: "",
-			email: "",
-			password: "",
-		},
 	});
 
 	useEffect(() => {
@@ -73,9 +69,11 @@ const ModalClient = ({
 		}
 	}, [isDirty]);
 
+	console.log(errors);
+
 	const onSubmit = (data: ClientTS) => {
 		console.log("Form submitted:", data);
-		toast.success(data ? "Técnico atualizado!" : "Técnico cadastrado!", {
+		toast.success(data ? "Cliente atualizado!" : "Cliente cadastrado!", {
 			duration: 2500,
 		});
 		onSuccess?.();
@@ -117,20 +115,19 @@ const ModalClient = ({
 							{...register("email")}
 							error={errors.email?.message}
 						/>
-						<Input
-							type="password"
-							label="Senha"
-							autoComplete="off"
-							{...register("password")}
-							error={errors.password?.message}
-
-						/>
-						<SelectComponent
-							label="Tipo de Cliente"
-							options={options}
-							defaultValue={options[0].value}
-							{...register("type")}
-							style={{ width: "100%" }}
+						<Controller
+							name="type"
+							control={control}
+							render={({ field }) => (
+								<SelectComponent
+									label="Tipo de Cliente"
+									options={options}
+									style={{ width: "100%" }}
+									value={field.value}
+									onValueChange={field.onChange}
+									error={errors.type?.message}
+								/>
+							)}
 						/>
 						<FormFieldsContainer columns={2}>
 							<Input
@@ -148,13 +145,20 @@ const ModalClient = ({
 								error={errors.address?.number?.message}
 							/>
 						</FormFieldsContainer>
+						<Input
+							type="text"
+							label="Rua"
+							autoComplete="off"
+							{...register("address.street")}
+							error={errors.address?.street?.message}
+						/>
 						<FormFieldsContainer columns={2}>
 							<Input
 								type="text"
-								label="Rua"
+								label="Cidade"
 								autoComplete="off"
-								{...register("address.street")}
-								error={errors.address?.street?.message}
+								{...register("address.city")}
+								error={errors.address?.city?.message}
 							/>
 							<Input
 								type="text"
