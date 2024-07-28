@@ -24,10 +24,9 @@ const errorColor = css`
 const primary = css`
 	${({ theme }) => {
 		return css`
-			background-color: #18181b;
-			border: 1px solid ${theme.colors.grayscale.gray_10};
-			${theme.font.p.normal};
-			color: ${({ theme }) => theme.colors.brand.text};
+			background-color: ${theme.colors.brand.background};
+			border: 1px solid #27272a;
+			color: ${theme.colors.brand.text};
 		`;
 	}}
 `;
@@ -65,6 +64,7 @@ export const Container = styled.div<ContainerProp>`
 	width: 100%;
 	pointer-events: ${(prop) => prop.$readOnly && "none"};
 	position: relative;
+	${({ theme }) => theme.font.p.small};
 
 	${({ required }) => {
 		if (required) {
@@ -95,8 +95,7 @@ export const Container = styled.div<ContainerProp>`
 	label {
 		display: block;
 		margin-bottom: 0.5em;
-		${({ theme }) => theme.font.p.small};
-		color: ${({ theme }) => theme.colors.grayscale.gray_40};
+		color: ${({ theme }) => theme.colors.brand.text};
 	}
 
 	p {
@@ -122,7 +121,7 @@ export const StyledTrigger = styled(Select.SelectTrigger)<ContainerProp>`
 	height: fit-content;
 	align-items: center;
 	justify-content: space-between;
-	padding: 1.2em 20px;
+	padding: 12px 1.3em;
 	border-radius: 0.5em;
 	cursor: pointer;
 	${({ theme }) => theme.font.p.normal};

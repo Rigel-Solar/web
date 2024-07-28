@@ -11,7 +11,7 @@ import {
 import { useAppDispatch } from "../../redux/hooks/useApp";
 import { addToken } from "../../redux/reducers/user-reducer";
 import { useMutationQuery } from "../../services/hooks/useMutationQuery";
-import { tecnicoSchema, tecnicoTS } from "../../utils/tecnicoSchema";
+import { tecnicoSchema, TecnicoTS } from "../../utils/tecnicoSchema";
 import { Container, Left, Right } from "./styles";
 
 const Login = () => {
@@ -19,7 +19,7 @@ const Login = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<tecnicoTS>({
+	} = useForm<TecnicoTS>({
 		resolver: zodResolver(tecnicoSchema),
 	});
 
@@ -30,7 +30,7 @@ const Login = () => {
 		isError,
 	} = useMutationQuery(`/login/`, "post");
 
-	const onSubmit = (data: tecnicoTS) => {
+	const onSubmit = (data: TecnicoTS) => {
 		console.log("Form submitted:", data);
 
 		onLogin(data, {
