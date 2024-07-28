@@ -162,7 +162,7 @@ export const StyledModalContent = styled(Dialog.Content)<modalProps>`
 		if (position == "center") {
 			return css`
 				min-width: 70vw;
-				height: 70vh;
+				height: 80vh;
 				margin: auto;
 
 				@media (width <= 768px) {
