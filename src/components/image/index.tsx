@@ -6,19 +6,23 @@ import { CloseButton, ImageContainer } from "./styles";
 interface ImageProps {
 	src: string;
 	alt: string;
+	onClick?: (src: string) => void;
 }
 
-const Image = ({ src, alt }: ImageProps) => {
+const Image = ({ src, alt, onClick }: ImageProps) => {
 	const { openModal, onOpenChange, handleOpenModal } = useModal();
+
+	const handleClick = () => {
+		if (onClick) {
+			onClick(src);
+		} else {
+			handleOpenModal();
+		}
+	};
 
 	return (
 		<ImageContainer>
-			<img
-				className="img-normal"
-				src={src}
-				alt={alt}
-				onClick={handleOpenModal}
-			/>
+			<img className="img-normal" src={src} alt={alt} onClick={handleClick} />
 			<Modal open={openModal} onOpenChange={onOpenChange} position="center">
 				<CloseButton>
 					<AiOutlineCloseCircle size={32} color="white" />

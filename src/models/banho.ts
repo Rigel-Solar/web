@@ -11,6 +11,7 @@ export interface Banho {
 	state: string;
 	street: string;
 	number: number;
+	imgUrl: Array<string>;
 	neighborhood: string;
 	type: string;
 	cellphone: string;

@@ -1,3 +1,4 @@
+import { Carousel } from "react-responsive-carousel";
 import styled from "styled-components";
 import {
 	ModalContent,
@@ -25,18 +26,10 @@ export const Content = styled(ModalContent)`
 		@media (width <= 1280px) {
 			flex-direction: column;
 		}
-		@media (width <= 760px) {
-			.left-side {
-				grid-template-columns: 1fr !important;
-			}
-		}
 
 		.left-side {
 			height: 100%;
 			flex: 1;
-			display: grid;
-			align-content: center;
-			grid-template-columns: repeat(2, 1fr);
 			gap: 10px;
 			padding: 10px;
 		}
@@ -78,4 +71,10 @@ export const Table = styled.table`
 		color: ${({ theme }) => theme.colors.fake_input.label};
 		text-align: center;
 	}
+`;
+
+export const CarouselContainer = styled(Carousel)`
+	min-width: 420px;
+	height: 100%;
+	align-content: center;
 `;

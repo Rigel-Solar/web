@@ -1,14 +1,20 @@
 import { VisuallyHidden } from "@radix-ui/themes";
+import { useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import FakeInput from "../../../components/form/fakeInput";
+import SelectComponent from "../../../components/form/select";
 import {
 	FormContainer,
 	FormFieldsContainer,
 } from "../../../components/form/styles";
 import Image from "../../../components/image";
+import { CloseButton } from "../../../components/image/styles";
+import { Modal } from "../../../components/modal";
+import useModal from "../../../functions/use-modal";
 import { addNewProps } from "../../../models/add-new";
 import { Banho } from "../../../models/banho";
 import {
+	CarouselContainer,
 	Content,
 	Description,
 	Header,
@@ -24,7 +30,25 @@ export interface ModalBanhoProps extends addNewProps {
 }
 
 const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
-	console.log(props.canEdit);
+	const options = [
+		{
+			label: "Malcolm Lima",
+			value: "1",
+		},
+		{
+			label: "Gaam",
+			value: "2",
+		},
+	];
+
+	const { openModal, onOpenChange, handleOpenModal } = useModal();
+	const [currentImage, setCurrentImage] = useState<string | null>(null);
+
+	const handleImageClick = (src: string) => {
+		setCurrentImage(src);
+		handleOpenModal();
+	};
+
 	return (
 		<>
 			<Header>
@@ -36,14 +60,30 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 			<Content>
 				<div className="top">
 					<div className="left-side">
-						<Image src="https://via.placeholder.com/1000" alt="random image" />
-						<Image src="https://via.placeholder.com/2000" alt="random image" />
-						<Image src="https://via.placeholder.com/1000" alt="random image" />
-						<Image src="https://via.placeholder.com/2000" alt="random image" />
+						<CarouselContainer
+							showThumbs={false}
+							emulateTouch
+							onClickItem={(index) => handleImageClick(data.imgUrl[index])}
+						>
+							{data.imgUrl.map((src, index) => (
+								<Image
+									src={src}
+									alt={`Imagem ${index + 1}`}
+									key={index}
+									onClick={() => handleImageClick(src)}
+								/>
+							))}
+						</CarouselContainer>
 					</div>
+
 					<FormContainer>
 						<FormFieldsContainer>
-							<FakeInput label="Técnico" value={data.technician} />
+							{data.technician ? (
+								<SelectComponent label="Técnico" options={options} />
+							) : (
+								<FakeInput label="Técnico" value={data.technician} />
+							)}
+
 							<FakeInput label="Nome" value={data.name} />
 							<FormFieldsContainer columns={2}>
 								<FakeInput label="Cidade" value={data.city} />
@@ -66,12 +106,14 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 								<th>Itens de vistoria</th>
 							</tr>
 						</thead>
-						{data.inspectionItems.map((item) => (
-							<tr>
-								<td className="quantity">{item.quantity}</td>
-								<td>{item.description}</td>
-							</tr>
-						))}
+						<tbody>
+							{data.inspectionItems.map((item) => (
+								<tr key={item.description}>
+									<td className="quantity">{item.quantity}</td>
+									<td>{item.description}</td>
+								</tr>
+							))}
+						</tbody>
 					</Table>
 				</div>
 			</Content>
@@ -81,6 +123,15 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 			<TriggerButtons>
 				<TriggerSuccess onClick={props.onClose}>Salvar</TriggerSuccess>
 			</TriggerButtons>
+
+			<Modal open={openModal} onOpenChange={onOpenChange} position="center">
+				<CloseButton>
+					<AiOutlineCloseCircle size={32} color="white" />
+				</CloseButton>
+				{currentImage && (
+					<img className="img-modal" src={currentImage} alt="Imagem ampliada" />
+				)}
+			</Modal>
 		</>
 	);
 };
