@@ -110,6 +110,9 @@ export const ModalBody = styled.main`
 	gap: 60px;
 	${({ theme }) => theme.font.p.small};
 	color: ${({ theme }) => theme.colors.brand.white};
+	overflow-y: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: mandatory;
 
 	form {
 		padding: 0;

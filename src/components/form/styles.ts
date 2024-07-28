@@ -5,6 +5,9 @@ export const FormContainer = styled.form`
 	display: flex;
 	padding: 0.7em;
 	flex-direction: column;
+	overflow-y: auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 
 	legend {
 		${({ theme }) => theme.font.p.normal};
