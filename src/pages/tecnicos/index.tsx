@@ -88,7 +88,7 @@ const Header = ({ onOpenModal, searchTerm, onSearchChange }: HeaderProps) => (
 
 const DataTableContainer = ({ data }: DataTableProps) => (
 	<div className="table">
-		<DataTable data={data} isTechnician hasPagination />
+		<DataTable data={data} modalType="tecnico" hasPagination />
 	</div>
 );
 

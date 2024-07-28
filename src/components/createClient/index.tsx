@@ -8,7 +8,7 @@ import { MdDone } from "react-icons/md";
 import { PiTrashLight } from "react-icons/pi";
 import { toast } from "sonner";
 import { addNewProps } from "../../models/add-new";
-import { clientSchema, ClientTS } from "../../utils/clientSchema";
+import { ClientTS, clientSchema } from "../../utils/clientSchema";
 import Button from "../form/button";
 import Input from "../form/input";
 import SelectComponent from "../form/select";
@@ -75,16 +75,9 @@ const ModalClient = ({
 
 	const onSubmit = (data: ClientTS) => {
 		console.log("Form submitted:", data);
-		{
-			data
-				? toast.success("Técnico atualizado!", {
-						duration: 2500,
-					})
-				: toast.success("Técnico cadastrado!", {
-						duration: 2500,
-					});
-		}
-
+		toast.success(data ? "Técnico atualizado!" : "Técnico cadastrado!", {
+			duration: 2500,
+		});
 		onSuccess?.();
 	};
 
@@ -108,25 +101,29 @@ const ModalClient = ({
 			</ActionAlertDialogHeader>
 			<ActionAlertDialogContent>
 				{!data && <p>Você pode usar essa tela para cadastrar os clientes</p>}
-				<FormContainer>
+				<FormContainer autoComplete="off">
 					<FormFieldsContainer>
 						<Input
 							type="text"
 							label="Nome do cliente"
+							autoComplete="off"
 							{...register("name")}
 							error={errors.name?.message}
 						/>
 						<Input
 							type="email"
 							label="E-mail"
+							autoComplete="off"
 							{...register("email")}
 							error={errors.email?.message}
 						/>
 						<Input
 							type="password"
 							label="Senha"
+							autoComplete="off"
 							{...register("password")}
 							error={errors.password?.message}
+
 						/>
 						<SelectComponent
 							label="Tipo de Cliente"
@@ -139,12 +136,14 @@ const ModalClient = ({
 							<Input
 								type="text"
 								label="CEP"
+								autoComplete="off"
 								{...register("address.zipCode")}
 								error={errors.address?.zipCode?.message}
 							/>
 							<Input
 								type="text"
 								label="N°"
+								autoComplete="off"
 								{...register("address.number")}
 								error={errors.address?.number?.message}
 							/>
@@ -153,14 +152,16 @@ const ModalClient = ({
 							<Input
 								type="text"
 								label="Rua"
+								autoComplete="off"
 								{...register("address.street")}
 								error={errors.address?.street?.message}
 							/>
 							<Input
 								type="text"
-								label="Estado (UF)"
-								{...register("address.state")}
-								error={errors.address?.state?.message}
+								label="Bairro"
+								autoComplete="off"
+								{...register("address.neighbourhood")}
+								error={errors.address?.neighbourhood?.message}
 							/>
 						</FormFieldsContainer>
 					</FormFieldsContainer>
@@ -180,7 +181,7 @@ const ModalClient = ({
 			</ActionAlertDialogTriggerButtons>
 			<VisuallyHidden>
 				<ActionAlertDialogDescription>
-					Modal do técnico
+					Modal do Cliente
 				</ActionAlertDialogDescription>
 			</VisuallyHidden>
 		</ModalContainer>

@@ -86,7 +86,7 @@ const Header = ({ searchTerm, onSearchChange }: HeaderProps) => {
 
 const DataTableContainer = ({ data }: DataTableProps) => (
 	<div className="table">
-		<DataTable data={data} hasPagination />
+		<DataTable data={data} modalType="cliente" hasPagination />
 	</div>
 );
 

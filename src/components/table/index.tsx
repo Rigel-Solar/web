@@ -1,24 +1,26 @@
-import { Table, Theme } from "@radix-ui/themes";
-import React, { useState } from "react";
+import { Table, Theme } from '@radix-ui/themes';
+import React, { useState } from 'react';
 import {
 	FaAngleLeft,
 	FaAngleRight,
 	FaAnglesLeft,
 	FaAnglesRight,
-} from "react-icons/fa6";
-import { SlOptions } from "react-icons/sl";
-import { technicians } from "../../constants/technician";
-import { DataTableProps } from "../../models/data-table";
-import ViewTecnico from "../../pages/tecnicos/modalTecnico/viewTecnico";
-import Button from "../form/button";
-import { Modal } from "../modal";
-import EditedFormPopUp from "../modal/editedFormPopUp";
-import ModalPedido from "../modal/modalPedido";
-import * as C from "./styles";
+} from 'react-icons/fa6';
+import { SlOptions } from 'react-icons/sl';
+import { technicians } from '../../constants/technician';
+import { clients } from '../../constants/client';
+import { DataTableProps } from '../../models/data-table';
+import ViewTecnico from '../../pages/tecnicos/modalTecnico/viewTecnico';
+import Button from '../form/button';
+import { Modal } from '../modal';
+import EditedFormPopUp from '../modal/editedFormPopUp';
+import ModalPedido from '../modal/modalPedido';
+import ViewClient from '../createClient';
+import * as C from './styles';
 
 interface TableBodyProps {
-	data: DataTableProps["data"];
-	isTechnician?: boolean;
+	data: DataTableProps['data'];
+	modalType?: 'tecnico' | 'pedido' | 'cliente';
 }
 
 interface PaginationProps {
@@ -34,7 +36,7 @@ const DataTable = ({
 	hasPagination,
 	$itemsPerPage = 10,
 	background = false,
-	isTechnician = false,
+	modalType = 'pedido',
 }: DataTableProps) => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [itemsPerPage, setItemsPerPage] = useState($itemsPerPage);
@@ -61,7 +63,7 @@ const DataTable = ({
 		<Theme>
 			<C.Root variant="surface" $background={background}>
 				<TableHeader />
-				<TableBody data={paginatedData} isTechnician={isTechnician} />
+				<TableBody data={paginatedData} modalType={modalType} />
 			</C.Root>
 			{hasPagination && (
 				<Pagination
@@ -89,7 +91,7 @@ const TableHeader = () => (
 	</C.Header>
 );
 
-const TableBody = ({ data, isTechnician }: TableBodyProps) => (
+const TableBody = ({ data, modalType }: TableBodyProps) => (
 	<C.Body>
 		{data.map((item, index) => (
 			<C.Row key={index}>
@@ -105,7 +107,7 @@ const TableBody = ({ data, isTechnician }: TableBodyProps) => (
 					<C.Badge $text={item.status}>{item.status}</C.Badge>
 				</C.Cell>
 				<C.Cell>{item.createdAt}</C.Cell>
-				<Options isTechnician={isTechnician} />
+				<Options modalType={modalType} />
 			</C.Row>
 		))}
 	</C.Body>
@@ -123,8 +125,8 @@ const Pagination = ({
 	return (
 		<C.Pagination>
 			<div className="pagination-left">
-				Mostrando{" "}
-				{Math.min(itemsPerPage, totalItems - (currentPage - 1) * itemsPerPage)}{" "}
+				Mostrando{' '}
+				{Math.min(itemsPerPage, totalItems - (currentPage - 1) * itemsPerPage)}{' '}
 				de {totalItems} pedidos
 			</div>
 			<div className="pagination-right">
@@ -160,10 +162,10 @@ const Pagination = ({
 };
 
 interface OptionsProps {
-	isTechnician?: boolean;
+	modalType?: 'tecnico' | 'pedido' | 'cliente';
 }
 
-const Options = ({ isTechnician }: OptionsProps) => {
+const Options = ({ modalType = 'pedido' }: OptionsProps) => {
 	const [openModal, setOpenModal] = useState(false);
 	const [hasEditedData, setHasEditedData] = useState(false);
 	const [openConfirmCloseModal, setOpenConfirmCloseModal] = useState(false);
@@ -186,6 +188,14 @@ const Options = ({ isTechnician }: OptionsProps) => {
 		setOpenModal(false);
 	};
 
+	const modalComponents: Record<string, JSX.Element> = {
+		tecnico: <ViewTecnico data={technicians[0]} />,
+		cliente: <ViewClient data={clients[0]} />,
+		pedido: <ModalPedido />,
+	};
+
+	const modalPosition = modalType === 'pedido' ? 'center' : 'right';
+
 	return (
 		<C.Cell>
 			<div className="dropdown">
@@ -200,15 +210,14 @@ const Options = ({ isTechnician }: OptionsProps) => {
 				onOpenChange={() => setOpenConfirmCloseModal(!openConfirmCloseModal)}
 				onConfirmCloseModal={onConfirmCloseModal}
 			/>
-			{isTechnician ? (
-				<Modal open={openModal} onOpenChange={onOpenChange} position="right">
-					<ViewTecnico data={technicians[0]} />
-				</Modal>
-			) : (
-				<Modal open={openModal} onOpenChange={onOpenChange} position="center">
-					<ModalPedido />
-				</Modal>
-			)}
+
+			<Modal
+				open={openModal}
+				onOpenChange={onOpenChange}
+				position={modalPosition}
+			>
+				{modalComponents[modalType || 'pedido']}
+			</Modal>
 		</C.Cell>
 	);
 };
