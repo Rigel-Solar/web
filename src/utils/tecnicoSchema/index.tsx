@@ -18,7 +18,7 @@ const tecnicoSchema = z.object({
 	password: z.string().min(8, "A senha precisa conter no mínimo 8 caracteres"),
 });
 
-type tecnicoTS = z.infer<typeof tecnicoSchema>;
+type TecnicoTS = z.infer<typeof tecnicoSchema>;
 
 export { tecnicoSchema };
-export type { tecnicoTS };
+export type { TecnicoTS };

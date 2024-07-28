@@ -37,6 +37,11 @@ const getMenuItems = (): MenuSection[] => [
 			{ label: "Banho", icon: <Icons.banho />, route: "/banho" },
 			{ label: "Piscina", icon: <Icons.piscina />, route: "/piscina" },
 			{ label: "Técnicos", icon: <Icons.tecnicos />, route: "/tecnicos" },
+			{
+				label: "Cliente",
+				icon: <Icons.clientes fill="white" width={16} />,
+				route: "/cliente",
+			},
 		],
 	},
 ];
