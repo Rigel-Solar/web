@@ -38,7 +38,6 @@ const SwitchTheme: React.FC = () => {
 		const newTheme = activeTheme === "light" ? "dark" : "light";
 		setActiveTheme(newTheme);
 		dispatch(setThemeStatus(newTheme));
-		console.log(newTheme);
 	};
 
 	return (

@@ -17,10 +17,6 @@ to{
 }
 `;
 
-const errorColor = css`
-	${({ theme }) => theme.colors.support.error}
-`;
-
 const primary = css`
 	${({ theme }) => {
 		return css`
@@ -101,7 +97,7 @@ export const Container = styled.div<ContainerProp>`
 	p {
 		margin-top: 0.5rem;
 		${({ theme }) => theme.font.p.normal};
-		color: ${errorColor};
+		color: ${({ theme }) => theme.colors.support.error};
 	}
 `;
 

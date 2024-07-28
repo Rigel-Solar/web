@@ -7,12 +7,13 @@ import { AiOutlineLeftCircle } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { PiTrashLight } from "react-icons/pi";
 import { toast } from "sonner";
-import { addNewProps } from "../../models/add-new";
-import { ClientTS, clientSchema } from "../../utils/clientSchema";
-import Button from "../form/button";
-import Input from "../form/input";
-import SelectComponent from "../form/select";
-import { FormContainer, FormFieldsContainer } from "../form/styles";
+import Button from "../../../components/form/button";
+import Input from "../../../components/form/input";
+import SelectComponent from "../../../components/form/select";
+import {
+	FormContainer,
+	FormFieldsContainer,
+} from "../../../components/form/styles";
 import {
 	ActionAlertDialogContent,
 	ActionAlertDialogDescription,
@@ -21,8 +22,10 @@ import {
 	ActionAlertDialogTriggerButtons,
 	ActionAlertDialogTriggerClose,
 	ActionAlertDialogTriggerSuccess,
-} from "../modal/actionAlertModal";
-import PopUpDelete from "../modal/popUp/popUpDelete";
+} from "../../../components/modal/actionAlertModal";
+import PopUpDelete from "../../../components/modal/popUp/popUpDelete";
+import { addNewProps } from "../../../models/add-new";
+import { ClientTS, clientSchema } from "../../../utils/clientSchema";
 import { ModalContainer } from "./styles";
 
 export interface ModalClientProps extends addNewProps {
@@ -68,8 +71,6 @@ const ModalClient = ({
 			onSetEditedData?.(true);
 		}
 	}, [isDirty]);
-
-	console.log(errors);
 
 	const onSubmit = (data: ClientTS) => {
 		console.log("Form submitted:", data);

@@ -9,6 +9,7 @@ import {
 	FormContainer,
 	FormFieldsContainer,
 } from "../../../../components/form/styles";
+import ViewHistory from "../../../../components/history";
 import { Modal } from "../../../../components/modal";
 import {
 	ActionAlertDialogContent,
@@ -18,6 +19,7 @@ import {
 	ActionAlertDialogTriggerButtons,
 } from "../../../../components/modal/actionAlertModal";
 import EditedFormPopUp from "../../../../components/modal/editedFormPopUp";
+import { historyItems } from "../../../../constants/historyItems";
 import { addNewProps } from "../../../../models/add-new";
 import { Technician } from "../../../../models/technician";
 import { ModalContainer } from "../styles";
@@ -30,6 +32,9 @@ const ViewTecnico = ({ data }: ViewTecnicoProps) => {
 	const [openModal, setOpenModal] = useState(false);
 	const [openConfirmCloseModal, setOpenConfirmCloseModal] = useState(false);
 	const [hasEditedData, setHasEditedData] = useState(false);
+	const [modalType, setModalType] = useState<"history" | "technician">(
+		"technician"
+	);
 
 	const onOpenChange = () => {
 		if (hasEditedData) {
@@ -47,10 +52,11 @@ const ViewTecnico = ({ data }: ViewTecnicoProps) => {
 		setOpenModal(false);
 	};
 
-	const handleOpenModal = () => {
+	const handleOpenModal = (modalType: "history" | "technician") => {
 		setOpenModal(true);
 		setHasEditedData(false);
 		setOpenConfirmCloseModal(false);
+		setModalType(modalType);
 	};
 
 	const handleSuccess = () => {
@@ -65,12 +71,21 @@ const ViewTecnico = ({ data }: ViewTecnicoProps) => {
 				onConfirmCloseModal={onConfirmCloseModal}
 			/>
 			<Modal open={openModal} onOpenChange={onOpenChange}>
-				<ModalTecnico
-					onClose={onOpenChange}
-					onSuccess={handleSuccess}
-					data={data}
-					onSetEditedData={setHasEditedData}
-				/>
+				{modalType === "history" ? (
+					<ViewHistory
+						onClose={onOpenChange}
+						onSuccess={handleSuccess}
+						data={historyItems}
+						onSetEditedData={setHasEditedData}
+					/>
+				) : (
+					<ModalTecnico
+						onClose={onOpenChange}
+						onSuccess={handleSuccess}
+						data={data}
+						onSetEditedData={setHasEditedData}
+					/>
+				)}
 			</Modal>
 			<ActionAlertDialogHeader $between={!!data}>
 				<DialogClose>
@@ -80,7 +95,7 @@ const ViewTecnico = ({ data }: ViewTecnicoProps) => {
 				<Button
 					buttonStyle="text"
 					style={{ padding: 5, fontSize: 20 }}
-					onClick={handleOpenModal}
+					onClick={() => handleOpenModal("technician")}
 				>
 					<AiOutlineEdit />
 				</Button>
@@ -95,7 +110,11 @@ const ViewTecnico = ({ data }: ViewTecnicoProps) => {
 				</FormContainer>
 			</ActionAlertDialogContent>
 			<ActionAlertDialogTriggerButtons>
-				<Button buttonStyle="secondary" style={{ flex: 1 }}>
+				<Button
+					buttonStyle="secondary"
+					style={{ flex: 1 }}
+					onClick={() => handleOpenModal("history")}
+				>
 					Histórico de pedidos
 				</Button>
 			</ActionAlertDialogTriggerButtons>
