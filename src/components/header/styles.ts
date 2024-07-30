@@ -67,10 +67,11 @@ export const Header = styled.header<HeaderProps>`
 	}
 
 	.top {
-		height: 55%;
+		flex: 1;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		gap: 20px;
+		margin: auto 0;
 
 		.rigel {
 			display: flex;
@@ -100,6 +101,10 @@ export const Header = styled.header<HeaderProps>`
 				left: 0;
 				top: 0;
 			}
+		}
+
+		nav {
+			margin: auto 0;
 		}
 
 		ul {
@@ -138,7 +143,6 @@ export const Header = styled.header<HeaderProps>`
 	}
 
 	.bottom {
-		height: 45%;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;

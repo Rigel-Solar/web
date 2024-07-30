@@ -7,6 +7,7 @@ export const Container = styled.main`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
+	gap: 20px;
 	padding: 25px 40px;
 
 	section {

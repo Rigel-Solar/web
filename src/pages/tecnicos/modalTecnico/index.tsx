@@ -99,7 +99,6 @@ const ModalTecnico = ({
 				)}
 			</ActionAlertDialogHeader>
 			<ActionAlertDialogContent>
-				{!data && <p>Você pode usar essa tela para cadastrar os técnicos</p>}
 				<FormContainer>
 					<FormFieldsContainer>
 						<Input
