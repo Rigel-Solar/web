@@ -201,6 +201,34 @@ const clientes2 = ({ fill = "#000", ...props }) => {
 	);
 };
 
+const person = ({ fill = "#000", ...props }) => {
+	return (
+		<svg
+			width="20"
+			height="20"
+			viewBox="0 0 20 20"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			{...props}
+		>
+			<path
+				d="M9.99999 8.33317C11.8409 8.33317 13.3333 6.84079 13.3333 4.99984C13.3333 3.15889 11.8409 1.6665 9.99999 1.6665C8.15904 1.6665 6.66666 3.15889 6.66666 4.99984C6.66666 6.84079 8.15904 8.33317 9.99999 8.33317Z"
+				stroke={fill}
+				strokeWidth="1.25"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
+			<path
+				d="M17.5 18.3335C17.5 14.1914 14.1421 10.8335 10 10.8335C5.85787 10.8335 2.5 14.1914 2.5 18.3335"
+				stroke={fill}
+				strokeWidth="1.25"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
+		</svg>
+	);
+};
+
 export const Icons = {
 	home,
 	fotovoltaico,
@@ -213,4 +241,5 @@ export const Icons = {
 	clientes,
 	clientes2,
 	relatorios2,
+	person,
 };

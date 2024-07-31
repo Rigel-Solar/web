@@ -3,6 +3,7 @@ import { FiPlus } from "react-icons/fi";
 import Button from "../../components/form/button";
 import { Modal } from "../../components/modal";
 import EditedFormPopUp from "../../components/modal/editedFormPopUp";
+import ModalCreatePedido from "../../components/modal/modalCreatePedido";
 import Search from "../../components/search";
 import DataTable from "../../components/table";
 import { banho } from "../../constants/banho";
@@ -32,22 +33,43 @@ interface HeaderProps {
 	onSearchChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Header = ({ searchTerm, onSearchChange }: HeaderProps) => (
-	<section>
-		<div className="top-area">
-			<h1>Banho</h1>
-			<Button buttonStyle="primary">
-				<FiPlus size={16} />
-				Criar Pedido
-			</Button>
-		</div>
-		<Search
-			placeholder="Procurar pedidos..."
-			value={searchTerm}
-			onChange={onSearchChange}
-		/>
-	</section>
-);
+const Header = ({ searchTerm, onSearchChange }: HeaderProps) => {
+	const {
+		openModal,
+		hasEditedData,
+		openConfirmCloseModal,
+		onOpenChange,
+		onConfirmCloseModal,
+		setOpenConfirmCloseModal,
+		handleOpenModal,
+	} = useModal();
+
+	return (
+		<section>
+			<div className="top-area">
+				<h1>Banho</h1>
+				<Button buttonStyle="primary" onClick={handleOpenModal}>
+					<FiPlus size={16} />
+					Criar Pedido
+				</Button>
+			</div>
+			<Search
+				placeholder="Procurar pedidos..."
+				value={searchTerm}
+				onChange={onSearchChange}
+			/>
+
+			<EditedFormPopUp
+				open={hasEditedData && openConfirmCloseModal}
+				onOpenChange={() => setOpenConfirmCloseModal(!openConfirmCloseModal)}
+				onConfirmCloseModal={onConfirmCloseModal}
+			/>
+			<Modal open={openModal} onOpenChange={onOpenChange} position="right">
+				<ModalCreatePedido />
+			</Modal>
+		</section>
+	);
+};
 
 const DataTableContainer = ({ data }: DataTableProps) => {
 	const {

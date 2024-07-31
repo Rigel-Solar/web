@@ -99,7 +99,6 @@ const ModalClient = ({
 				)}
 			</ActionAlertDialogHeader>
 			<ActionAlertDialogContent>
-				{!data && <p>Você pode usar essa tela para cadastrar os clientes</p>}
 				<FormContainer autoComplete="off">
 					<FormFieldsContainer>
 						<Input
@@ -132,14 +131,14 @@ const ModalClient = ({
 						/>
 						<FormFieldsContainer columns={2}>
 							<Input
-								type="text"
+								type="number"
 								label="CEP"
 								autoComplete="off"
 								{...register("address.zipCode")}
 								error={errors.address?.zipCode?.message}
 							/>
 							<Input
-								type="text"
+								type="number"
 								label="N°"
 								autoComplete="off"
 								{...register("address.number")}
