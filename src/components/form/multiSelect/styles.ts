@@ -43,7 +43,7 @@ const styles: { [key: string]: RuleSet<object> } = {
 	secondary,
 };
 
-interface multiSelectStyleProps {
+export interface multiSelectStyleProps {
 	$readOnly?: boolean;
 	required?: boolean;
 	disabled?: boolean;

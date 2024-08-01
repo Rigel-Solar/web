@@ -9,19 +9,25 @@ import { addNewProps } from "../../../models/add-new";
 import { orderSchema, OrderTS } from "../../../utils/pedidoSchema";
 import ClientSelect from "../../form/clientSelect";
 import {
-	ActionAlertDialogTriggerButtons,
 	ActionAlertDialogTriggerClose,
 	ActionAlertDialogTriggerSuccess,
 } from "../actionAlertModal";
-import { Content, Description, Header, Title, TriggerClose } from "./styles";
+import {
+	Content,
+	Description,
+	Header,
+	Title,
+	TriggerButtons,
+	TriggerClose,
+} from "./styles";
 
-export interface ModalPedidoProps extends addNewProps {}
+export interface AddNewOrderProps extends addNewProps {}
 
-const ModalCreatePedido = ({
+const AddNewOrder = ({
 	onSuccess,
 	onSetEditedData,
 	...props
-}: ModalPedidoProps) => {
+}: AddNewOrderProps) => {
 	const {
 		handleSubmit,
 		setValue,
@@ -45,7 +51,7 @@ const ModalCreatePedido = ({
 
 	const onSubmit = (data: OrderTS) => {
 		console.log("Form submitted:", data);
-		toast.success(data ? "Cliente atualizado!" : "Cliente cadastrado!", {
+		toast.success(data ? "Pedido atualizado!" : "Pedido Criado!", {
 			duration: 2500,
 		});
 		onSuccess?.();
@@ -61,7 +67,6 @@ const ModalCreatePedido = ({
 			</Header>
 			<Content>
 				<ClientSelect
-					
 					placeholder="Selecione um cliente"
 					onSelect={handleSelectClient}
 					required
@@ -70,7 +75,7 @@ const ModalCreatePedido = ({
 			<Description>
 				<VisuallyHidden>Detalhes do pedido</VisuallyHidden>
 			</Description>
-			<ActionAlertDialogTriggerButtons>
+			<TriggerButtons>
 				<ActionAlertDialogTriggerClose onClick={props.onClose}>
 					Cancelar
 				</ActionAlertDialogTriggerClose>
@@ -81,9 +86,9 @@ const ModalCreatePedido = ({
 					<MdDone size={18} />
 					Criar
 				</ActionAlertDialogTriggerSuccess>
-			</ActionAlertDialogTriggerButtons>
+			</TriggerButtons>
 		</>
 	);
 };
 
-export default ModalCreatePedido;
+export default AddNewOrder;

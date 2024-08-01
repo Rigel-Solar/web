@@ -2,11 +2,11 @@ import { VisuallyHidden } from "@radix-ui/themes";
 import { useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import FakeInput from "../../../components/form/fakeInput";
-import SelectComponent from "../../../components/form/select";
 import {
 	FormContainer,
 	FormFieldsContainer,
 } from "../../../components/form/styles";
+import TechnicianSelect from "../../../components/form/technicianSelect";
 import Image from "../../../components/image";
 import { CloseButton } from "../../../components/image/styles";
 import { Modal } from "../../../components/modal";
@@ -30,17 +30,6 @@ export interface ModalBanhoProps extends addNewProps {
 }
 
 const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
-	const options = [
-		{
-			label: "Malcolm Lima",
-			value: "1",
-		},
-		{
-			label: "Gaam",
-			value: "2",
-		},
-	];
-
 	const { openModal, onOpenChange, handleOpenModal } = useModal();
 	const [currentImage, setCurrentImage] = useState<string | null>(null);
 
@@ -79,7 +68,11 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 					<FormContainer>
 						<FormFieldsContainer>
 							{data.technician ? (
-								<SelectComponent label="Técnico" options={options} />
+								<TechnicianSelect
+									placeholder="Selecione um tecnico"
+									onSelect={() => console.log(".")}
+									required
+								/>
 							) : (
 								<FakeInput label="Técnico" value={data.technician} />
 							)}

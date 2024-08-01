@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { MenuProps, components } from "react-select";
-import { clients } from "../../../constants/client";
+import { technicians } from "../../../constants/technician";
 import useModal from "../../../functions/use-modal";
 import { Client } from "../../../models/client";
-import ModalClient from "../../../pages/cliente/createClient";
+import { Technician } from "../../../models/technician";
+import ModalTecnico from "../../../pages/tecnicos/modalTecnico";
 import Avatar from "../../avatar";
 import { Modal } from "../../modal";
 import EditedFormPopUp from "../../modal/editedFormPopUp";
@@ -13,7 +14,7 @@ import MultiSelect from "../multiSelect";
 import { selectOptionType } from "../select";
 import { FormFieldsContainer } from "../styles";
 
-interface clientSelectProps {
+interface technicianSelectProps {
 	error?: string;
 	defaultValue?: string;
 	placeholder?: string;
@@ -21,18 +22,18 @@ interface clientSelectProps {
 	onSelect(value: any): void;
 	required?: boolean;
 	filter?: string[];
-	onSelectClientData?(data: Client | undefined): void;
+	onSelectTechnicianData?(data: Technician | undefined): void;
 }
 
-const ClientSelect = ({
+const TechnicianSelect = ({
 	error,
 	defaultValue,
 	onSelect,
 	hasAddNew = true,
 	required,
 	placeholder,
-	onSelectClientData,
-}: clientSelectProps) => {
+	onSelectTechnicianData,
+}: technicianSelectProps) => {
 	const {
 		openModal,
 		onConfirmCloseModal,
@@ -43,25 +44,27 @@ const ClientSelect = ({
 		setOpenConfirmCloseModal,
 		onOpenChange,
 	} = useModal();
-	const [clientOptions, setClientOptions] = useState<selectOptionType[]>([]);
+	const [technicianOptions, setTechnicianOptions] = useState<
+		selectOptionType[]
+	>([]);
 	const [value, setValue] = useState<any>();
 
 	useEffect(() => {
-		const options = clients.map((client) => ({
-			value: JSON.stringify(client),
+		const options = technicians.map((technician) => ({
+			value: JSON.stringify(technician),
 			label: (
 				<div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-					<Avatar variant="gray" alt={client.name} />
-					{client.name}
+					<Avatar variant="gray" alt={technician.name} />
+					{technician.name}
 				</div>
 			),
 		}));
-		setClientOptions(options);
+		setTechnicianOptions(options);
 	}, []);
 
 	useEffect(() => {
-		if (clientOptions?.length) {
-			const findClient = clientOptions?.filter?.((e: any) => {
+		if (technicianOptions?.length) {
+			const findClient = technicianOptions?.filter?.((e: any) => {
 				const { _id } = JSON.parse(e.value) as Client;
 				if (defaultValue === _id) {
 					return true;
@@ -73,9 +76,9 @@ const ClientSelect = ({
 				setValue(findClient[0]);
 			}
 		}
-	}, [defaultValue, clientOptions]);
+	}, [defaultValue, technicianOptions]);
 
-	const handleSelectClient = (data: Client) => {
+	const handleSelectTechnician = (data: Technician) => {
 		if (!data) return;
 
 		const newClient = {
@@ -87,13 +90,13 @@ const ClientSelect = ({
 				</div>
 			),
 		};
-		setClientOptions((old) => {
+		setTechnicianOptions((old) => {
 			return [...old, newClient];
 		});
 		setValue(newClient);
 
 		onSelect(data?._id as string);
-		onSelectClientData?.(data);
+		onSelectTechnicianData?.(data);
 	};
 
 	return (
@@ -104,21 +107,21 @@ const ClientSelect = ({
 				onConfirmCloseModal={onConfirmCloseModal}
 			/>
 			<Modal open={openModal} onOpenChange={onOpenChange}>
-				<ModalClient
+				<ModalTecnico
 					onClose={handleCloseModal}
-					onSuccess={handleSelectClient}
+					onSuccess={handleSelectTechnician}
 				/>
 			</Modal>
 
 			<MultiSelect
-				options={clientOptions}
+				options={technicianOptions}
 				placeholder={placeholder}
 				required={required}
 				components={
 					hasAddNew
 						? {
 								Menu: (props: any) => (
-									<ClientSelectButtons
+									<TechnicianSelectButton
 										onOpenModal={handleOpenModal}
 										{...props}
 									/>
@@ -132,13 +135,13 @@ const ClientSelect = ({
 				onChange={(data: any) => {
 					setValue(data);
 					if (data) {
-						const { _id } = JSON.parse(data.value) as Client;
+						const { _id } = JSON.parse(data.value) as Technician;
 
 						onSelect(_id);
-						onSelectClientData?.(JSON.parse(data.value) as Client);
+						onSelectTechnicianData?.(JSON.parse(data.value) as Technician);
 					} else {
 						onSelect(null);
-						onSelectClientData?.(undefined);
+						onSelectTechnicianData?.(undefined);
 					}
 				}}
 			/>
@@ -146,21 +149,21 @@ const ClientSelect = ({
 	);
 };
 
-interface clientSelectButtonProps extends MenuProps<any> {
+interface technicianSelectButtonProps extends MenuProps<any> {
 	onOpenModal: (value: boolean) => void;
 }
 
-export const ClientSelectButtons = ({
+export const TechnicianSelectButton = ({
 	onOpenModal,
 	...props
-}: clientSelectButtonProps) => {
+}: technicianSelectButtonProps) => {
 	return (
 		<>
 			<components.Menu {...props}>
 				{props.children}
 				<FormFieldsContainer style={{ marginTop: 20 }}>
 					<Button buttonStyle="link" onClick={() => onOpenModal(true)}>
-						Cadastrar cliente
+						Cadastrar técnico
 					</Button>
 				</FormFieldsContainer>
 			</components.Menu>
@@ -168,4 +171,4 @@ export const ClientSelectButtons = ({
 	);
 };
 
-export default ClientSelect;
+export default TechnicianSelect;
