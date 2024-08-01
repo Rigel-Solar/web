@@ -27,7 +27,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: StoryFn<multiSelectProps & any> = (args) => (
-	<MultiSelect options={} {...args} />
+	<MultiSelect {...args} />
 );
 
 export const Default: StoryFn<multiSelectProps & any> = Template.bind({});
