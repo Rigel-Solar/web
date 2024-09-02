@@ -125,7 +125,7 @@ const relatorios = ({ fill = "#000", ...props }) => {
 	);
 };
 
-const clientes = ({ fill = "#000", ...props }) => {
+const clientes = ({ fill = "currentColor", ...props }) => {
 	return (
 		<svg
 			width="28"

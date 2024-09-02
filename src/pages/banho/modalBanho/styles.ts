@@ -74,7 +74,11 @@ export const Table = styled.table`
 `;
 
 export const CarouselContainer = styled(Carousel)`
-	min-width: 420px;
+	min-width: 360px;
 	height: 100%;
 	align-content: center;
+
+	img {
+		width: clamp(150px, 50vw, 300px);
+	}
 `;

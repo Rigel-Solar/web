@@ -7,7 +7,7 @@ export interface multiSelectOptionType<Data = unknown> {
 	value: string | object | string[] | Data;
 }
 
-interface multiSelectProps {
+export interface multiSelectProps {
 	error?: string;
 }
 

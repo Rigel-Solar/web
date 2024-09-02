@@ -127,7 +127,8 @@ export const Badge = styled.div<BadgeProps>`
 			return "background-color: #042F2E; color: #2DD4BF";
 		else if (props.$text == "Em andamento")
 			return "background-color: #422006; color: #FACC15";
-		else return "background-color: #450A0A; color: #FF8888";
+		else if (props.$text == "Negada")
+			return "background-color: #450A0A; color: #FF8888";
 	}}
 `;
 

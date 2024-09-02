@@ -2,11 +2,11 @@ import { VisuallyHidden } from "@radix-ui/themes";
 import { useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import FakeInput from "../../../components/form/fakeInput";
-import SelectComponent from "../../../components/form/select";
 import {
 	FormContainer,
 	FormFieldsContainer,
 } from "../../../components/form/styles";
+import TechnicianSelect from "../../../components/form/technicianSelect";
 import Image from "../../../components/image";
 import { CloseButton } from "../../../components/image/styles";
 import { Modal } from "../../../components/modal";
@@ -30,17 +30,6 @@ export interface ModalBanhoProps extends addNewProps {
 }
 
 const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
-	const options = [
-		{
-			label: "Malcolm Lima",
-			value: "1",
-		},
-		{
-			label: "Gaam",
-			value: "2",
-		},
-	];
-
 	const { openModal, onOpenChange, handleOpenModal } = useModal();
 	const [currentImage, setCurrentImage] = useState<string | null>(null);
 
@@ -79,21 +68,30 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 					<FormContainer>
 						<FormFieldsContainer>
 							{data.technician ? (
-								<SelectComponent label="Técnico" options={options} />
-							) : (
 								<FakeInput label="Técnico" value={data.technician} />
+							) : (
+								<TechnicianSelect
+									placeholder="Selecione um tecnico"
+									onSelect={() => console.log(".")}
+									required
+								/>
 							)}
-
-							<FakeInput label="Nome" value={data.name} />
+							<FormFieldsContainer columns={2}>
+								<FakeInput label="Nome" value={data.name} />
+								<FakeInput label="Tipo de Cliente" value={data.type} />
+							</FormFieldsContainer>
 							<FormFieldsContainer columns={2}>
 								<FakeInput label="Cidade" value={data.city} />
 								<FakeInput label="Estado" value={data.state} />
 							</FormFieldsContainer>
-							<FakeInput label="Rua" value={data.street} />
-							<FakeInput label="Número" value={data.neighborhood} />
+
 							<FormFieldsContainer columns={2}>
-								<FakeInput label="Número" value={data.type} />
-								<FakeInput label="Número" value={data.cellphone} />
+								<FakeInput label="Rua" value={data.street} />
+								<FakeInput label="Bairro" value={data.neighborhood} />
+							</FormFieldsContainer>
+							<FormFieldsContainer columns={2}>
+								<FakeInput label="Número" value={data.number} />
+								<FakeInput label="Celular" value={data.cellphone} />
 							</FormFieldsContainer>
 						</FormFieldsContainer>
 					</FormContainer>
