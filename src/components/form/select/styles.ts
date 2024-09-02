@@ -57,7 +57,7 @@ interface ContainerProp {
 }
 
 export const Container = styled.div<ContainerProp>`
-	width: 100%;
+	inline-size: 100%;
 	pointer-events: ${(prop) => prop.$readOnly && "none"};
 	position: relative;
 	${({ theme }) => theme.font.p.small};
@@ -68,13 +68,13 @@ export const Container = styled.div<ContainerProp>`
 				&:after {
 					content: attr(data-required-text);
 					color: ${({ theme }) => theme.colors.brand.text};
-					background-color: #18181b;
+					background-color: ${({ theme }) => theme.colors.brand.background};
 					padding: 0.2em 0.5em;
 					border-radius: 0.2em;
 					${({ theme }) => theme.font.p.extra_small};
 					position: absolute;
-					top: -13px;
-					right: 0.9em;
+					inset-block-start: 13px;
+					inset-inline-end: 0.9em;
 				}
 			`;
 		}
@@ -90,19 +90,19 @@ export const Container = styled.div<ContainerProp>`
 
 	label {
 		display: block;
-		margin-bottom: 0.5em;
+		margin-block-end: 0.5em;
 		color: ${({ theme }) => theme.colors.brand.text};
 	}
 
 	p {
-		margin-top: 0.5rem;
+		margin-block-start: 0.5rem;
 		${({ theme }) => theme.font.p.normal};
 		color: ${({ theme }) => theme.colors.support.error};
 	}
 `;
 
 export const StyledRoot = styled(Select.Root)`
-	width: 100%;
+	inline-size: 100%;
 	position: relative;
 `;
 
@@ -112,9 +112,9 @@ const styles = {
 };
 
 export const StyledTrigger = styled(Select.SelectTrigger)<ContainerProp>`
-	width: 100%;
+	inline-size: 100%;
 	display: flex;
-	height: fit-content;
+	block-size: fit-content;
 	align-items: center;
 	justify-content: space-between;
 	padding: 12px 1.3em;
@@ -129,22 +129,22 @@ export const StyledTrigger = styled(Select.SelectTrigger)<ContainerProp>`
 `;
 
 export const StyledContent = styled(Select.Content)<ContainerProp>`
-	width: 100%;
+	inline-size: 100%;
 	border-radius: 0.5em;
 	box-shadow:
 		0px 0.4em 1.4em -0.7em rgba(22, 23, 24, 0.35),
 		0px 0.7em 20px -15px rgba(22, 23, 24, 0.2);
 	padding: 25px;
 	transform-origin: top;
-	top: 70px;
+	inset-block-start: 70px;
 	animation: 0.4s ${entranceAnimation} ease;
 	z-index: 999999;
 	position: relative;
-	background-color: ${({theme}) => theme.colors.brand.background2};
+	background-color: ${({ theme }) => theme.colors.brand.background2};
 `;
 
 export const StyledViewPort = styled(Select.Viewport)`
-	max-height: 400px;
+	max-block-size: 400px;
 	padding: 0px;
 	z-index: 9999;
 `;
@@ -159,7 +159,7 @@ export const StyledItem = styled(Select.Item)<ContainerProp>`
 	position: relative;
 
 	&:hover {
-		background-color: #28282b;
+		background-color: ${({ theme }) => theme.colors.brand.background};
 		border: 0;
 		outline: 0;
 	}
@@ -167,11 +167,11 @@ export const StyledItem = styled(Select.Item)<ContainerProp>`
 	&[data-state="unchecked"] {
 		&::after {
 			content: "";
-			width: 15px;
-			height: 15px;
+			inline-size: 15px;
+			block-size: 15px;
 			position: absolute;
-			left: 2px;
-			top: 50%;
+			inset-inline-start: 2px;
+			inset-block-start: 50%;
 			transform: translateY(-50%);
 			border: 1px solid ${({ theme }) => theme.colors.grayscale.gray_60};
 			border-radius: 99px;
@@ -180,20 +180,20 @@ export const StyledItem = styled(Select.Item)<ContainerProp>`
 `;
 
 export const SelectIndication = styled(Select.ItemIndicator)`
-	width: 20px;
-	height: 20px;
+	inline-size: 20px;
+	block-size: 20px;
 	border: 2px solid ${({ theme }) => theme.colors.brand.tiffany};
 	border-radius: 99px;
 	position: absolute;
-	left: 2px;
+	inset-inline-start: 2px;
 
 	&::after {
 		content: "";
 		position: absolute;
-		top: 1px;
-		bottom: 1px;
-		left: 1px;
-		right: 1px;
+		inset-block-start: 1px;
+		inset-block-end: 1px;
+		inset-inline-start: 1px;
+		inset-inline-end: 1px;
 		border: 3px solid ${({ theme }) => theme.colors.brand.tiffany};
 		border-radius: 99px;
 	}
@@ -220,7 +220,7 @@ export const ScrollDownButton = styled(Select.ScrollDownButton)`
 `;
 
 export const LoadingSelect = styled.div`
-	width: 100%;
+	inline-size: 100%;
 	padding: 1.2em 0.8em;
 	border-radius: 0.5em;
 	position: relative;

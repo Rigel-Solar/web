@@ -48,17 +48,17 @@ export const InputContainer = styled.div<inputStyleProps>`
 	input,
 	.label-input-mimic,
 	.button-mimic-input {
-		width: 100%;
+		inline-size: 100%;
 		box-sizing: border-box;
 		padding: 12px 1.3em;
-		text-align: left;
+		text-align: start;
 		justify-content: flex-start;
 		border-radius: 4px;
 		color: ${({ theme }) => theme.colors.brand.text};
 	}
 
 	.button-mimic-input > div {
-		max-width: 350px;
+		max-inline-size: 350px;
 		overflow: auto;
 	}
 
@@ -70,11 +70,11 @@ export const InputContainer = styled.div<inputStyleProps>`
 	.input-label {
 		${({ theme }) => theme.font.p.small};
 		color: ${({ theme }) => theme.colors.brand.text};
-		margin-bottom: 0.5rem;
+		margin-block-end: 0.5rem;
 		display: block;
 	}
 	.error-container {
-		margin-top: 0.5rem;
+		margin-block-start: 0.5rem;
 		${({ theme }) => theme.font.p.small};
 		color: ${({ theme }) => theme.colors.support.error};
 	}
@@ -88,20 +88,21 @@ export const InputContainer = styled.div<inputStyleProps>`
 		align-items: center;
 		border-radius: 0.5em;
 		position: relative;
+		${({ theme }) => theme.font.p.small};
 		${({ $inputStyle }) => styles[$inputStyle]}
-		${({ $required, theme }) => {
+		${({ $required }) => {
 			if ($required) {
 				return css`
 					&:after {
 						content: attr(data-required-text);
-						color: ${theme.colors.grayscale.gray_60};
-						background-color: ${({ theme }) => theme.colors.brand.white};
+						color: ${({ theme }) => theme.colors.brand.text};
+						background-color: ${({ theme }) => theme.colors.brand.background};
 						padding: 0.2em 0.5em;
 						border-radius: 0.2em;
 						${({ theme }) => theme.font.p.extra_small};
 						position: absolute;
-						top: -13px;
-						right: 0.9em;
+						inset-block-start: -13px;
+						inset-inline-end: 0.9em;
 					}
 				`;
 			}

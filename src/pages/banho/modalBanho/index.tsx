@@ -68,25 +68,30 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 					<FormContainer>
 						<FormFieldsContainer>
 							{data.technician ? (
+								<FakeInput label="Técnico" value={data.technician} />
+							) : (
 								<TechnicianSelect
 									placeholder="Selecione um tecnico"
 									onSelect={() => console.log(".")}
 									required
 								/>
-							) : (
-								<FakeInput label="Técnico" value={data.technician} />
 							)}
-
-							<FakeInput label="Nome" value={data.name} />
+							<FormFieldsContainer columns={2}>
+								<FakeInput label="Nome" value={data.name} />
+								<FakeInput label="Tipo de Cliente" value={data.type} />
+							</FormFieldsContainer>
 							<FormFieldsContainer columns={2}>
 								<FakeInput label="Cidade" value={data.city} />
 								<FakeInput label="Estado" value={data.state} />
 							</FormFieldsContainer>
-							<FakeInput label="Rua" value={data.street} />
-							<FakeInput label="Número" value={data.neighborhood} />
+
 							<FormFieldsContainer columns={2}>
-								<FakeInput label="Número" value={data.type} />
-								<FakeInput label="Número" value={data.cellphone} />
+								<FakeInput label="Rua" value={data.street} />
+								<FakeInput label="Bairro" value={data.neighborhood} />
+							</FormFieldsContainer>
+							<FormFieldsContainer columns={2}>
+								<FakeInput label="Número" value={data.number} />
+								<FakeInput label="Celular" value={data.cellphone} />
 							</FormFieldsContainer>
 						</FormFieldsContainer>
 					</FormContainer>

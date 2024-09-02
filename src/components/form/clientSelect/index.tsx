@@ -50,7 +50,7 @@ const ClientSelect = ({
 		const options = clients.map((client) => ({
 			value: JSON.stringify(client),
 			label: (
-				<div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+				<div className="multi-select-option" style={{ display: "flex", alignItems: "center", gap: 10 }}>
 					<Avatar variant="gray" alt={client.name} />
 					{client.name}
 				</div>
@@ -81,7 +81,7 @@ const ClientSelect = ({
 		const newClient = {
 			value: JSON.stringify(data),
 			label: (
-				<div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+				<div className="multi-select-option" style={{ display: "flex", alignItems: "center", gap: 10 }}>
 					<Avatar variant="gray" alt={data?.name} />
 					{data.name}
 				</div>

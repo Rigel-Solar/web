@@ -52,10 +52,11 @@ export interface multiSelectStyleProps {
 }
 
 export const Container = styled.div<multiSelectStyleProps>`
-	width: 100%;
+	inline-size: 100%;
 	pointer-events: ${(prop) => prop.$readOnly && "none"};
 	position: relative;
 	z-index: 99;
+	${({ theme }) => theme.font.p.small};
 
 	${({ required, theme }) => {
 		if (required) {
@@ -68,8 +69,8 @@ export const Container = styled.div<multiSelectStyleProps>`
 					border-radius: 0.2em;
 					${({ theme }) => theme.font.p.extra_small};
 					position: absolute;
-					top: -13px;
-					right: 0.9em;
+					inset-block-start: -13px;
+					inset-inline-end: 0.9em;
 				}
 			`;
 		}
@@ -84,9 +85,9 @@ export const Container = styled.div<multiSelectStyleProps>`
 
 export const MultiSelectContainer = styled(Select)<any>`
 	.multi-select__control {
-		width: 100%;
+		inline-size: 100%;
 		display: flex;
-		height: fit-content;
+		block-size: fit-content;
 		align-items: center;
 		justify-content: space-between;
 		padding: 0.7em 20px;
@@ -111,7 +112,7 @@ export const MultiSelectContainer = styled(Select)<any>`
 		}
 	}
 	.multi-select__menu {
-		width: 100%;
+		inline-size: 100%;
 		border-radius: 0.5em;
 		box-shadow:
 			0px 0.4em 1.4em -0.7em rgba(22, 23, 24, 0.35),
@@ -129,21 +130,17 @@ export const MultiSelectContainer = styled(Select)<any>`
 			}
 
 			&:hover {
-				background: ${({ theme }) => theme.colors.brand.background2};
-			}
-
-			&.multi-select__option--is-selected {
 				background: ${({ theme }) => theme.colors.brand.rigel} !important;
-
-				&:hover {
-					background: ${({ theme }) => theme.colors.brand.background2};
-				}
 				> div {
 					color: ${({ theme }) => theme.colors.brand.white};
 				}
 			}
-			&.multi-select__option--is-focused {
-				background: ${({ theme }) => theme.colors.grayscale.gray_10};
+
+			&.multi-select__option--is-selected {
+				background: ${({ theme }) => theme.colors.brand.rigel} !important;
+				> div {
+					color: ${({ theme }) => theme.colors.brand.white};
+				}
 			}
 		}
 	}

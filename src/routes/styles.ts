@@ -3,15 +3,15 @@ import styled from "styled-components";
 export const PageContainer = styled.main`
 	position: relative;
 	display: flex;
-	width: 100%;
-	height: 100%;
+	inline-size: 100%;
+	block-size: 100%;
 	background-color: ${({ theme }) => theme.colors.brand.background2};
 
 	> button {
 		display: none;
 		position: absolute;
-		left: 40px;
-		top: 15px;
+		inset-inline-start: 40px;
+		inset-block-start: 15px;
 		color: ${({ theme }) => theme.colors.brand.text};
 	}
 
