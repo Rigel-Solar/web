@@ -11,7 +11,7 @@ import {
 import { useAppDispatch } from "../../redux/hooks/useApp";
 import { addToken } from "../../redux/reducers/user-reducer";
 import { useMutationQuery } from "../../services/hooks/useMutationQuery";
-import { tecnicoSchema, TecnicoTS } from "../../utils/tecnicoSchema";
+import { gestorSchema, GestorTS } from "../../utils/gestorSchema";
 import { Container, Left, Right } from "./styles";
 
 const Login = () => {
@@ -19,8 +19,8 @@ const Login = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<TecnicoTS>({
-		resolver: zodResolver(tecnicoSchema),
+	} = useForm<GestorTS>({
+		resolver: zodResolver(gestorSchema),
 	});
 
 	const dispatch = useAppDispatch();
@@ -30,21 +30,23 @@ const Login = () => {
 		isError,
 	} = useMutationQuery(`/login/`, "post");
 
-	const onSubmit = (data: TecnicoTS) => {
+	function onSubmit(data: GestorTS) {
 		onLogin(data, {
 			onSuccess: (response) => {
+				console.log("erro");
 				dispatch(addToken(response.data.token));
 				toast.success("Login feito com sucesso!", {
 					duration: 2500,
 				});
 			},
 			onError: () => {
+				console.log("erro");
 				toast.error("Falha ao fazer login!", {
 					duration: 2500,
 				});
 			},
 		});
-	};
+	}
 
 	return (
 		<Container>
@@ -67,12 +69,6 @@ const Login = () => {
 				<p>Digite seu email e senha abaixo para fazer login</p>
 				<FormContainer onSubmit={handleSubmit(onSubmit)}>
 					<FormFieldsContainer>
-						<Input
-							type="text"
-							{...register("name")}
-							placeholder="Suou Yuki"
-							error={errors.name?.message}
-						/>
 						<Input
 							type="email"
 							placeholder="name@example.com"
