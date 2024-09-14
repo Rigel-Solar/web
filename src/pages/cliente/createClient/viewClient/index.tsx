@@ -105,13 +105,13 @@ const ViewClient = ({ data }: ViewClientProps) => {
 						<FakeInput value={data.email} label="E-mail" />
 						<FakeInput value={data.type} label="Tipo de Cliente" />
 						<FormFieldsContainer columns={2}>
-							<FakeInput value={data.address.city} label="Cidade" />
-							<FakeInput value={data.address.neighbourhood} label="Bairro" />
+							<FakeInput value={data.address.zipCode} label="CEP" />
+							<FakeInput value={data.address.number} label="Nº" />
 						</FormFieldsContainer>
 						<FakeInput value={data.address.street} label="Rua" />
 						<FormFieldsContainer columns={2}>
-							<FakeInput value={data.address.zipCode} label="CEP" />
-							<FakeInput value={data.address.number} label="Nº" />
+							<FakeInput value={data.address.city} label="Cidade" />
+							<FakeInput value={data.address.neighbourhood} label="Bairro" />
 						</FormFieldsContainer>
 					</FormFieldsContainer>
 				</FormContainer>

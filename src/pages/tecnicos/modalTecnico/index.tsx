@@ -119,6 +119,12 @@ const ModalTecnico = ({
 							{...register("password")}
 							error={errors.password?.message}
 						/>
+						<Input
+							type="text"
+							label="CREA"
+							{...register("crea")}
+							error={errors.crea?.message}
+						/>
 					</FormFieldsContainer>
 				</FormContainer>
 			</ActionAlertDialogContent>

@@ -1,18 +1,18 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { VisuallyHidden } from "@radix-ui/themes";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { AiOutlineCloseCircle } from "react-icons/ai";
-import { MdDone } from "react-icons/md";
-import { toast } from "sonner";
-import { addNewProps } from "../../../models/add-new";
-import { Client } from "../../../models/client";
-import { orderSchema, OrderTS } from "../../../utils/pedidoSchema";
-import ClientSelect from "../../form/clientSelect";
-import Input from "../../form/input";
-import SelectComponent from "../../form/select";
-import { FormContainer, FormFieldsContainer } from "../../form/styles";
-import { ActionAlertDialogTriggerSuccess } from "../actionAlertModal";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { VisuallyHidden } from '@radix-ui/themes';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { MdDone } from 'react-icons/md';
+import { toast } from 'sonner';
+import { addNewProps } from '../../../models/add-new';
+import { Client } from '../../../models/client';
+import { orderSchema, OrderTS } from '../../../utils/pedidoSchema';
+import ClientSelect from '../../form/clientSelect';
+import Input from '../../form/input';
+import SelectComponent from '../../form/select';
+import { FormContainer, FormFieldsContainer } from '../../form/styles';
+import { ActionAlertDialogTriggerSuccess } from '../actionAlertModal';
 import {
 	Content,
 	Description,
@@ -20,7 +20,7 @@ import {
 	Title,
 	TriggerButtons,
 	TriggerClose,
-} from "./styles";
+} from './styles';
 
 export interface AddNewOrderProps extends addNewProps {}
 
@@ -42,7 +42,7 @@ const AddNewOrder = ({
 	});
 
 	const handleSelectClient = (value: Client) => {
-		setValue("client", value, {
+		setValue('client', value, {
 			shouldDirty: true,
 			shouldValidate: true,
 		});
@@ -60,60 +60,60 @@ const AddNewOrder = ({
 
 	const type_person = [
 		{
-			value: "Residência",
-			label: "Residência",
+			value: 'Residência',
+			label: 'Residência',
 		},
 		{
-			value: "Empresa",
-			label: "Empresa",
+			value: 'Empresa',
+			label: 'Empresa',
 		},
 		{
-			value: "Fazenda",
-			label: "Fazenda",
+			value: 'Fazenda',
+			label: 'Fazenda',
 		},
 	];
 
 	const type_order = [
 		{
-			value: "Fotovoltaico Residencial",
-			label: "Fotovoltaico Residencial",
+			value: 'Fotovoltaico Residencial',
+			label: 'Fotovoltaico Residencial',
 		},
 		{
-			value: "Fotovoltaico Comercial",
-			label: "Fotovoltaico Comercial",
+			value: 'Fotovoltaico Comercial',
+			label: 'Fotovoltaico Comercial',
 		},
 		{
-			value: "Aquecedor Banho",
-			label: "Aquecedor Banho",
+			value: 'Aquecedor Banho',
+			label: 'Aquecedor Banho',
 		},
 		{
-			value: "Aquecedor Piscina",
-			label: "Aquecedor Piscina",
+			value: 'Aquecedor Piscina',
+			label: 'Aquecedor Piscina',
 		},
 	];
 
 	const time = [
 		{
-			value: "Imediatamente",
-			label: "Imediatamente",
+			value: 'Imediatamente',
+			label: 'Imediatamente',
 		},
 		{
-			value: "3 meses",
-			label: "3 meses",
+			value: '3 meses',
+			label: '3 meses',
 		},
 		{
-			value: "6 meses",
-			label: "6 meses",
+			value: '6 meses',
+			label: '6 meses',
 		},
 		{
-			value: "1 ano",
-			label: "1 ano",
+			value: '1 ano',
+			label: '1 ano',
 		},
 	];
 
 	const onSubmit = (data: OrderTS) => {
-		console.log("Form submitted:", data);
-		toast.success(data ? "Pedido atualizado!" : "Pedido Criado!", {
+		console.log('Form submitted:', data);
+		toast.success(data ? 'Pedido atualizado!' : 'Pedido Criado!', {
 			duration: 2500,
 		});
 		onSuccess?.();
@@ -133,9 +133,10 @@ const AddNewOrder = ({
 						<ClientSelect
 							placeholder="Selecione um cliente"
 							onSelect={handleSelectClient}
+							defaultValue=""
 							onSelectClientData={(value) => {
 								if (value) {
-									setValue("client", value, {
+									setValue('client', value, {
 										shouldDirty: true,
 										shouldValidate: true,
 									});
@@ -149,7 +150,7 @@ const AddNewOrder = ({
 							label="Tipo de Instalação"
 							error={errors.type_person?.message}
 							onValueChange={(value: string) => {
-								setValue("type_person", value, {
+								setValue('type_person', value, {
 									shouldDirty: true,
 									shouldValidate: true,
 								});
@@ -161,7 +162,7 @@ const AddNewOrder = ({
 							label="Soluções"
 							error={errors.type_order?.message}
 							onValueChange={(value: string) => {
-								setValue("type_order", value, {
+								setValue('type_order', value, {
 									shouldDirty: true,
 									shouldValidate: true,
 								});
@@ -173,24 +174,27 @@ const AddNewOrder = ({
 							label="Pretende instalar em:"
 							error={errors.time?.message}
 							onValueChange={(value: string) => {
-								setValue("time", value, {
+								setValue('time', value, {
 									shouldDirty: true,
 									shouldValidate: true,
 								});
 							}}
 						/>
 						<Input
-							affix={{ prefix: "R$", suffix: "Mês" }}
+							affix={{ prefix: 'R$', suffix: 'Mês' }}
 							type="number"
 							required
 							label="Custo da conta de Luz"
-							{...register("light_cost")}
+							{...register('light_cost', {
+								setValueAs: (value) => parseFloat(value),
+							})}
 							error={errors.light_cost?.message}
 						/>
+
 						<Input
 							type="text"
 							label="Comentários"
-							{...register("comments")}
+							{...register('comments')}
 							error={errors.comments?.message}
 						/>
 					</FormFieldsContainer>

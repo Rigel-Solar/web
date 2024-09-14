@@ -42,11 +42,11 @@ const ModalClient = ({
 
 	const options = [
 		{
-			label: "Tipo 1",
+			label: "Pessoa Física",
 			value: "1",
 		},
 		{
-			label: "Tipo 2",
+			label: "Pessoa Jurídica",
 			value: "2",
 		},
 	];
