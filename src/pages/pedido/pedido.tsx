@@ -1,20 +1,20 @@
 import { ChangeEvent } from 'react';
 import { FiPlus } from 'react-icons/fi';
-import Button from '../../components/form/button';
-import { Modal } from '../../components/modal';
-import EditedFormPopUp from '../../components/modal/editedFormPopUp';
-import Search from '../../components/search';
-import DataTable from '../../components/table';
-import { piscina } from '../../constants/piscina';
-import { tableData } from '../../constants/table';
-import useModal from '../../functions/use-modal';
-import useSearch from '../../functions/use-search';
-import { DataTableProps } from '../../models/data-table';
-import { DefaultPageContainer } from '../styles';
-import ModalPiscina from './modalPiscina';
-import * as C from './styles';
+import Button from '../../components/form/button/index.tsx';
+import EditedFormPopUp from '../../components/modal/editedFormPopUp/index.tsx';
+import { Modal } from '../../components/modal/index.tsx';
+import Search from '../../components/search/index.tsx';
+import DataTable from '../../components/table/index.tsx';
+import { tableData } from '../../constants/table.ts';
+import useModal from '../../functions/use-modal/index.ts';
+import useSearch from '../../functions/use-search/index.tsx';
+import { DataTableProps } from '../../models/data-table.ts';
+import { orders } from '../../constants/orders.ts';
+import { DefaultPageContainer } from '../styles.ts';
+import * as C from './styles.ts';
+import ViewPedido from './viewPedido/index.tsx';
 
-const Piscina = () => {
+const Pedido = () => {
 	const { searchTerm, handleSearchChange, filteredData } = useSearch(tableData);
 
 	return (
@@ -35,7 +35,7 @@ interface HeaderProps {
 const Header = ({ searchTerm, onSearchChange }: HeaderProps) => (
 	<section>
 		<div className="top-area">
-			<h1>Piscina</h1>
+			<h1>Pedidos</h1>
 			<Button buttonStyle="primary">
 				<FiPlus size={16} />
 				Criar Pedido
@@ -57,10 +57,7 @@ const DataTableContainer = ({ data }: DataTableProps) => {
 		onOpenChange,
 		onConfirmCloseModal,
 		setOpenConfirmCloseModal,
-		handleCloseModal,
-		setHasEditedData,
 	} = useModal();
-
 	return (
 		<div className="table">
 			<DataTable data={data} hasPagination onOpenChange={onOpenChange}/>
@@ -70,16 +67,12 @@ const DataTableContainer = ({ data }: DataTableProps) => {
 				onOpenChange={() => setOpenConfirmCloseModal(!openConfirmCloseModal)}
 				onConfirmCloseModal={onConfirmCloseModal}
 			/>
-			<Modal open={openModal} onOpenChange={onOpenChange} position="center">
-				<ModalPiscina
-					data={piscina}
-					onClose={handleCloseModal}
-					onSuccess={handleCloseModal}
-					onSetEditedData={setHasEditedData}
-				/>
+
+			<Modal open={openModal} onOpenChange={onOpenChange} position={'right'}>
+				<ViewPedido data={orders[0]}/>
 			</Modal>
 		</div>
 	);
 };
 
-export default Piscina;
+export default Pedido;

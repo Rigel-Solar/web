@@ -1,5 +1,6 @@
 import React, { ReactNode, useMemo } from "react";
 import { AiOutlineLogout } from "react-icons/ai";
+import { HiOutlineNewspaper } from "react-icons/hi2";
 import { NavLink, useLocation } from "react-router-dom";
 import { Icons } from "../../assets/Icons";
 import rigel from "../../assets/icon.png";
@@ -29,6 +30,7 @@ const getMenuItems = (): MenuSection[] => [
 		title: "",
 		items: [
 			{ label: "Home", icon: <Icons.home />, route: "/" },
+			{ label: "Pedidos", icon: <HiOutlineNewspaper size={18}/>, route: "/pedidos" },
 			{
 				label: "Fotovoltáico",
 				icon: <Icons.fotovoltaico />,

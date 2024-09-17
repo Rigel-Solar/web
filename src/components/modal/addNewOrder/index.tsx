@@ -1,32 +1,44 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { DialogClose } from '@radix-ui/react-dialog';
 import { VisuallyHidden } from '@radix-ui/themes';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { AiOutlineLeftCircle } from 'react-icons/ai';
 import { MdDone } from 'react-icons/md';
+import { PiTrashLight } from 'react-icons/pi';
 import { toast } from 'sonner';
+import { Concessionarias } from '../../../constants/concessionaria';
 import { addNewProps } from '../../../models/add-new';
 import { Client } from '../../../models/client';
-import { orderSchema, OrderTS } from '../../../utils/pedidoSchema';
+import { OrderTS, orderSchema } from '../../../utils/pedidoSchema';
+import Button from '../../form/button';
 import ClientSelect from '../../form/clientSelect';
 import Input from '../../form/input';
 import SelectComponent from '../../form/select';
 import { FormContainer, FormFieldsContainer } from '../../form/styles';
-import { ActionAlertDialogTriggerSuccess } from '../actionAlertModal';
+import TechnicianSelect from '../../form/technicianSelect';
+import {
+	ActionAlertDialogHeader,
+	ActionAlertDialogTitle,
+	ActionAlertDialogTriggerSuccess,
+} from '../actionAlertModal';
+import PopUpDelete from '../popUp/popUpDelete';
 import {
 	Content,
 	Description,
-	Header,
-	Title,
+	ModalContainer,
 	TriggerButtons,
-	TriggerClose,
+	TriggerClose
 } from './styles';
 
-export interface AddNewOrderProps extends addNewProps {}
+export interface AddNewOrderProps extends addNewProps {
+	data?: OrderTS;
+}
 
 const AddNewOrder = ({
 	onSuccess,
 	onSetEditedData,
+	data,
 	...props
 }: AddNewOrderProps) => {
 	const {
@@ -40,6 +52,14 @@ const AddNewOrder = ({
 			light_cost: 0,
 		},
 	});
+
+	const [openModal, setOpenModal] = useState(false);
+
+	const handleOpenModal = () => setOpenModal(true);
+
+	const onOpenChange = () => {
+		setOpenModal(!openModal);
+	};
 
 	const handleSelectClient = (value: Client) => {
 		setValue('client', value, {
@@ -120,13 +140,23 @@ const AddNewOrder = ({
 	};
 
 	return (
-		<>
-			<Header>
-				<TriggerClose>
-					<AiOutlineCloseCircle />
-				</TriggerClose>
-				<Title>Criar um pedido</Title>
-			</Header>
+		<ModalContainer>
+			<ActionAlertDialogHeader $between={!!data}>
+				<DialogClose>
+					<AiOutlineLeftCircle size={20} />
+				</DialogClose>
+				<ActionAlertDialogTitle>
+					{data ? 'Atualizar' : 'Criar'} Pedido
+				</ActionAlertDialogTitle>
+				{data && (
+					<>
+						<Button buttonStyle="text" onClick={handleOpenModal}>
+							<PiTrashLight size={20} color="#ff4d4d" />
+						</Button>
+						<PopUpDelete open={openModal} onOpenChange={onOpenChange} />
+					</>
+				)}
+			</ActionAlertDialogHeader>
 			<Content>
 				<FormContainer>
 					<FormFieldsContainer>
@@ -142,6 +172,11 @@ const AddNewOrder = ({
 									});
 								}
 							}}
+							required
+						/>
+						<TechnicianSelect
+							placeholder="Selecione um tecnico"
+							onSelect={() => console.log('.')}
 							required
 						/>
 						<SelectComponent
@@ -180,6 +215,18 @@ const AddNewOrder = ({
 								});
 							}}
 						/>
+						<SelectComponent
+							options={Concessionarias}
+							required
+							label="Concessionarias"
+							error={errors.concessionaires?.message}
+							onValueChange={(value: string) => {
+								setValue('type_person', value, {
+									shouldDirty: true,
+									shouldValidate: true,
+								});
+							}}
+						/>
 						<Input
 							affix={{ prefix: 'R$', suffix: 'Mês' }}
 							type="number"
@@ -213,7 +260,7 @@ const AddNewOrder = ({
 					Criar
 				</ActionAlertDialogTriggerSuccess>
 			</TriggerButtons>
-		</>
+		</ModalContainer>
 	);
 };
 

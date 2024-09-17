@@ -13,10 +13,12 @@ const orderSchema = z.object({
 			zipCode: z.string(),
 		}),
 	}),
+	technician: z.string().nullable(),
 	type_person: z.string(),
 	type_order: z.string(),
 	time: z.string(),
 	light_cost: z.number(),
+	concessionaires: z.string(),
 	comments: z.string(),
 });
 
