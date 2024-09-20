@@ -102,7 +102,7 @@ export const Cancel = styled(Dialog.Close)`
 	background: transparent;
 	border: 1px solid #27272a;
 	${({ theme }) => theme.font.p.small};
-	color: ${({ theme }) => theme.colors.grayscale.gray_10};
+	color: ${({ theme }) => theme.colors.brand.text};
 	border-radius: 6px;
 	padding: 10px 20px;
 
