@@ -1,18 +1,16 @@
-import { ChangeEvent } from 'react';
-import { FiPlus } from 'react-icons/fi';
-import Button from '../../components/form/button';
-import { Modal } from '../../components/modal';
-import EditedFormPopUp from '../../components/modal/editedFormPopUp';
-import Search from '../../components/search';
-import DataTable from '../../components/table';
-import { piscina } from '../../constants/piscina';
-import { tableData } from '../../constants/table';
-import useModal from '../../functions/use-modal';
-import useSearch from '../../functions/use-search';
-import { DataTableProps } from '../../models/data-table';
-import { DefaultPageContainer } from '../styles';
-import ModalPiscina from './modalPiscina';
-import * as C from './styles';
+import { ChangeEvent } from "react";
+import { Modal } from "../../components/modal";
+import EditedFormPopUp from "../../components/modal/editedFormPopUp";
+import Search from "../../components/search";
+import DataTable from "../../components/table";
+import { piscina } from "../../constants/piscina";
+import { tableData } from "../../constants/table";
+import useModal from "../../functions/use-modal";
+import useSearch from "../../functions/use-search";
+import { DataTableProps } from "../../models/data-table";
+import { DefaultPageContainer } from "../styles";
+import ModalPiscina from "./modalPiscina";
+import * as C from "./styles";
 
 const Piscina = () => {
 	const { searchTerm, handleSearchChange, filteredData } = useSearch(tableData);
@@ -36,10 +34,6 @@ const Header = ({ searchTerm, onSearchChange }: HeaderProps) => (
 	<section>
 		<div className="top-area">
 			<h1>Piscina</h1>
-			<Button buttonStyle="primary">
-				<FiPlus size={16} />
-				Criar Pedido
-			</Button>
 		</div>
 		<Search
 			placeholder="Procurar pedidos..."
@@ -63,7 +57,7 @@ const DataTableContainer = ({ data }: DataTableProps) => {
 
 	return (
 		<div className="table">
-			<DataTable data={data} hasPagination onOpenChange={onOpenChange}/>
+			<DataTable data={data} hasPagination onOpenChange={onOpenChange} />
 
 			<EditedFormPopUp
 				open={hasEditedData && openConfirmCloseModal}

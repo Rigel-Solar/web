@@ -1,6 +1,4 @@
 import { ChangeEvent } from "react";
-import { FiPlus } from "react-icons/fi";
-import Button from "../../components/form/button";
 import Search from "../../components/search";
 import DataTable from "../../components/table";
 import { tableData } from "../../constants/table";
@@ -31,10 +29,6 @@ const Header = ({ searchTerm, onSearchChange }: HeaderProps) => (
 	<section>
 		<div className="top-area">
 			<h1>Fotovoltaico</h1>
-			<Button buttonStyle="primary">
-				<FiPlus size={16} />
-				Criar Pedido
-			</Button>
 		</div>
 		<Search
 			placeholder="Procurar pedidos..."
