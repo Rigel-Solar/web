@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { ActionAlertDialogTriggerButtons } from "../actionAlertModal";
+import styled from 'styled-components';
+import { ActionAlertDialogTriggerButtons } from '../actionAlertModal';
 import {
 	ModalContent,
 	ModalDescription,
@@ -7,18 +7,23 @@ import {
 	ModalTitle,
 	ModalTriggerClose,
 	ModalTriggerSuccess,
-} from "../index";
-
+} from '../index';
 
 export const ModalContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-  height: 100%;
+	height: 100%;
 	padding: 20px;
 `;
 export const Header = styled(ModalHeader)``;
-export const Content = styled(ModalContent)``;
+export const Content = styled(ModalContent)`
+	overflow-y: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: mandatory;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+`;
 export const Title = styled(ModalTitle)``;
 export const Description = styled(ModalDescription)``;
 export const TriggerButtons = styled(ActionAlertDialogTriggerButtons)`

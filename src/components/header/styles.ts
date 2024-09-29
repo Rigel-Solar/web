@@ -77,6 +77,7 @@ export const Header = styled.header<HeaderProps>`
 			display: flex;
 			align-items: center;
 			gap: 10px;
+			text-decoration: none;
 
 			@media (width <= 1280px) {
 				justify-content: center;

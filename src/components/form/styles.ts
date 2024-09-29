@@ -6,6 +6,8 @@ export const FormContainer = styled.form`
 	padding: 0.7em;
 	flex-direction: column;
 	overflow-y: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: mandatory;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 

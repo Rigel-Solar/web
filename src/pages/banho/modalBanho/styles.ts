@@ -16,6 +16,10 @@ export const Content = styled(ModalContent)`
 	display: flex;
 	flex-direction: column;
 	overflow-y: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: mandatory;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 	gap: 20px;
 
 	.top {

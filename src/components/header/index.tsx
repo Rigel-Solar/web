@@ -1,7 +1,7 @@
 import React, { ReactNode, useMemo } from "react";
 import { AiOutlineLogout } from "react-icons/ai";
 import { HiOutlineNewspaper } from "react-icons/hi2";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { Icons } from "../../assets/Icons";
 import rigel from "../../assets/icon.png";
 import { useAppDispatch } from "../../redux/hooks/useApp";
@@ -89,10 +89,10 @@ const Header = ({ open = true, setOpen }: HeaderProps) => {
 	return (
 		<C.Header $open={open}>
 			<div className="top">
-				<div className="rigel">
+				<Link to={"/"} className="rigel">
 					<img src={rigel} alt="Logo" />
 					<h1>Rigel Solar</h1>
-				</div>
+				</Link>
 				<Menu sections={menuItems} setOpen={setOpen} />
 			</div>
 			<div className="bottom">
