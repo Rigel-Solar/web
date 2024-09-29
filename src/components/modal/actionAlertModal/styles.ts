@@ -113,6 +113,8 @@ export const ModalBody = styled.main`
 	overflow-y: auto;
 	scroll-behavior: smooth;
 	scroll-snap-type: mandatory;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 
 	form {
 		padding: 0;
