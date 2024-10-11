@@ -139,6 +139,8 @@ const AddNewOrder = ({
 		onSuccess?.();
 	};
 
+	console.log(Concessionarias)
+
 	return (
 		<ModalContainer>
 			<ActionAlertDialogHeader $between={!!data}>
@@ -176,7 +178,14 @@ const AddNewOrder = ({
 						/>
 						<TechnicianSelect
 							placeholder="Selecione um tecnico"
-							onSelect={() => console.log('.')}
+							onSelect={(value) => {
+								if (value) {
+									setValue('technician', value, {
+										shouldDirty: true,
+										shouldValidate: true,
+									});
+								}
+							}}
 							required
 						/>
 						<SelectComponent
@@ -221,7 +230,7 @@ const AddNewOrder = ({
 							label="Concessionarias"
 							error={errors.concessionaires?.message}
 							onValueChange={(value: string) => {
-								setValue('type_person', value, {
+								setValue('concessionaires', value, {
 									shouldDirty: true,
 									shouldValidate: true,
 								});
