@@ -55,7 +55,6 @@ export const Container = styled.div<multiSelectStyleProps>`
 	inline-size: 100%;
 	pointer-events: ${(prop) => prop.$readOnly && "none"};
 	position: relative;
-	z-index: 99;
 	${({ theme }) => theme.font.p.small};
 
 	${({ required, theme }) => {

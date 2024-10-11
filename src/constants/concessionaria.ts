@@ -4,23 +4,23 @@ export const Concessionarias = [
     label: "CPFL"
   },
   {
-    value: "CPFL",
+    value: "COPEL",
     label: "COPEL"
   },
   {
-    value: "CPFL",
+    value: "ENERGISA",
     label: "ENERGISA"
   },
   {
-    value: "CPFL",
+    value: "ENEL",
     label: "ENEL"
   },
   {
-    value: "CPFL",
+    value: "ELEKTRO",
     label: "ELEKTRO"
   },
   {
-    value: "CPFL",
+    value: "CEDRI",
     label: "CEDRI"
   },
 
