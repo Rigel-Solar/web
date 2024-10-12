@@ -1,27 +1,26 @@
-export const Concessionarias = [
-  {
-    value: "CPFL",
-    label: "CPFL"
-  },
-  {
-    value: "CPFL",
-    label: "COPEL"
-  },
-  {
-    value: "CPFL",
-    label: "ENERGISA"
-  },
-  {
-    value: "CPFL",
-    label: "ENEL"
-  },
-  {
-    value: "CPFL",
-    label: "ELEKTRO"
-  },
-  {
-    value: "CPFL",
-    label: "CEDRI"
-  },
-
-]
+export const concessionarias = [
+	{
+		value: "CPFL",
+		label: "CPFL",
+	},
+	{
+		value: "COPEL",
+		label: "COPEL",
+	},
+	{
+		value: "ENERGISA",
+		label: "ENERGISA",
+	},
+	{
+		value: "ENEL",
+		label: "ENEL",
+	},
+	{
+		value: "ELEKTRO",
+		label: "ELEKTRO",
+	},
+	{
+		value: "CEDRI",
+		label: "CEDRI",
+	},
+];

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { MenuProps, components } from "react-select";
-import { clients } from "../../../constants/client";
 import useModal from "../../../functions/use-modal";
 import { Client } from "../../../models/client";
 import ModalClient from "../../../pages/cliente/createClient";
+import { useFetch } from "../../../services/hooks/useFetch";
 import Avatar from "../../avatar";
 import { Modal } from "../../modal";
 import EditedFormPopUp from "../../modal/editedFormPopUp";
@@ -31,6 +31,7 @@ const ClientSelect = ({
 	hasAddNew = true,
 	required,
 	placeholder,
+	filter,
 	onSelectClientData,
 }: clientSelectProps) => {
 	const {
@@ -46,24 +47,36 @@ const ClientSelect = ({
 	const [clientOptions, setClientOptions] = useState<selectOptionType[]>([]);
 	const [value, setValue] = useState<any>();
 
-	useEffect(() => {
-		const options = clients.map((client) => ({
-			value: JSON.stringify(client),
-			label: (
-				<div className="multi-select-option" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-					<Avatar variant="gray" alt={client.name} />
-					{client.name}
-				</div>
-			),
-		}));
-		setClientOptions(options);
-	}, []);
+	useFetch<Client[]>(`/Cliente`, ["client"], {
+		onSuccess: (data) => {
+			if (filter?.length) {
+				data = data.filter((cl) => filter.includes(cl.id));
+			}
+
+			setClientOptions(() =>
+				data.map((client) => {
+					return {
+						value: JSON.stringify(client),
+						label: (
+							<div
+								className="multi-select-option"
+								style={{ display: "flex", alignItems: "center", gap: 10 }}
+							>
+								<Avatar variant="gray" alt={client.nome} />
+								{client.nome}
+							</div>
+						),
+					};
+				})
+			);
+		},
+	});
 
 	useEffect(() => {
 		if (clientOptions?.length) {
 			const findClient = clientOptions?.filter?.((e: any) => {
-				const { _id } = JSON.parse(e.value) as Client;
-				if (defaultValue === _id) {
+				const { id } = JSON.parse(e.value) as Client;
+				if (defaultValue === id) {
 					return true;
 				}
 				return false;
@@ -81,9 +94,12 @@ const ClientSelect = ({
 		const newClient = {
 			value: JSON.stringify(data),
 			label: (
-				<div className="multi-select-option" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-					<Avatar variant="gray" alt={data?.name} />
-					{data.name}
+				<div
+					className="multi-select-option"
+					style={{ display: "flex", alignItems: "center", gap: 10 }}
+				>
+					<Avatar variant="gray" alt={data?.nome} />
+					{data.nome}
 				</div>
 			),
 		};
@@ -92,7 +108,7 @@ const ClientSelect = ({
 		});
 		setValue(newClient);
 
-		onSelect(data?._id as string);
+		onSelect(data?.id as string);
 		onSelectClientData?.(data);
 	};
 
@@ -132,9 +148,9 @@ const ClientSelect = ({
 				onChange={(data: any) => {
 					setValue(data);
 					if (data) {
-						const { _id } = JSON.parse(data.value) as Client;
+						const { id } = JSON.parse(data.value) as Client;
 
-						onSelect(_id);
+						onSelect(id);
 						onSelectClientData?.(JSON.parse(data.value) as Client);
 					} else {
 						onSelect(null);

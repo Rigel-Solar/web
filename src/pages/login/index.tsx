@@ -28,12 +28,11 @@ const Login = () => {
 		mutate: onLogin,
 		isLoading,
 		isError,
-	} = useMutationQuery(`/login/`, "post");
+	} = useMutationQuery(`/Auth/`, "post");
 
 	function onSubmit(data: GestorTS) {
 		onLogin(data, {
 			onSuccess: (response) => {
-				console.log("erro");
 				dispatch(addToken(response.data.token));
 				toast.success("Login feito com sucesso!", {
 					duration: 2500,

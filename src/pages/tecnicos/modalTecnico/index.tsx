@@ -7,8 +7,8 @@ import { AiOutlineLeftCircle } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { PiTrashLight } from "react-icons/pi";
 import { toast } from "sonner";
-import Input from "../../../components/form/input";
 import Button from "../../../components/form/button";
+import Input from "../../../components/form/input";
 import {
 	FormContainer,
 	FormFieldsContainer,
@@ -25,6 +25,7 @@ import {
 import PopUpDelete from "../../../components/modal/popUp/popUpDelete";
 import { addNewProps } from "../../../models/add-new";
 import { Technician } from "../../../models/technician";
+import { useMutationQuery } from "../../../services/hooks/useMutationQuery";
 import { tecnicoSchema, TecnicoTS } from "../../../utils/tecnicoSchema";
 import { ModalContainer } from "./styles";
 
@@ -53,11 +54,15 @@ const ModalTecnico = ({
 	} = useForm<TecnicoTS>({
 		resolver: zodResolver(tecnicoSchema),
 		defaultValues: {
-			name: "",
-			email: "",
-			password: "",
+			crea: "",
+			usuario: {},
 		},
 	});
+
+	const { mutate: onCreate, isLoading } = useMutationQuery(
+		`/Tecnico/`,
+		data ? "put" : "post"
+	);
 
 	useEffect(() => {
 		if (isDirty) {
@@ -65,20 +70,24 @@ const ModalTecnico = ({
 		}
 	}, [isDirty]);
 
-	const onSubmit = (data: TecnicoTS) => {
-		console.log("Form submitted:", data);
-		{
-			data
-				? toast.success("Técnico atualizado!", {
+	function onSubmit(formData: TecnicoTS) {
+		onCreate(formData, {
+			onSuccess: () => {
+				toast.success(
+					`Técnico ${data ? "Atualizado" : "Cadastrado"} com sucesso!`,
+					{
 						duration: 2500,
-					})
-				: toast.success("Técnico cadastrado!", {
-						duration: 2500,
-					});
-		}
-
+					}
+				);
+			},
+			onError: () => {
+				toast.error(`Falha em ${data ? "Atualizar" : "Cadastrar"} Técnico!`, {
+					duration: 2500,
+				});
+			},
+		});
 		onSuccess?.();
-	};
+	}
 
 	return (
 		<ModalContainer>
@@ -104,20 +113,20 @@ const ModalTecnico = ({
 						<Input
 							type="text"
 							label="Nome do técnico"
-							{...register("name")}
-							error={errors.name?.message}
+							{...register("usuario.nome")}
+							error={errors.usuario?.nome?.message}
 						/>
 						<Input
 							type="email"
 							label="E-mail"
-							{...register("email")}
-							error={errors.email?.message}
+							{...register("usuario.email")}
+							error={errors.usuario?.email?.message}
 						/>
 						<Input
 							type="password"
 							label="Senha"
-							{...register("password")}
-							error={errors.password?.message}
+							{...register("usuario.senha")}
+							error={errors.usuario?.senha?.message}
 						/>
 						<Input
 							type="text"
@@ -135,6 +144,7 @@ const ModalTecnico = ({
 				<ActionAlertDialogTriggerSuccess
 					onClick={handleSubmit(onSubmit)}
 					style={{ gap: 4 }}
+					disabled={isLoading}
 				>
 					<MdDone size={18} />
 					{data ? "Atualizar" : "Cadastrar"}

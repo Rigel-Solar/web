@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/themes";
@@ -25,6 +26,7 @@ import {
 } from "../../../components/modal/actionAlertModal";
 import PopUpDelete from "../../../components/modal/popUp/popUpDelete";
 import { addNewProps } from "../../../models/add-new";
+import { useMutationQuery } from "../../../services/hooks/useMutationQuery";
 import { ClientTS, clientSchema } from "../../../utils/clientSchema";
 import { ModalContainer } from "./styles";
 
@@ -39,6 +41,11 @@ const ModalClient = ({
 	...props
 }: ModalClientProps) => {
 	const [openModal, setOpenModal] = useState(false);
+
+	const { mutate: onCreate, isLoading } = useMutationQuery(
+		`/Cliente/`,
+		data ? "put" : "post"
+	);
 
 	const options = [
 		{
@@ -72,13 +79,27 @@ const ModalClient = ({
 		}
 	}, [isDirty]);
 
-	const onSubmit = (data: ClientTS) => {
-		console.log("Form submitted:", data);
-		toast.success(data ? "Cliente atualizado!" : "Cliente cadastrado!", {
-			duration: 2500,
+	function onSubmit(data: ClientTS) {
+		const formData: any = data;
+		formData.endereco = `${data.endereco.city}, ${data.endereco.neighbourhood}, ${data.endereco.street}, ${data.endereco.number}, ${data.endereco.zipCode}`;
+		onCreate(formData, {
+			onSuccess: () => {
+				console.log("Form submitted:", formData);
+				toast.success(
+					`Cliente ${data ? "Atualizado" : "Cadastrado"} com sucesso!`,
+					{
+						duration: 2500,
+					}
+				);
+			},
+			onError: () => {
+				toast.error(`Falha em ${data ? "Atualizar" : "Cadastrar"} Cliente!`, {
+					duration: 2500,
+				});
+			},
 		});
 		onSuccess?.();
-	};
+	}
 
 	return (
 		<ModalContainer>
@@ -105,8 +126,8 @@ const ModalClient = ({
 							type="text"
 							label="Nome do cliente"
 							autoComplete="off"
-							{...register("name")}
-							error={errors.name?.message}
+							{...register("nome")}
+							error={errors.nome?.message}
 						/>
 						<Input
 							type="email"
@@ -116,7 +137,7 @@ const ModalClient = ({
 							error={errors.email?.message}
 						/>
 						<Controller
-							name="type"
+							name="tipo"
 							control={control}
 							render={({ field }) => (
 								<SelectComponent
@@ -125,7 +146,7 @@ const ModalClient = ({
 									style={{ width: "100%" }}
 									value={field.value}
 									onValueChange={field.onChange}
-									error={errors.type?.message}
+									error={errors.tipo?.message}
 								/>
 							)}
 						/>
@@ -134,38 +155,38 @@ const ModalClient = ({
 								type="number"
 								label="CEP"
 								autoComplete="off"
-								{...register("address.zipCode")}
-								error={errors.address?.zipCode?.message}
+								{...register("endereco.zipCode")}
+								error={errors.endereco?.zipCode?.message}
 							/>
 							<Input
 								type="number"
 								label="N°"
 								autoComplete="off"
-								{...register("address.number")}
-								error={errors.address?.number?.message}
+								{...register("endereco.number")}
+								error={errors.endereco?.number?.message}
 							/>
 						</FormFieldsContainer>
 						<Input
 							type="text"
 							label="Rua"
 							autoComplete="off"
-							{...register("address.street")}
-							error={errors.address?.street?.message}
+							{...register("endereco.street")}
+							error={errors.endereco?.street?.message}
 						/>
 						<FormFieldsContainer columns={2}>
 							<Input
 								type="text"
 								label="Cidade"
 								autoComplete="off"
-								{...register("address.city")}
-								error={errors.address?.city?.message}
+								{...register("endereco.city")}
+								error={errors.endereco?.city?.message}
 							/>
 							<Input
 								type="text"
 								label="Bairro"
 								autoComplete="off"
-								{...register("address.neighbourhood")}
-								error={errors.address?.neighbourhood?.message}
+								{...register("endereco.neighbourhood")}
+								error={errors.endereco?.neighbourhood?.message}
 							/>
 						</FormFieldsContainer>
 					</FormFieldsContainer>
@@ -178,6 +199,7 @@ const ModalClient = ({
 				<ActionAlertDialogTriggerSuccess
 					onClick={handleSubmit(onSubmit)}
 					style={{ gap: 4 }}
+					disabled={isLoading}
 				>
 					<MdDone size={18} />
 					{data ? "Atualizar" : "Cadastrar"}

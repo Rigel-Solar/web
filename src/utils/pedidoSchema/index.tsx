@@ -1,25 +1,14 @@
 import * as z from "zod";
 
 const orderSchema = z.object({
-	client: z.object({
-		name: z.string(),
-		email: z.string().email(),
-		type: z.string(),
-		address: z.object({
-			street: z.string(),
-			number: z.string(),
-			city: z.string(),
-			neighbourhood: z.string(),
-			zipCode: z.string(),
-		}),
-	}),
-	technician: z.string().nullable(),
-	type_person: z.string(),
-	type_order: z.string(),
-	time: z.string(),
-	light_cost: z.number(),
-	concessionaires: z.string(),
-	comments: z.string(),
+	idCliente: z.string().nullable(),
+	idTecnico: z.string().nullable(),
+	tipoInstalacao: z.string(),
+	solucoes: z.string(),
+	pretendeInstalarEm: z.string(),
+	valorContaLuz: z.number(),
+	concessionarias: z.string(),
+	comentarios: z.string(),
 });
 
 type OrderTS = z.infer<typeof orderSchema>;
