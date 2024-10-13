@@ -21,11 +21,11 @@ import {
 import EditedFormPopUp from "../../../../components/modal/editedFormPopUp";
 import { historyItems } from "../../../../constants/historyItems";
 import { addNewProps } from "../../../../models/add-new";
-import { ClientTS } from "../../../../utils/clientSchema";
 import { ModalContainer } from "../styles";
+import { Client } from "../../../../models/client";
 
 export interface ViewClientProps extends addNewProps {
-	data: ClientTS;
+	data: Client;
 }
 
 const ViewClient = ({ data }: ViewClientProps) => {
@@ -104,14 +104,14 @@ const ViewClient = ({ data }: ViewClientProps) => {
 						<FakeInput value={data.nome} label="Nome do Cliente" />
 						<FakeInput value={data.email} label="E-mail" />
 						<FakeInput value={data.tipo} label="Tipo de Cliente" />
-						<FormFieldsContainer columns={2}>
-							<FakeInput value={data.endereco.zipCode} label="CEP" />
-							<FakeInput value={data.endereco.number} label="Nº" />
+						<FormFieldsContainer columns={1}>
+							<FakeInput value={data.endereco} label="CEP" />
+							{/* <FakeInput value={data.endereco.number} label="Nº" />
 						</FormFieldsContainer>
 						<FakeInput value={data.endereco.street} label="Rua" />
 						<FormFieldsContainer columns={2}>
 							<FakeInput value={data.endereco.city} label="Cidade" />
-							<FakeInput value={data.endereco.neighbourhood} label="Bairro" />
+							<FakeInput value={data.endereco.neighbourhood} label="Bairro" /> */}
 						</FormFieldsContainer>
 					</FormFieldsContainer>
 				</FormContainer>

@@ -10,18 +10,13 @@ import { orders } from "../../constants/orders.ts";
 import { tableData } from "../../constants/table.ts";
 import useModal from "../../functions/use-modal/index.ts";
 import useSearch from "../../functions/use-search/index.tsx";
-import { Client } from "../../models/client.ts";
 import { DataTableProps } from "../../models/data-table.ts";
-import { useFetch } from "../../services/hooks/useFetch.ts";
 import { DefaultPageContainer } from "../styles.ts";
 import * as C from "./styles.ts";
 import ViewPedido from "./viewPedido/index.tsx";
 
 const Pedido = () => {
 	const { searchTerm, handleSearchChange, filteredData } = useSearch(tableData);
-	useFetch<Client[]>(`/Cliente`, ["client"], {
-		onSuccess: (data) => console.log(data),
-	});
 
 	return (
 		<DefaultPageContainer>

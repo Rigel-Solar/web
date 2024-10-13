@@ -26,12 +26,13 @@ import {
 } from "../../../components/modal/actionAlertModal";
 import PopUpDelete from "../../../components/modal/popUp/popUpDelete";
 import { addNewProps } from "../../../models/add-new";
+import { Client } from "../../../models/client";
 import { useMutationQuery } from "../../../services/hooks/useMutationQuery";
 import { ClientTS, clientSchema } from "../../../utils/clientSchema";
 import { ModalContainer } from "./styles";
 
 export interface ModalClientProps extends addNewProps {
-	data?: ClientTS;
+	data?: Client;
 }
 
 const ModalClient = ({
