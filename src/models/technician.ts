@@ -4,6 +4,6 @@ export interface Technician {
 	usuario: {
 		nome: string;
 		email: string;
-		id: number;
+		id: string;
 	};
 }

@@ -2,10 +2,10 @@ import { ClientTS } from "../utils/clientSchema";
 
 export const clients: ClientTS[] = [
 	{
-		name: "Alice Johnson",
+		nome: "Alice Johnson",
 		email: "alice.johnson@example.com",
-		type: "cliente",
-		address: {
+		tipo: "cliente",
+		endereco: {
 			street: "Main Street",
 			number: "123",
 			city: "Cityville",
@@ -14,10 +14,10 @@ export const clients: ClientTS[] = [
 		},
 	},
 	{
-		name: "Bob Smith",
+		nome: "Bob Smith",
 		email: "bob.smith@example.com",
-		type: "cliente",
-		address: {
+		tipo: "cliente",
+		endereco: {
 			street: "Second Street",
 			number: "456",
 			city: "Townsville",
@@ -26,10 +26,10 @@ export const clients: ClientTS[] = [
 		},
 	},
 	{
-		name: "Carol White",
+		nome: "Carol White",
 		email: "carol.white@example.com",
-		type: "cliente",
-		address: {
+		tipo: "cliente",
+		endereco: {
 			street: "Third Street",
 			number: "789",
 			city: "Villagetown",
@@ -38,10 +38,10 @@ export const clients: ClientTS[] = [
 		},
 	},
 	{
-		name: "David Brown",
+		nome: "David Brown",
 		email: "david.brown@example.com",
-		type: "cliente",
-		address: {
+		tipo: "cliente",
+		endereco: {
 			street: "Fourth Street",
 			number: "101",
 			city: "Boroughville",
@@ -50,10 +50,10 @@ export const clients: ClientTS[] = [
 		},
 	},
 	{
-		name: "Eve Davis",
+		nome: "Eve Davis",
 		email: "eve.davis@example.com",
-		type: "cliente",
-		address: {
+		tipo: "cliente",
+		endereco: {
 			street: "Fifth Street",
 			number: "202",
 			city: "Hamletburg",

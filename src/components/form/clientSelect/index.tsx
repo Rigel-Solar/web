@@ -52,7 +52,6 @@ const ClientSelect = ({
 			if (filter?.length) {
 				data = data.filter((cl) => filter.includes(cl.id));
 			}
-
 			setClientOptions(() =>
 				data.map((client) => {
 					return {
@@ -81,7 +80,6 @@ const ClientSelect = ({
 				}
 				return false;
 			});
-
 			if (findClient?.length) {
 				setValue(findClient[0]);
 			}
@@ -90,7 +88,6 @@ const ClientSelect = ({
 
 	const handleSelectClient = (data: Client) => {
 		if (!data) return;
-
 		const newClient = {
 			value: JSON.stringify(data),
 			label: (
@@ -107,7 +104,6 @@ const ClientSelect = ({
 			return [...old, newClient];
 		});
 		setValue(newClient);
-
 		onSelect(data?.id as string);
 		onSelectClientData?.(data);
 	};
@@ -125,7 +121,6 @@ const ClientSelect = ({
 					onSuccess={handleSelectClient}
 				/>
 			</Modal>
-
 			<MultiSelect
 				options={clientOptions}
 				placeholder={placeholder}
@@ -149,7 +144,6 @@ const ClientSelect = ({
 					setValue(data);
 					if (data) {
 						const { id } = JSON.parse(data.value) as Client;
-
 						onSelect(id);
 						onSelectClientData?.(JSON.parse(data.value) as Client);
 					} else {
