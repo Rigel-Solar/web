@@ -55,7 +55,11 @@ const ModalTecnico = ({
 		resolver: zodResolver(tecnicoSchema),
 		defaultValues: {
 			crea: "",
-			usuario: {},
+			usuario: {
+				nome: "",
+				email: "",
+				senha: "",
+			},
 		},
 	});
 
@@ -63,6 +67,22 @@ const ModalTecnico = ({
 		`/Tecnico/`,
 		data ? "put" : "post"
 	);
+
+	const { mutate: onDeleteTecnico } = useMutationQuery(`/Tecnico/`, "delete");
+
+	function onDelete() {
+		onDeleteTecnico(
+			{ id: data?.id },
+			{
+				onSuccess: () => {
+					toast.success("Técnico deletado com sucesso!", { duration: 2500 });
+				},
+				onError: () => {
+					toast.error("Falha ao deletar técnico!", { duration: 2500 });
+				},
+			}
+		);
+	}
 
 	useEffect(() => {
 		if (isDirty) {
@@ -103,7 +123,11 @@ const ModalTecnico = ({
 						<Button buttonStyle="text" onClick={handleOpenModal}>
 							<PiTrashLight size={20} color="#ff4d4d" />
 						</Button>
-						<PopUpDelete open={openModal} onOpenChange={onOpenChange} />
+						<PopUpDelete
+							open={openModal}
+							onOpenChange={onOpenChange}
+							onDelete={onDelete}
+						/>
 					</>
 				)}
 			</ActionAlertDialogHeader>
@@ -113,24 +137,28 @@ const ModalTecnico = ({
 						<Input
 							type="text"
 							label="Nome do técnico"
+							autoComplete="off"
 							{...register("usuario.nome")}
 							error={errors.usuario?.nome?.message}
 						/>
 						<Input
 							type="email"
 							label="E-mail"
+							autoComplete="off"
 							{...register("usuario.email")}
 							error={errors.usuario?.email?.message}
 						/>
 						<Input
 							type="password"
 							label="Senha"
+							autoComplete="off"
 							{...register("usuario.senha")}
 							error={errors.usuario?.senha?.message}
 						/>
 						<Input
 							type="text"
 							label="CREA"
+							autoComplete="off"
 							{...register("crea")}
 							error={errors.crea?.message}
 						/>

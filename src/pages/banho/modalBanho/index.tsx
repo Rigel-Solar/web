@@ -12,7 +12,7 @@ import { CloseButton } from "../../../components/image/styles";
 import { Modal } from "../../../components/modal";
 import useModal from "../../../functions/use-modal";
 import { addNewProps } from "../../../models/add-new";
-import { Banho } from "../../../models/banho";
+import { BanhoTS } from "../../../models/banho";
 import {
 	CarouselContainer,
 	Content,
@@ -26,7 +26,7 @@ import {
 } from "./styles";
 
 export interface ModalBanhoProps extends addNewProps {
-	data: Banho;
+	data: BanhoTS;
 }
 
 const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {

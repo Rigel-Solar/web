@@ -2,7 +2,6 @@ import { ChangeEvent, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import Button from "../../components/form/button";
 import { Modal } from "../../components/modal";
-import EditedFormPopUp from "../../components/modal/editedFormPopUp";
 import Search from "../../components/search";
 import DataTableTecnico from "../../components/table/tecnico";
 import useModal from "../../functions/use-modal";
@@ -20,16 +19,13 @@ const Tecnicos = () => {
 		useState<Technician | null>(null);
 	const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
-	const {
-		hasEditedData,
-		openConfirmCloseModal,
-		onConfirmCloseModal,
-		setHasEditedData,
-		setOpenConfirmCloseModal,
-	} = useModal();
+	const { setHasEditedData } = useModal();
 
 	useFetch<Technician[]>("/Tecnico", ["tecnico"], {
 		onSuccess: (data) => setTechnicians(data),
+
+		keepPreviousData: true,
+		refetchOnWindowFocus: false,
 	});
 
 	const { searchTerm, handleSearchChange, filteredData } =
@@ -63,12 +59,6 @@ const Tecnicos = () => {
 					onOpenTechnician={handleOpenViewTechnicianModal}
 				/>
 			</C.Container>
-
-			<EditedFormPopUp
-				open={hasEditedData && openConfirmCloseModal}
-				onOpenChange={() => setOpenConfirmCloseModal(!openConfirmCloseModal)}
-				onConfirmCloseModal={onConfirmCloseModal}
-			/>
 
 			{/* Modal de Criação */}
 			<Modal open={isCreateModalOpen} onOpenChange={handleCloseModal}>

@@ -48,6 +48,22 @@ const ModalClient = ({
 		data ? "put" : "post"
 	);
 
+	const { mutate: onDeleteClient } = useMutationQuery(`/Cliente/`, "delete");
+
+	function onDelete() {
+		onDeleteClient(
+			{ id: data?.id },
+			{
+				onSuccess: () => {
+					toast.success("Cliente deletado com sucesso!", { duration: 2500 });
+				},
+				onError: () => {
+					toast.error("Falha ao deletar cliente!", { duration: 2500 });
+				},
+			}
+		);
+	}
+
 	const options = [
 		{
 			label: "Pessoa Física",
@@ -116,7 +132,11 @@ const ModalClient = ({
 						<Button buttonStyle="text" onClick={handleOpenModal}>
 							<PiTrashLight size={20} color="#ff4d4d" />
 						</Button>
-						<PopUpDelete open={openModal} onOpenChange={onOpenChange} />
+						<PopUpDelete
+							open={openModal}
+							onOpenChange={onOpenChange}
+							onDelete={onDelete}
+						/>
 					</>
 				)}
 			</ActionAlertDialogHeader>

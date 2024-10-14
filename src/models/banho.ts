@@ -3,7 +3,7 @@ interface InspectionItem {
 	description: string;
 }
 
-export interface Banho {
+export interface BanhoTS {
 	orderId: number;
 	technician: string;
 	name: string;

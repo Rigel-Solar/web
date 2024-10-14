@@ -3,9 +3,11 @@ import { PopUp, PopUpHeader, PopUpTriggerClose } from "..";
 import Button from "../../../form/button";
 import { EditedFormContainer } from "../../editedFormPopUp/styles";
 
-export interface PopUpDeleteProps extends DialogProps {}
+export interface PopUpDeleteProps extends DialogProps {
+	onDelete?(): void;
+}
 
-const PopUpDelete = ({ ...props }: PopUpDeleteProps) => {
+const PopUpDelete = ({ onDelete, ...props }: PopUpDeleteProps) => {
 	return (
 		<PopUp {...props} hasPortal>
 			<PopUpHeader>
@@ -20,7 +22,7 @@ const PopUpDelete = ({ ...props }: PopUpDeleteProps) => {
 						Cancelar
 					</PopUpTriggerClose>
 
-					<Button >Apagar</Button>
+					<Button onClick={onDelete}>Apagar</Button>
 				</div>
 			</EditedFormContainer>
 		</PopUp>

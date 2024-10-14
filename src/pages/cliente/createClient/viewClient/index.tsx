@@ -105,7 +105,7 @@ const ViewClient = ({ data }: ViewClientProps) => {
 						<FakeInput value={data.email} label="E-mail" />
 						<FakeInput value={data.tipo} label="Tipo de Cliente" />
 						<FormFieldsContainer columns={1}>
-							<FakeInput value={data.endereco} label="CEP" />
+							<FakeInput value={data.endereco} label="Endereço" />
 							{/* <FakeInput value={data.endereco.number} label="Nº" />
 						</FormFieldsContainer>
 						<FakeInput value={data.endereco.street} label="Rua" />

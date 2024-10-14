@@ -29,6 +29,9 @@ const Cliente = () => {
 
 	useFetch<Client[]>(`/Cliente`, ["cliente"], {
 		onSuccess: (data) => setClient(data),
+
+		keepPreviousData: true,
+		refetchOnWindowFocus: false,
 	});
 
 	const { searchTerm, handleSearchChange, filteredData } = useSearch(client);
@@ -67,8 +70,6 @@ const Cliente = () => {
 				onOpenChange={() => setOpenConfirmCloseModal(!openConfirmCloseModal)}
 				onConfirmCloseModal={onConfirmCloseModal}
 			/>
-
-			{/* Modal de Criação */}
 			<Modal open={isCreateModalOpen} onOpenChange={handleCloseModal}>
 				<ModalClient
 					onClose={handleCloseModal}
@@ -77,7 +78,6 @@ const Cliente = () => {
 				/>
 			</Modal>
 
-			{/* Modal de Visualização */}
 			<Modal
 				open={!!selectedClient}
 				onOpenChange={handleCloseModal}
