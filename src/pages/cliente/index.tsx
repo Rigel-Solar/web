@@ -1,56 +1,89 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import Button from "../../components/form/button";
 import { Modal } from "../../components/modal";
 import EditedFormPopUp from "../../components/modal/editedFormPopUp";
 import Search from "../../components/search";
-import DataTable from "../../components/table";
-import { clients } from "../../constants/client";
-import { tableData } from "../../constants/table";
+import DataTableCliente from "../../components/table/cliente";
 import useModal from "../../functions/use-modal";
 import useSearch from "../../functions/use-search";
-import { DataTableProps } from "../../models/data-table";
+import { Client } from "../../models/client";
+import { useFetch } from "../../services/hooks/useFetch";
 import { DefaultPageContainer } from "../styles";
 import ModalClient from "./createClient";
 import ViewClient from "./createClient/viewClient";
 import * as C from "./styles";
 
 const Cliente = () => {
+	const [client, setClient] = useState<Client[]>([]);
+	const [selectedClient, setSelectedClient] = useState<Client | null>(null);
+	const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+
 	const {
-		openModal,
 		hasEditedData,
 		openConfirmCloseModal,
-		handleOpenModal,
-		handleCloseModal,
-		onOpenChange,
 		onConfirmCloseModal,
 		setHasEditedData,
 		setOpenConfirmCloseModal,
 	} = useModal();
 
-	const { searchTerm, handleSearchChange, filteredData } = useSearch(tableData);
+	useFetch<Client[]>(`/Cliente`, ["cliente"], {
+		onSuccess: (data) => setClient(data),
+
+		keepPreviousData: true,
+		refetchOnWindowFocus: false,
+	});
+
+	const { searchTerm, handleSearchChange, filteredData } = useSearch(client);
+
+	const handleOpenCreateModal = () => {
+		setIsCreateModalOpen(true);
+		setSelectedClient(null);
+	};
+
+	const handleOpenViewClientModal = (client: Client) => {
+		setSelectedClient(client);
+		setIsCreateModalOpen(false);
+	};
+
+	const handleCloseModal = () => {
+		setIsCreateModalOpen(false);
+		setSelectedClient(null);
+	};
 
 	return (
 		<DefaultPageContainer>
 			<C.Container>
 				<Header
-					onOpenModal={handleOpenModal}
+					onOpenModal={handleOpenCreateModal}
 					searchTerm={searchTerm}
 					onSearchChange={handleSearchChange}
 				/>
-				<DataTableContainer data={filteredData} />
+				<DataTableContainer
+					data={filteredData}
+					onRowClick={handleOpenViewClientModal}
+				/>
 			</C.Container>
+
 			<EditedFormPopUp
 				open={hasEditedData && openConfirmCloseModal}
 				onOpenChange={() => setOpenConfirmCloseModal(!openConfirmCloseModal)}
 				onConfirmCloseModal={onConfirmCloseModal}
 			/>
-			<Modal open={openModal} onOpenChange={onOpenChange}>
+			<Modal open={isCreateModalOpen} onOpenChange={handleCloseModal}>
 				<ModalClient
 					onClose={handleCloseModal}
 					onSuccess={handleCloseModal}
 					onSetEditedData={setHasEditedData}
 				/>
+			</Modal>
+
+			<Modal
+				open={!!selectedClient}
+				onOpenChange={handleCloseModal}
+				position="right"
+			>
+				{selectedClient && <ViewClient data={selectedClient} />}
 			</Modal>
 		</DefaultPageContainer>
 	);
@@ -79,31 +112,15 @@ const Header = ({ onOpenModal, searchTerm, onSearchChange }: HeaderProps) => (
 	</section>
 );
 
-const DataTableContainer = ({ data }: DataTableProps) => {
-	const {
-		openModal,
-		hasEditedData,
-		openConfirmCloseModal,
-		onOpenChange,
-		onConfirmCloseModal,
-		setOpenConfirmCloseModal,
-	} = useModal();
+interface DataTableContainerProps {
+	data: Client[];
+	onRowClick: (client: Client) => void;
+}
 
-	return (
-		<div className="table">
-			<DataTable data={data} onOpenChange={onOpenChange} hasPagination />
-
-			<EditedFormPopUp
-				open={hasEditedData && openConfirmCloseModal}
-				onOpenChange={() => setOpenConfirmCloseModal(!openConfirmCloseModal)}
-				onConfirmCloseModal={onConfirmCloseModal}
-			/>
-
-			<Modal open={openModal} onOpenChange={onOpenChange} position={"right"}>
-				<ViewClient data={clients[0]} />
-			</Modal>
-		</div>
-	);
-};
+const DataTableContainer = ({ data, onRowClick }: DataTableContainerProps) => (
+	<div className="table">
+		<DataTableCliente data={data} onRowClick={onRowClick} hasPagination />
+	</div>
+);
 
 export default Cliente;

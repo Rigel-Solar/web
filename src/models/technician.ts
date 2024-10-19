@@ -1,6 +1,9 @@
 export interface Technician {
-	_id: string;
-	name: string;
-	email: string;
+	id: string;
 	crea: string;
+	usuario: {
+		nome: string;
+		email: string;
+		id: string;
+	};
 }

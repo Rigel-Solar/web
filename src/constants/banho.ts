@@ -1,6 +1,6 @@
-import { Banho } from "../models/banho";
+import { BanhoTS } from "../models/banho";
 
-export const banho: Banho = {
+export const banho: BanhoTS = {
 	orderId: 123,
 	technician: "Gaam",
 	name: "Malcolm Lima",

@@ -1,14 +1,10 @@
 import { User } from "./user";
 
 export interface Client extends User {
-	type: string;
-  address: {
-    street: string;
-    number: string;
-    city: string;
-    neighbourhood: string;
-    zipCode: string;
-  };
+  id: string;
+	tipo: string;
+  nome: string;
+  endereco: string;
   latitude: string;
   longitude: string;
 }

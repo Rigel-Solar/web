@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { MenuProps, components } from "react-select";
-import { technicians } from "../../../constants/technician";
 import useModal from "../../../functions/use-modal";
-import { Client } from "../../../models/client";
 import { Technician } from "../../../models/technician";
 import ModalTecnico from "../../../pages/tecnicos/modalTecnico";
+import { useFetch } from "../../../services/hooks/useFetch";
 import Avatar from "../../avatar";
 import { Modal } from "../../modal";
 import EditedFormPopUp from "../../modal/editedFormPopUp";
@@ -32,6 +31,7 @@ const TechnicianSelect = ({
 	hasAddNew = true,
 	required,
 	placeholder,
+	filter,
 	onSelectTechnicianData,
 }: technicianSelectProps) => {
 	const {
@@ -49,31 +49,43 @@ const TechnicianSelect = ({
 	>([]);
 	const [value, setValue] = useState<any>();
 
-	useEffect(() => {
-		const options = technicians.map((technician) => ({
-			value: JSON.stringify(technician),
-			label: (
-				<div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-					<Avatar variant="gray" alt={technician.name} />
-					{technician.name}
-				</div>
-			),
-		}));
-		setTechnicianOptions(options);
-	}, []);
+	useFetch<Technician[]>(`/Tecnico`, ["tecnico"], {
+		onSuccess: (data) => {
+			if (filter?.length) {
+				data = data.filter((tec) => filter.includes(tec.id));
+			}
+
+			setTechnicianOptions(() =>
+				data.map((tecnico) => {
+					return {
+						value: JSON.stringify(tecnico),
+						label: (
+							<div
+								className="multi-select-option"
+								style={{ display: "flex", alignItems: "center", gap: 10 }}
+							>
+								<Avatar variant="gray" alt={tecnico.usuario.nome} />
+								{tecnico.usuario.nome}
+							</div>
+						),
+					};
+				})
+			);
+		},
+	});
 
 	useEffect(() => {
 		if (technicianOptions?.length) {
-			const findClient = technicianOptions?.filter?.((e: any) => {
-				const { _id } = JSON.parse(e.value) as Client;
-				if (defaultValue === _id) {
+			const findTechnician = technicianOptions?.filter?.((e: any) => {
+				const { id } = JSON.parse(e.value) as Technician;
+				if (defaultValue === id) {
 					return true;
 				}
 				return false;
 			});
 
-			if (findClient?.length) {
-				setValue(findClient[0]);
+			if (findTechnician?.length) {
+				setValue(findTechnician[0]);
 			}
 		}
 	}, [defaultValue, technicianOptions]);
@@ -81,21 +93,21 @@ const TechnicianSelect = ({
 	const handleSelectTechnician = (data: Technician) => {
 		if (!data) return;
 
-		const newClient = {
+		const newTechnician = {
 			value: JSON.stringify(data),
 			label: (
 				<div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-					<Avatar variant="gray" alt={data?.name} />
-					{data.name}
+					<Avatar variant="gray" alt={data?.usuario.nome} />
+					{data.usuario.nome}
 				</div>
 			),
 		};
 		setTechnicianOptions((old) => {
-			return [...old, newClient];
+			return [...old, newTechnician];
 		});
-		setValue(newClient);
+		setValue(newTechnician);
 
-		onSelect(data?._id as string);
+		onSelect(data?.id as string);
 		onSelectTechnicianData?.(data);
 	};
 
@@ -135,9 +147,9 @@ const TechnicianSelect = ({
 				onChange={(data: any) => {
 					setValue(data);
 					if (data) {
-						const { _id } = JSON.parse(data.value) as Technician;
+						const { id } = JSON.parse(data.value) as Technician;
 
-						onSelect(_id);
+						onSelect(id);
 						onSelectTechnicianData?.(JSON.parse(data.value) as Technician);
 					} else {
 						onSelect(null);
