@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from "react";
-import { ButtonContainer } from "./styles";
 import { AiOutlineLoading } from "react-icons/ai";
+import { ButtonContainer } from "./styles";
 
 export type buttonStyle = "primary" | "secondary" | "text" | "link";
 export type buttonState = "normal" | "error" | "success";

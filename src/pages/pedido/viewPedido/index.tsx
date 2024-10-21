@@ -1,6 +1,6 @@
 import { DialogClose } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/themes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineEdit, AiOutlineLeftCircle } from "react-icons/ai";
 import Button from "../../../components/form/button";
 import FakeInput from "../../../components/form/fakeInput";
@@ -18,32 +18,42 @@ import {
 import AddNewOrder from "../../../components/modal/addNewOrder";
 import EditedFormPopUp from "../../../components/modal/editedFormPopUp";
 import { orders } from "../../../constants/orders";
-import { addNewProps } from "../../../models/add-new";
-import { useFetch } from "../../../services/hooks/useFetch";
-import { OrderTS } from "../../../utils/pedidoSchema";
+import { VistoriaTS } from "../../../models/vistoria";
 import { ModalContainer } from "../../cliente/createClient/styles";
 
-export interface ViewPedidoProps extends addNewProps {
-	data: OrderTS;
+export interface ViewPedidoProps {
+	data: VistoriaTS;
 }
 
 const ViewPedido = ({ data }: ViewPedidoProps) => {
 	const [openModal, setOpenModal] = useState(false);
 	const [openConfirmCloseModal, setOpenConfirmCloseModal] = useState(false);
 	const [hasEditedData, setHasEditedData] = useState(false);
-	const [pedido, setPedido] = useState<OrderTS>();
 
-	useFetch<OrderTS>(`/Vistoria`, ["vistoria"], {
-		onSuccess: (data) => setPedido(data),
-	});
+	// Estado para armazenar o endereço separado
+	const [enderecoArray, setEnderecoArray] = useState<string[]>([
+		"",
+		"",
+		"",
+		"",
+		"",
+	]);
+
+	// Separar o endereço automaticamente ao carregar o componente
+	useEffect(() => {
+		if (data?.idClienteNavigation.endereco) {
+			const parts = data.idClienteNavigation.endereco
+				.split(", ")
+				.map((part) => part.trim());
+			setEnderecoArray(parts);
+		}
+	}, [data]);
 
 	const onOpenChange = () => {
 		if (hasEditedData) {
 			setOpenConfirmCloseModal(true);
-
 			return;
 		}
-
 		setOpenModal(!openModal);
 	};
 
@@ -86,7 +96,7 @@ const ViewPedido = ({ data }: ViewPedidoProps) => {
 				<Button
 					buttonStyle="text"
 					style={{ padding: 5, fontSize: 20 }}
-					onClick={() => handleOpenModal()}
+					onClick={handleOpenModal}
 				>
 					<AiOutlineEdit />
 				</Button>
@@ -95,18 +105,24 @@ const ViewPedido = ({ data }: ViewPedidoProps) => {
 				<FormContainer>
 					<FormFieldsContainer>
 						<FormFieldsContainer columns={2}>
-							<FakeInput value={pedido?.idCliente} label="Nome do cliente" />
-							<FakeInput value={data.idTecnico} label="Técnico Responsável" />
+							<FakeInput
+								value={data?.idClienteNavigation.nome}
+								label="Nome do cliente"
+							/>
+							<FakeInput
+								value={data.idTecnicoNavigation.usuario?.nome}
+								label="Técnico Responsável"
+							/>
 						</FormFieldsContainer>
-						<FakeInput value={"email@gmail.com"} label="E-mail" />
+						<FakeInput value={data?.idClienteNavigation.email} label="E-mail" />
 						<FormFieldsContainer columns={2}>
-							<FakeInput value="São Caetano do Sul" label="Cidade" />
-							<FakeInput value="Bairro 1" label="Bairro" />
+							<FakeInput value={enderecoArray[0]} label="Cidade" />
+							<FakeInput value={enderecoArray[1]} label="Bairro" />
 						</FormFieldsContainer>
-						<FakeInput value="Rua 1" label="Rua" />
+						<FakeInput value={enderecoArray[2]} label="Rua" />
 						<FormFieldsContainer columns={2}>
-							<FakeInput value="CEP 1" label="CEP" />
-							<FakeInput value="N 1" label="Nº" />
+							<FakeInput value={enderecoArray[3]} label="Número" />
+							<FakeInput value={enderecoArray[4]} label="CEP" />
 						</FormFieldsContainer>
 						<FakeInput value={data.tipoInstalacao} label="Tipo de Instalação" />
 						<FakeInput value={data.solucoes} label="Soluções" />
@@ -114,10 +130,7 @@ const ViewPedido = ({ data }: ViewPedidoProps) => {
 							value={data.pretendeInstalarEm}
 							label="Pretende instalar em: "
 						/>
-						<FakeInput
-							value={data.concessionarias ? data.concessionarias : "Nenhuma"}
-							label="Concessionarias"
-						/>
+						<FakeInput value="Não há" label="Concessionarias" />
 						<FakeInput
 							value={data.valorContaLuz}
 							label="Custo da conta de Luz"

@@ -136,6 +136,22 @@ const AddNewOrder = ({
 		},
 	];
 
+	const { mutate: onDeleteOrder } = useMutationQuery(`/Vistoria/`, "delete");
+
+	function onDelete() {
+		onDeleteOrder(
+			{ id: data?.id },
+			{
+				onSuccess: () => {
+					toast.success("Pedido deletado com sucesso!", { duration: 2500 });
+				},
+				onError: () => {
+					toast.error("Falha ao deletar pedido!", { duration: 2500 });
+				},
+			}
+		);
+	}
+
 	function onSubmit(formData: OrderTS) {
 		onCreate(formData, {
 			onSuccess: () => {
@@ -166,7 +182,11 @@ const AddNewOrder = ({
 						<Button buttonStyle="text" onClick={handleOpenModal}>
 							<PiTrashLight size={20} color="#ff4d4d" />
 						</Button>
-						<PopUpDelete open={openModal} onOpenChange={onOpenChange} />
+						<PopUpDelete
+							open={openModal}
+							onOpenChange={onOpenChange}
+							onDelete={onDelete}
+						/>
 					</>
 				)}
 			</ActionAlertDialogHeader>
