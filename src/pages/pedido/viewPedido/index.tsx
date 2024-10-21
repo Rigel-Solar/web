@@ -17,7 +17,6 @@ import {
 } from "../../../components/modal/actionAlertModal";
 import AddNewOrder from "../../../components/modal/addNewOrder";
 import EditedFormPopUp from "../../../components/modal/editedFormPopUp";
-import { orders } from "../../../constants/orders";
 import { VistoriaTS } from "../../../models/vistoria";
 import { ModalContainer } from "../../cliente/createClient/styles";
 
@@ -30,7 +29,6 @@ const ViewPedido = ({ data }: ViewPedidoProps) => {
 	const [openConfirmCloseModal, setOpenConfirmCloseModal] = useState(false);
 	const [hasEditedData, setHasEditedData] = useState(false);
 
-	// Estado para armazenar o endereço separado
 	const [enderecoArray, setEnderecoArray] = useState<string[]>([
 		"",
 		"",
@@ -39,7 +37,6 @@ const ViewPedido = ({ data }: ViewPedidoProps) => {
 		"",
 	]);
 
-	// Separar o endereço automaticamente ao carregar o componente
 	useEffect(() => {
 		if (data?.idClienteNavigation.endereco) {
 			const parts = data.idClienteNavigation.endereco
@@ -85,7 +82,7 @@ const ViewPedido = ({ data }: ViewPedidoProps) => {
 					onClose={onOpenChange}
 					onSuccess={handleSuccess}
 					onSetEditedData={setHasEditedData}
-					data={orders[0]}
+					data={data}
 				/>
 			</Modal>
 			<ActionAlertDialogHeader $between={!!data}>
