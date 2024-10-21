@@ -1,26 +1,52 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { Modal } from "../../components/modal";
-import EditedFormPopUp from "../../components/modal/editedFormPopUp";
 import Search from "../../components/search";
-import DataTable from "../../components/table";
-import { piscina } from "../../constants/piscina";
-import { tableData } from "../../constants/table";
-import useModal from "../../functions/use-modal";
+import DataTablePiscina from "../../components/table/piscina";
 import useSearch from "../../functions/use-search";
-import { DataTableProps } from "../../models/data-table";
+import { IPiscina } from "../../models/piscina";
+import { useFetch } from "../../services/hooks/useFetch";
 import { DefaultPageContainer } from "../styles";
 import ModalPiscina from "./modalPiscina";
 import * as C from "./styles";
 
 const Piscina = () => {
-	const { searchTerm, handleSearchChange, filteredData } = useSearch(tableData);
+	const [piscinas, setPiscinas] = useState<IPiscina[]>([]);
+	const [selectedPiscina, setSelectedPiscina] = useState<IPiscina | null>(null);
+
+	useFetch<IPiscina[]>("/FichaPiscina", ["piscina"], {
+		onSuccess: (data) => setPiscinas(data),
+		keepPreviousData: true,
+		refetchOnWindowFocus: false,
+	});
+
+	const { searchTerm, handleSearchChange, filteredData } = useSearch(piscinas);
+
+	const handleOpenViewPiscinaModal = (piscina: IPiscina) => {
+		setSelectedPiscina(piscina);
+	};
+
+	const handleCloseModal = () => {
+		setSelectedPiscina(null);
+	};
 
 	return (
 		<DefaultPageContainer>
 			<C.Container>
 				<Header searchTerm={searchTerm} onSearchChange={handleSearchChange} />
-				<DataTableContainer data={filteredData} />
+				<DataTableContainer
+					data={filteredData}
+					onOpenPiscina={handleOpenViewPiscinaModal}
+				/>
 			</C.Container>
+
+			{/* Modal de Visualização */}
+			<Modal
+				open={!!selectedPiscina}
+				onOpenChange={handleCloseModal}
+				position="right"
+			>
+				{selectedPiscina && <ModalPiscina data={selectedPiscina} />}
+			</Modal>
 		</DefaultPageContainer>
 	);
 };
@@ -33,47 +59,28 @@ interface HeaderProps {
 const Header = ({ searchTerm, onSearchChange }: HeaderProps) => (
 	<section>
 		<div className="top-area">
-			<h1>Piscina</h1>
+			<h1>Piscinas</h1>
 		</div>
 		<Search
-			placeholder="Procurar pedidos..."
+			placeholder="Procurar piscinas..."
 			value={searchTerm}
 			onChange={onSearchChange}
 		/>
 	</section>
 );
 
-const DataTableContainer = ({ data }: DataTableProps) => {
-	const {
-		openModal,
-		hasEditedData,
-		openConfirmCloseModal,
-		onOpenChange,
-		onConfirmCloseModal,
-		setOpenConfirmCloseModal,
-		handleCloseModal,
-		setHasEditedData,
-	} = useModal();
+interface DataTableContainerProps {
+	data: IPiscina[];
+	onOpenPiscina: (piscina: IPiscina) => void;
+}
 
-	return (
-		<div className="table">
-			<DataTable data={data} hasPagination onOpenChange={onOpenChange} />
-
-			<EditedFormPopUp
-				open={hasEditedData && openConfirmCloseModal}
-				onOpenChange={() => setOpenConfirmCloseModal(!openConfirmCloseModal)}
-				onConfirmCloseModal={onConfirmCloseModal}
-			/>
-			<Modal open={openModal} onOpenChange={onOpenChange} position="center">
-				<ModalPiscina
-					data={piscina}
-					onClose={handleCloseModal}
-					onSuccess={handleCloseModal}
-					onSetEditedData={setHasEditedData}
-				/>
-			</Modal>
-		</div>
-	);
-};
+const DataTableContainer = ({
+	data,
+	onOpenPiscina,
+}: DataTableContainerProps) => (
+	<div className="table">
+		<DataTablePiscina data={data} onOpenPiscina={onOpenPiscina} hasPagination />
+	</div>
+);
 
 export default Piscina;

@@ -1,26 +1,51 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { Modal } from "../../components/modal";
-import EditedFormPopUp from "../../components/modal/editedFormPopUp";
 import Search from "../../components/search";
-import DataTable from "../../components/table";
-import { banho } from "../../constants/banho";
-import { tableData } from "../../constants/table";
-import useModal from "../../functions/use-modal";
+import DataTableBanho from "../../components/table/banho";
 import useSearch from "../../functions/use-search";
-import { DataTableProps } from "../../models/data-table";
+import { IBanho } from "../../models/banho";
+import { useFetch } from "../../services/hooks/useFetch";
 import { DefaultPageContainer } from "../styles";
 import ModalBanho from "./modalBanho";
 import * as C from "./styles";
 
 const Banho = () => {
-	const { searchTerm, handleSearchChange, filteredData } = useSearch(tableData);
+	const [banhos, setBanhos] = useState<IBanho[]>([]);
+	const [selectedBanho, setSelectedBanho] = useState<IBanho | null>(null);
+
+	useFetch<IBanho[]>("/FichaBanho", ["banho"], {
+		onSuccess: (data) => setBanhos(data),
+		keepPreviousData: true,
+		refetchOnWindowFocus: false,
+	});
+
+	const { searchTerm, handleSearchChange, filteredData } = useSearch(banhos);
+
+	const handleOpenViewBanhoModal = (banho: IBanho) => {
+		setSelectedBanho(banho);
+	};
+
+	const handleCloseModal = () => {
+		setSelectedBanho(null);
+	};
 
 	return (
 		<DefaultPageContainer>
 			<C.Container>
 				<Header searchTerm={searchTerm} onSearchChange={handleSearchChange} />
-				<DataTableContainer data={filteredData} />
+				<DataTableContainer
+					data={filteredData}
+					onOpenBanho={handleOpenViewBanhoModal}
+				/>
 			</C.Container>
+
+			<Modal
+				open={!!selectedBanho}
+				onOpenChange={handleCloseModal}
+				position="right"
+			>
+				{selectedBanho && <ModalBanho data={selectedBanho} />}
+			</Modal>
 		</DefaultPageContainer>
 	);
 };
@@ -30,52 +55,28 @@ interface HeaderProps {
 	onSearchChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Header = ({ searchTerm, onSearchChange }: HeaderProps) => {
-	return (
-		<section>
-			<div className="top-area">
-				<h1>Banho</h1>
-			</div>
-			<Search
-				placeholder="Procurar pedidos..."
-				value={searchTerm}
-				onChange={onSearchChange}
-			/>
-		</section>
-	);
-};
-
-const DataTableContainer = ({ data }: DataTableProps) => {
-	const {
-		openModal,
-		hasEditedData,
-		openConfirmCloseModal,
-		onOpenChange,
-		onConfirmCloseModal,
-		setOpenConfirmCloseModal,
-		handleCloseModal,
-		setHasEditedData,
-	} = useModal();
-
-	return (
-		<div className="table">
-			<DataTable data={data} hasPagination onOpenChange={onOpenChange} />
-
-			<EditedFormPopUp
-				open={hasEditedData && openConfirmCloseModal}
-				onOpenChange={() => setOpenConfirmCloseModal(!openConfirmCloseModal)}
-				onConfirmCloseModal={onConfirmCloseModal}
-			/>
-			<Modal open={openModal} onOpenChange={onOpenChange} position="center">
-				<ModalBanho
-					data={banho}
-					onClose={handleCloseModal}
-					onSuccess={handleCloseModal}
-					onSetEditedData={setHasEditedData}
-				/>
-			</Modal>
+const Header = ({ searchTerm, onSearchChange }: HeaderProps) => (
+	<section>
+		<div className="top-area">
+			<h1>Banhos</h1>
 		</div>
-	);
-};
+		<Search
+			placeholder="Procurar banhos..."
+			value={searchTerm}
+			onChange={onSearchChange}
+		/>
+	</section>
+);
+
+interface DataTableContainerProps {
+	data: IBanho[];
+	onOpenBanho: (banho: IBanho) => void;
+}
+
+const DataTableContainer = ({ data, onOpenBanho }: DataTableContainerProps) => (
+	<div className="table">
+		<DataTableBanho data={data} onOpenBanho={onOpenBanho} hasPagination />
+	</div>
+);
 
 export default Banho;

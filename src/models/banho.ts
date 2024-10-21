@@ -1,3 +1,5 @@
+import { VistoriaTS } from "./vistoria";
+
 interface InspectionItem {
 	quantity: string | null;
 	description: string;
@@ -16,4 +18,17 @@ export interface BanhoTS {
 	type: string;
 	cellphone: string;
 	inspectionItems: InspectionItem[];
+}
+
+export interface IBanho {
+	baseCaixa: number;
+	baseBoiler: number;
+	distanciaBoiler: number;
+	registroCaixa: number;
+	registroBarrilete: number;
+	disjuntorBipolar: number;
+	idVistoria: number;
+	id: number;
+	vistoriaDTO: VistoriaTS;
+	imgUrl?: Array<string>;
 }

@@ -7,21 +7,21 @@ import {
 	FaAnglesRight,
 } from "react-icons/fa6";
 import { SlOptions } from "react-icons/sl";
-import { Technician } from "../../../models/technician";
+import { IPiscina } from "../../../models/piscina";
 import Button from "../../form/button";
 import * as C from "../styles";
 
 interface TableBodyProps {
-	data: Technician[];
-	onOpenTechnician: (technician: Technician) => void;
+	data: IPiscina[];
+	onOpenPiscina: (piscina: IPiscina) => void;
 }
 
-export interface DataTableTecnicoProps {
-	data: Technician[];
+export interface DataTablePiscinaProps {
+	data: IPiscina[];
 	$itemsPerPage?: number;
 	hasPagination?: boolean;
 	background?: boolean;
-	onOpenTechnician: (technician: Technician) => void;
+	onOpenPiscina: (piscina: IPiscina) => void;
 }
 
 interface PaginationProps {
@@ -32,13 +32,13 @@ interface PaginationProps {
 	onItemsPerPageChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const DataTableTecnico = ({
+const DataTablePiscina = ({
 	data,
 	hasPagination,
 	$itemsPerPage = 10,
 	background = false,
-	onOpenTechnician,
-}: DataTableTecnicoProps) => {
+	onOpenPiscina,
+}: DataTablePiscinaProps) => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [itemsPerPage, setItemsPerPage] = useState($itemsPerPage);
 
@@ -64,7 +64,7 @@ const DataTableTecnico = ({
 		<Theme>
 			<C.Root variant="surface" $background={background}>
 				<TableHeader />
-				<TableBody data={paginatedData} onOpenTechnician={onOpenTechnician} />
+				<TableBody data={paginatedData} onOpenPiscina={onOpenPiscina} />
 			</C.Root>
 			{hasPagination && (
 				<Pagination
@@ -82,31 +82,37 @@ const DataTableTecnico = ({
 const TableHeader = () => (
 	<C.Header>
 		<C.Row>
-			<Table.ColumnHeaderCell>Técnico</Table.ColumnHeaderCell>
-			<Table.ColumnHeaderCell>CREA</Table.ColumnHeaderCell>
+			<Table.ColumnHeaderCell>Endereço</Table.ColumnHeaderCell>
+			<Table.ColumnHeaderCell>Pessoa</Table.ColumnHeaderCell>
 			<Table.ColumnHeaderCell>Código</Table.ColumnHeaderCell>
+			<Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
+			<Table.ColumnHeaderCell>Criado há</Table.ColumnHeaderCell>
 			<Table.ColumnHeaderCell />
 		</C.Row>
 	</C.Header>
 );
 
-const TableBody = ({ data, onOpenTechnician }: TableBodyProps) => (
-	<C.Body>
-		{data.map((item, index) => (
-			<C.Row key={index} onClick={() => onOpenTechnician(item)}>
-				<Table.RowHeaderCell>
-					<div>
-						<p>{item.usuario.nome}</p>
-						<p>{item.usuario.email}</p>
-					</div>
-				</Table.RowHeaderCell>
-				<C.Cell>{item.crea}</C.Cell>
-				<C.Cell>{item.usuario.id}</C.Cell>
-				<Options />
-			</C.Row>
-		))}
-	</C.Body>
-);
+const TableBody = ({ data, onOpenPiscina }: TableBodyProps) => {
+	return (
+		<C.Body>
+			{data.map((item, index) => (
+				<C.Row key={index} onClick={() => onOpenPiscina(item)}>
+					<Table.RowHeaderCell>
+						<div>
+							<p>{item.vistoriaDTO.idClienteNavigation.endereco}</p>
+							<p>{item.vistoriaDTO.idClienteNavigation.email}</p>
+						</div>
+					</Table.RowHeaderCell>
+					<C.Cell>{item.vistoriaDTO.idClienteNavigation.tipo}</C.Cell>
+					<C.Cell>{item.vistoriaDTO.idCliente}</C.Cell>
+					<C.Cell>(Não há)</C.Cell>
+					<C.Cell>(Não há)</C.Cell>
+					<Options />
+				</C.Row>
+			))}
+		</C.Body>
+	);
+};
 
 const Pagination = ({
 	currentPage,
@@ -166,4 +172,4 @@ const Options = () => (
 	</C.Cell>
 );
 
-export default DataTableTecnico;
+export default DataTablePiscina;
