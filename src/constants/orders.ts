@@ -1,6 +1,7 @@
 import { OrderTS } from "../utils/pedidoSchema";
 
 const orders: OrderTS[] = Array.from({ length: 30 }, (_, i) => ({
+	id: `${i + 1}`,
 	idCliente: `${i + 1}`,
 	idTecnico: `${i + 1}`,
 	tipoInstalacao: i % 2 === 0 ? "Residência" : "Empresa",

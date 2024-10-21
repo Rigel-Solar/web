@@ -86,6 +86,7 @@ const Login = () => {
 							type="submit"
 							buttonStyle="primary"
 							buttonState={isError ? "error" : "normal"}
+							disabled={isLoading}
 							isLoading={isLoading}
 						>
 							Log in

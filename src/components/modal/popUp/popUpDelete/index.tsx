@@ -4,7 +4,7 @@ import Button from "../../../form/button";
 import { EditedFormContainer } from "../../editedFormPopUp/styles";
 
 export interface PopUpDeleteProps extends DialogProps {
-	onDelete?(): void;
+	onDelete(): void;
 }
 
 const PopUpDelete = ({ onDelete, ...props }: PopUpDeleteProps) => {
