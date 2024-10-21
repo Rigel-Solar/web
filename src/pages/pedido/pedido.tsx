@@ -20,7 +20,7 @@ const Pedidos = () => {
 
 	const { setHasEditedData } = useModal();
 
-	useFetch<VistoriaTS[]>("/Vistoria/getAll", ["vistoria"], {
+	const { refetch } = useFetch<VistoriaTS[]>("/Vistoria/getAll", ["vistoria"], {
 		onSuccess: (data) => setPedidos(data),
 		keepPreviousData: true,
 		refetchOnWindowFocus: false,
@@ -63,6 +63,7 @@ const Pedidos = () => {
 					onClose={handleCloseModal}
 					onSuccess={handleCloseModal}
 					onSetEditedData={setHasEditedData}
+					refetch={refetch}
 				/>
 			</Modal>
 

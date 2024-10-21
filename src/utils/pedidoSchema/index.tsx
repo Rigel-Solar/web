@@ -2,7 +2,7 @@ import * as z from "zod";
 
 const orderSchema = z.object({
 	idCliente: z.string(),
-	idTecnico: z.string().nullable(),
+	idTecnico: z.string(),
 	tipoInstalacao: z.string(),
 	solucoes: z.string(),
 	pretendeInstalarEm: z.string(),

@@ -34,12 +34,14 @@ import {
 
 export interface AddNewOrderProps extends addNewProps {
 	data?: VistoriaTS;
+	refetch?: () => void;
 }
 
 const AddNewOrder = ({
 	onSuccess,
 	onSetEditedData,
 	data,
+	refetch,
 	...props
 }: AddNewOrderProps) => {
 	const {
@@ -69,6 +71,13 @@ const AddNewOrder = ({
 
 	const handleSelectClient = (value: string) => {
 		setValue("idCliente", value.toString(), {
+			shouldDirty: true,
+			shouldValidate: true,
+		});
+	};
+
+	const handleSelectTechnician = (value: string) => {
+		setValue("idTecnico", value.toString(), {
 			shouldDirty: true,
 			shouldValidate: true,
 		});
@@ -137,25 +146,27 @@ const AddNewOrder = ({
 		},
 	];
 
-	const { mutate: onDeleteOrder } = useMutationQuery(`/Vistoria/`, "delete");
+	const { mutate: onDeleteOrder } = useMutationQuery(
+		`/Vistoria?id=${data?.id}`,
+		"delete"
+	);
 
 	function onDelete() {
-		onDeleteOrder(
-			{ id: data?.id },
-			{
-				onSuccess: () => {
-					toast.success("Pedido deletado com sucesso!", { duration: 2500 });
-				},
-				onError: () => {
-					toast.error("Falha ao deletar pedido!", { duration: 2500 });
-				},
-			}
-		);
+		onDeleteOrder({
+			onSuccess: () => {
+				refetch?.();
+				toast.success("Pedido deletado com sucesso!", { duration: 2500 });
+			},
+			onError: () => {
+				toast.error("Falha ao deletar pedido!", { duration: 2500 });
+			},
+		});
 	}
 
 	function onSubmit(formData: OrderTS) {
 		onCreate(formData, {
 			onSuccess: () => {
+				refetch?.();
 				toast.success(`Pedido ${data ? "Atualizado" : "Criado"} com sucesso!`, {
 					duration: 2500,
 				});
@@ -210,14 +221,7 @@ const AddNewOrder = ({
 						/>
 						<TechnicianSelect
 							placeholder="Selecione um tecnico"
-							onSelect={(value) => {
-								if (value) {
-									setValue("idTecnico", value.toString(), {
-										shouldDirty: true,
-										shouldValidate: true,
-									});
-								}
-							}}
+							onSelect={handleSelectTechnician}
 							required
 						/>
 						<SelectComponent

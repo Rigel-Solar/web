@@ -48,20 +48,20 @@ const ModalClient = ({
 		data ? "put" : "post"
 	);
 
-	const { mutate: onDeleteClient } = useMutationQuery(`/Cliente/`, "delete");
+	const { mutate: onDeleteClient } = useMutationQuery(
+		`/Cliente?id=${data?.id}`,
+		"delete"
+	);
 
 	function onDelete() {
-		onDeleteClient(
-			{ id: data?.id },
-			{
-				onSuccess: () => {
-					toast.success("Cliente deletado com sucesso!", { duration: 2500 });
-				},
-				onError: () => {
-					toast.error("Falha ao deletar cliente!", { duration: 2500 });
-				},
-			}
-		);
+		onDeleteClient({
+			onSuccess: () => {
+				toast.success("Cliente deletado com sucesso!", { duration: 2500 });
+			},
+			onError: () => {
+				toast.error("Falha ao deletar cliente!", { duration: 2500 });
+			},
+		});
 	}
 
 	const options = [

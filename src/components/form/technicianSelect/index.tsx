@@ -147,10 +147,13 @@ const TechnicianSelect = ({
 				onChange={(data: any) => {
 					setValue(data);
 					if (data) {
-						const { id } = JSON.parse(data.value) as Technician;
+						const parsedValue = JSON.parse(data.value) as {
+							usuario: { id: number };
+						};
+						const userId = parsedValue.usuario.id;
 
-						onSelect(id);
-						onSelectTechnicianData?.(JSON.parse(data.value) as Technician);
+						onSelect(userId);
+						onSelectTechnicianData?.(data.value);
 					} else {
 						onSelect(null);
 						onSelectTechnicianData?.(undefined);
