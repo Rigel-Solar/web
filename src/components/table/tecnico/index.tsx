@@ -101,7 +101,7 @@ const TableBody = ({ data, onOpenTechnician }: TableBodyProps) => (
 					</div>
 				</Table.RowHeaderCell>
 				<C.Cell>{item.crea}</C.Cell>
-				<C.Cell>{item.id}</C.Cell>
+				<C.Cell>{item.usuario.id}</C.Cell>
 				<Options />
 			</C.Row>
 		))}
