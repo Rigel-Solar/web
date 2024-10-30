@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -7,7 +9,6 @@ import { Toaster } from "sonner";
 import Loading from "./components/loading";
 import { persistor, store } from "./redux/store";
 import { MainRoutes } from "./routes/MainRoutes";
-import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export default function App() {
 	const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ export default function App() {
 						/>
 						<MainRoutes />
 						<SpeedInsights />
+						<Analytics />
 					</BrowserRouter>
 				</QueryClientProvider>
 			</PersistGate>
