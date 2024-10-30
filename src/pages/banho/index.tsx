@@ -18,9 +18,11 @@ const Banho = () => {
 		keepPreviousData: true,
 		refetchOnWindowFocus: false,
 	});
-
+	
+	console.log("banhos", banhos)
 	const { searchTerm, handleSearchChange, filteredData } = useSearch(banhos);
-
+	console.log("filteredData", filteredData)
+	
 	const handleOpenViewBanhoModal = (banho: IBanho) => {
 		setSelectedBanho(banho);
 	};
@@ -73,10 +75,13 @@ interface DataTableContainerProps {
 	onOpenBanho: (banho: IBanho) => void;
 }
 
-const DataTableContainer = ({ data, onOpenBanho }: DataTableContainerProps) => (
-	<div className="table">
-		<DataTableBanho data={data} onOpenBanho={onOpenBanho} hasPagination />
-	</div>
-);
+const DataTableContainer = ({ data, onOpenBanho }: DataTableContainerProps) => {
+	console.log(data);
+	return (
+		<div className="table">
+			<DataTableBanho data={data} onOpenBanho={onOpenBanho} hasPagination />
+		</div>
+	);
+};
 
 export default Banho;
