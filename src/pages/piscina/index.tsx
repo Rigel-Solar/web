@@ -43,7 +43,7 @@ const Piscina = () => {
 			<Modal
 				open={!!selectedPiscina}
 				onOpenChange={handleCloseModal}
-				position="right"
+				position="center"
 			>
 				{selectedPiscina && <ModalPiscina data={selectedPiscina} />}
 			</Modal>

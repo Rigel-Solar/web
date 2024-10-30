@@ -1,20 +1,32 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import Search from "../../components/search";
-import DataTable from "../../components/table";
-import { tableData } from "../../constants/table";
+import DataTableFotovoltaico from "../../components/table/fotovoltaico";
 import useSearch from "../../functions/use-search";
-import { DataTableProps } from "../../models/data-table";
+import { IFotovoltaico } from "../../models/fotovoltaico";
+import { useFetch } from "../../services/hooks/useFetch";
 import { DefaultPageContainer } from "../styles";
 import * as C from "./styles";
 
 const Fotovoltaico = () => {
-	const { searchTerm, handleSearchChange, filteredData } = useSearch(tableData);
+	const [fotovoltaicos, setFotovoltaicos] = useState<IFotovoltaico[]>([]);
+
+	useFetch<IFotovoltaico[]>("/FichaFotovoltaico", ["fotovoltaico"], {
+		onSuccess: (data) => setFotovoltaicos(data),
+		keepPreviousData: true,
+		refetchOnWindowFocus: false,
+	});
+
+	const { searchTerm, handleSearchChange, filteredData } =
+		useSearch(fotovoltaicos);
 
 	return (
 		<DefaultPageContainer>
 			<C.Container>
 				<Header searchTerm={searchTerm} onSearchChange={handleSearchChange} />
-				<DataTableContainer data={filteredData} />
+				<DataTableContainer
+					data={filteredData}
+					onOpenFotovoltaico={() => null}
+				/>
 			</C.Container>
 		</DefaultPageContainer>
 	);
@@ -28,19 +40,31 @@ interface HeaderProps {
 const Header = ({ searchTerm, onSearchChange }: HeaderProps) => (
 	<section>
 		<div className="top-area">
-			<h1>Fotovoltaico</h1>
+			<h1>Fotovoltaicos</h1>
 		</div>
 		<Search
-			placeholder="Procurar pedidos..."
+			placeholder="Procurar fotovoltaicos..."
 			value={searchTerm}
 			onChange={onSearchChange}
 		/>
 	</section>
 );
 
-const DataTableContainer = ({ data }: DataTableProps) => (
+interface DataTableContainerProps {
+	data: IFotovoltaico[];
+	onOpenFotovoltaico: (fotovoltaico: IFotovoltaico) => void;
+}
+
+const DataTableContainer = ({
+	data,
+	onOpenFotovoltaico,
+}: DataTableContainerProps) => (
 	<div className="table">
-		<DataTable data={data} hasPagination />
+		<DataTableFotovoltaico
+			data={data}
+			onOpenFotovoltaico={onOpenFotovoltaico}
+			hasPagination
+		/>
 	</div>
 );
 
