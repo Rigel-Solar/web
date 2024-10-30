@@ -44,7 +44,7 @@ const Banho = () => {
 			<Modal
 				open={!!selectedBanho}
 				onOpenChange={handleCloseModal}
-				position="right"
+				position="center"
 			>
 				{selectedBanho && <ModalBanho data={selectedBanho} />}
 			</Modal>

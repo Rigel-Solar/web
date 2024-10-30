@@ -86,10 +86,12 @@ const ModalPiscina = ({ data, ...props }: ModalPiscinaProps) => {
 
 					<FormContainer>
 						<FormFieldsContainer>
-							<FakeInput
-								label="Técnico"
-								value={data.vistoriaDTO.idTecnicoNavigation.usuario.nome}
-							/>
+							{data.vistoriaDTO.idTecnicoNavigation && (
+								<FakeInput
+									label="Técnico"
+									value={data.vistoriaDTO.idTecnicoNavigation.usuario.nome}
+								/>
+							)}
 							<FormFieldsContainer columns={2}>
 								<FakeInput
 									label="Nome"
