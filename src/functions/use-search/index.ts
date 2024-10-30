@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChangeEvent, useMemo, useState } from "react";
 
-const useSearch = (data: any) => {
+const useSearch = (data: any[]) => {
 	const [searchTerm, setSearchTerm] = useState("");
 
 	const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -15,14 +15,30 @@ const useSearch = (data: any) => {
 			.toLowerCase();
 	};
 
-	const filterData = (data: any, term: string) => {
+	const filterData = (data: any[], term: string): any[] => {
 		const normalizedTerm = normalizeString(term);
-		return data.filter((item: any) =>
-			Object.values(item).some(
-				(value) =>
-					typeof value === "string" &&
-					normalizeString(value).includes(normalizedTerm)
-			)
+
+		const checkValue = (value: any): boolean => {
+			if (typeof value === "string") {
+				return normalizeString(value).includes(normalizedTerm);
+			} else if (Array.isArray(value)) {
+				return value.some(checkValue);
+			} else if (typeof value === "object" && value !== null) {
+				if (value.vistoriaDTO) {
+					return (
+						checkValue(value.vistoriaDTO) ||
+						(value.vistoriaDTO.idClienteNavigation &&
+							checkValue(value.vistoriaDTO.idClienteNavigation))
+					);
+				}
+
+				return Object.values(value).some(checkValue);
+			}
+			return false;
+		};
+
+		return data.filter((item) =>
+			Object.values(item).some((value) => checkValue(value))
 		);
 	};
 
