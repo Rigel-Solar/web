@@ -38,8 +38,8 @@ const ViewPedido = ({ data }: ViewPedidoProps) => {
 	]);
 
 	useEffect(() => {
-		if (data?.idClienteNavigation.endereco) {
-			const parts = data.idClienteNavigation.endereco
+		if (data?.clienteDTO.endereco) {
+			const parts = data.clienteDTO.endereco
 				.split(", ")
 				.map((part) => part.trim());
 			setEnderecoArray(parts);
@@ -103,15 +103,15 @@ const ViewPedido = ({ data }: ViewPedidoProps) => {
 					<FormFieldsContainer>
 						<FormFieldsContainer columns={2}>
 							<FakeInput
-								value={data?.idClienteNavigation.nome}
+								value={data?.clienteDTO.nome}
 								label="Nome do cliente"
 							/>
 							<FakeInput
-								value={data.idTecnicoNavigation.usuario?.nome}
+								value={data.tecnicoDTO.usuario.nome}
 								label="Técnico Responsável"
 							/>
 						</FormFieldsContainer>
-						<FakeInput value={data?.idClienteNavigation.email} label="E-mail" />
+						<FakeInput value={data?.clienteDTO.email} label="E-mail" />
 						<FormFieldsContainer columns={2}>
 							<FakeInput value={enderecoArray[0]} label="Cidade" />
 							<FakeInput value={enderecoArray[1]} label="Bairro" />

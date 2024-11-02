@@ -99,11 +99,10 @@ const TableBody = ({ data, onOpenPedido }: TableBodyProps) => {
 				<C.Row key={index} onClick={() => onOpenPedido(item)}>
 					<Table.RowHeaderCell>
 						<div>
-							<p>{item.idClienteNavigation.endereco}</p>
-							<p>{item.idClienteNavigation.email}</p>
+							<p>{item.clienteDTO.email}</p>
 						</div>
 					</Table.RowHeaderCell>
-					<C.Cell>{item.idClienteNavigation.tipo}</C.Cell>
+					<C.Cell>{item.clienteDTO.tipo}</C.Cell>
 					<C.Cell>{item.idCliente}</C.Cell>
 					<C.Cell>(Não há)</C.Cell>
 					<C.Cell>(Não há)</C.Cell>

@@ -47,8 +47,8 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 	};
 
 	useEffect(() => {
-		if (data?.vistoriaDTO.idClienteNavigation.endereco) {
-			const parts = data.vistoriaDTO.idClienteNavigation.endereco
+		if (data?.vistoriaDTO.clienteDTO.endereco) {
+			const parts = data.vistoriaDTO.clienteDTO.endereco
 				.split(", ")
 				.map((part) => part.trim());
 			setEnderecoArray(parts);
@@ -86,21 +86,21 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 
 					<FormContainer>
 						<FormFieldsContainer>
-							{data.vistoriaDTO.idTecnicoNavigation && (
+							{data.vistoriaDTO.tecnicoDTO && (
 								<FakeInput
 									label="Técnico"
-									value={data.vistoriaDTO.idTecnicoNavigation.usuario.nome}
+									value={data.vistoriaDTO.tecnicoDTO.usuario.nome}
 								/>
 							)}
 
 							<FormFieldsContainer columns={2}>
 								<FakeInput
 									label="Nome"
-									value={data.vistoriaDTO.idClienteNavigation.nome}
+									value={data.vistoriaDTO.clienteDTO.nome}
 								/>
 								<FakeInput
 									label="Tipo de Cliente"
-									value={data.vistoriaDTO.idClienteNavigation.tipo}
+									value={data.vistoriaDTO.clienteDTO.tipo}
 								/>
 							</FormFieldsContainer>
 							<FormFieldsContainer columns={2}>

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-interface ClienteNavigation {
+interface Cliente {
 	tipo: string;
 	nome: string;
 	email: string;
@@ -8,13 +8,13 @@ interface ClienteNavigation {
 	longitude: number;
 }
 
-interface GestorNavigation {
+interface Gestor {
 	id: number;
 	idUsuario: number;
 	idUsuarioNavigation: null;
 }
 
-interface TecnicoNavigation {
+interface Tecnico {
 	crea: string;
 	usuario: {
 		nome: string;
@@ -28,9 +28,9 @@ export interface VistoriaTS {
 	fichaBanhos: any[];
 	fichaFotovoltaicos: any[];
 	fichaPiscinas: any[];
-	idClienteNavigation: ClienteNavigation;
-	idGestorNavigation: GestorNavigation;
-	idTecnicoNavigation: TecnicoNavigation;
+	clienteDTO: Cliente;
+	gestorDTO: Gestor;
+	tecnicoDTO: Tecnico;
 	idGestor: number;
 	idTecnico: number;
 	idCliente: number;

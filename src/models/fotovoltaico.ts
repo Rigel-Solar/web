@@ -106,11 +106,11 @@ interface VistoriaDto {
 	valorContaLuz: number;
 	comentarios: string;
 	id: number;
-	idClienteNavigation: IdClienteNavigation;
-	idGestorNavigation: IdGestorNavigation;
+	clienteDTO: ClienteDTO;
+	gestorDTO: GestorDTO;
 }
 
-interface IdClienteNavigation {
+interface ClienteDTO {
 	tipo: string;
 	nome: string;
 	email: string;
@@ -119,13 +119,13 @@ interface IdClienteNavigation {
 	longitude: number;
 }
 
-interface IdGestorNavigation {
+interface GestorDTO {
 	id: number;
 	idUsuario: number;
-	idUsuarioNavigation: IdUsuarioNavigation;
+	usuarioDTO: UsuarioDTO;
 }
 
-interface IdUsuarioNavigation {
+interface UsuarioDTO {
 	nome: string;
 	email: string;
 	senha: string;

@@ -96,12 +96,12 @@ const TableBody = ({ data, onOpenTechnician }: TableBodyProps) => (
 			<C.Row key={index} onClick={() => onOpenTechnician(item)}>
 				<Table.RowHeaderCell>
 					<div>
-						<p>{item.usuario.nome}</p>
-						<p>{item.usuario.email}</p>
+						<p>{item.usuario ? item.usuario.nome : "Sem nome"}</p>
+						<p>{item.usuario ? item.usuario.email : "Sem email"}</p>
 					</div>
 				</Table.RowHeaderCell>
 				<C.Cell>{item.crea}</C.Cell>
-				<C.Cell>{item.usuario.id}</C.Cell>
+				<C.Cell>{item.usuario ? item.usuario.id : "Sem id"}</C.Cell>
 				<Options />
 			</C.Row>
 		))}

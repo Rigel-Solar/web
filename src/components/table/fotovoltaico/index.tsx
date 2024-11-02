@@ -102,11 +102,11 @@ const TableBody = ({ data, onOpenFotovoltaico }: TableBodyProps) => {
 				<C.Row key={index} onClick={() => onOpenFotovoltaico(item)}>
 					<Table.RowHeaderCell>
 						<div>
-							<p>{item.vistoriaDTO.idClienteNavigation.endereco}</p>
-							<p>{item.vistoriaDTO.idClienteNavigation.email}</p>
+							<p>{item.vistoriaDTO.clienteDTO.endereco}</p>
+							<p>{item.vistoriaDTO.clienteDTO.email}</p>
 						</div>
 					</Table.RowHeaderCell>
-					<C.Cell>{item.vistoriaDTO.idClienteNavigation.tipo}</C.Cell>
+					<C.Cell>{item.vistoriaDTO.clienteDTO.tipo}</C.Cell>
 					<C.Cell>{item.vistoriaDTO.idCliente}</C.Cell>
 					<C.Cell>(Não há)</C.Cell>
 					<C.Cell>(Não há)</C.Cell>

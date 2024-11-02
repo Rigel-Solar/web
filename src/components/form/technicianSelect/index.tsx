@@ -54,9 +54,9 @@ const TechnicianSelect = ({
 			if (filter?.length) {
 				data = data.filter((tec) => filter.includes(tec.id));
 			}
-
 			setTechnicianOptions(() =>
 				data.map((tecnico) => {
+					console.log(tecnico);
 					return {
 						value: JSON.stringify(tecnico),
 						label: (
@@ -64,8 +64,8 @@ const TechnicianSelect = ({
 								className="multi-select-option"
 								style={{ display: "flex", alignItems: "center", gap: 10 }}
 							>
-								<Avatar variant="gray" alt={tecnico.usuario.nome} />
-								{tecnico.usuario.nome}
+								<Avatar variant="gray" alt={tecnico.usuario ? tecnico.usuario.nome : "Sem nome"} />
+								{tecnico.usuario ? tecnico.usuario.nome : "Sem nome"}
 							</div>
 						),
 					};

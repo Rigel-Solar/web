@@ -27,8 +27,8 @@ const useSearch = (data: any[]) => {
 				if (value.vistoriaDTO) {
 					return (
 						checkValue(value.vistoriaDTO) ||
-						(value.vistoriaDTO.idClienteNavigation &&
-							checkValue(value.vistoriaDTO.idClienteNavigation))
+						(value.vistoriaDTO.clienteDTO &&
+							checkValue(value.vistoriaDTO.clienteDTO))
 					);
 				}
 
