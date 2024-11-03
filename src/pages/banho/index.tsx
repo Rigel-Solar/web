@@ -10,11 +10,11 @@ import ModalBanho from "./modalBanho";
 import * as C from "./styles";
 
 const Banho = () => {
-	const [banhos, setBanhos] = useState<IBanho[]>([]);
 	const [selectedBanho, setSelectedBanho] = useState<IBanho | null>(null);
 
-	useFetch<IBanho[]>("/FichaBanho", ["banho"], {
-		onSuccess: (data) => setBanhos(data),
+	const { data: banhos = []} = useFetch<IBanho[]>("/FichaBanho", ["banho"], {
+		staleTime: 1000 * 6 * 60,
+		cacheTime: 1000 * 6 * 60,
 		keepPreviousData: true,
 		refetchOnWindowFocus: false,
 	});

@@ -47,8 +47,8 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 	};
 
 	useEffect(() => {
-		if (data?.vistoriaDTO.clienteDTO.endereco) {
-			const parts = data.vistoriaDTO.clienteDTO.endereco
+		if (data?.vistoriaDTO.idClienteNavigation.endereco) {
+			const parts = data.vistoriaDTO.idClienteNavigation.endereco
 				.split(", ")
 				.map((part) => part.trim());
 			setEnderecoArray(parts);
@@ -65,19 +65,19 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 			</Header>
 			<Content>
 				<div className="top">
-					{Array.isArray(data.imgUrl) && (
+					{Array.isArray(data.fotos) && (
 						<div className="left-side">
 							<CarouselContainer
 								showThumbs={false}
 								emulateTouch
-								onClickItem={(index) => handleImageClick(data.imgUrl![index])}
+								// onClickItem={(index) => handleImageClick(data.fotos)}
 							>
-								{data.imgUrl.map((src, index) => (
+								{data.fotos.map((data, index) => (
 									<Image
-										src={src}
+										src={data.foto}
 										alt={`Imagem ${index + 1}`}
 										key={index}
-										onClick={() => handleImageClick(src)}
+										onClick={() => handleImageClick(data.foto)}
 									/>
 								))}
 							</CarouselContainer>
@@ -86,21 +86,21 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 
 					<FormContainer>
 						<FormFieldsContainer>
-							{data.vistoriaDTO.tecnicoDTO && (
+							{data.vistoriaDTO.idTecnicoNavigation && (
 								<FakeInput
 									label="Técnico"
-									value={data.vistoriaDTO.tecnicoDTO.usuario.nome}
+									value={data.vistoriaDTO.idTecnicoNavigation.usuario.nome}
 								/>
 							)}
 
 							<FormFieldsContainer columns={2}>
 								<FakeInput
 									label="Nome"
-									value={data.vistoriaDTO.clienteDTO.nome}
+									value={data.vistoriaDTO.idClienteNavigation.nome}
 								/>
 								<FakeInput
 									label="Tipo de Cliente"
-									value={data.vistoriaDTO.clienteDTO.tipo}
+									value={data.vistoriaDTO.idClienteNavigation.tipo}
 								/>
 							</FormFieldsContainer>
 							<FormFieldsContainer columns={2}>

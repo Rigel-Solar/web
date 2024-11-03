@@ -44,15 +44,14 @@ const ModalClient = ({
 	const [openModal, setOpenModal] = useState(false);
 
 	const { mutate: onCreate, isLoading } = useMutationQuery(
-		`/Cliente/`,
+		data ? `/Cliente?id=${data?.id}` : "/Cliente",
 		data ? "put" : "post"
 	);
 
-	const { mutate: onDeleteClient } = useMutationQuery(`/Cliente/`, "delete");
+	const { mutate: onDeleteClient } = useMutationQuery(`/Cliente?id=${data?.id}`, "delete");
 
 	function onDelete() {
 		onDeleteClient(
-			{ id: data?.id },
 			{
 				onSuccess: () => {
 					toast.success("Cliente deletado com sucesso!", { duration: 2500 });

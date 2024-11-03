@@ -1,3 +1,4 @@
+import { Foto } from "./foto";
 import { VistoriaTS } from "./vistoria";
 
 interface InspectionItem {
@@ -30,5 +31,5 @@ export interface IBanho {
 	idVistoria: number;
 	id: number;
 	vistoriaDTO: VistoriaTS;
-	imgUrl?: Array<string>;
+	fotos?: Array<Foto>;
 }

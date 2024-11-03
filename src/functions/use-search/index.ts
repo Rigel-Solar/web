@@ -16,6 +16,8 @@ const useSearch = (data: any[]) => {
 	};
 
 	const filterData = (data: any[], term: string): any[] => {
+		if (!Array.isArray(data)) return []; // Certifique-se de que data é um array
+
 		const normalizedTerm = normalizeString(term);
 
 		const checkValue = (value: any): boolean => {
@@ -31,7 +33,6 @@ const useSearch = (data: any[]) => {
 							checkValue(value.vistoriaDTO.clienteDTO))
 					);
 				}
-
 				return Object.values(value).some(checkValue);
 			}
 			return false;

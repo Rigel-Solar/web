@@ -10,11 +10,11 @@ import ModalPiscina from "./modalPiscina";
 import * as C from "./styles";
 
 const Piscina = () => {
-	const [piscinas, setPiscinas] = useState<IPiscina[]>([]);
 	const [selectedPiscina, setSelectedPiscina] = useState<IPiscina | null>(null);
 
-	useFetch<IPiscina[]>("/FichaPiscina", ["piscina"], {
-		onSuccess: (data) => setPiscinas(data),
+	const { data: piscinas = []} = useFetch<IPiscina[]>("/FichaPiscina", ["piscina"], {
+		staleTime: 1000 * 6 * 60,
+		cacheTime: 1000 * 6 * 60,
 		keepPreviousData: true,
 		refetchOnWindowFocus: false,
 	});

@@ -7,21 +7,21 @@ import {
 	FaAnglesRight,
 } from "react-icons/fa6";
 import { SlOptions } from "react-icons/sl";
-import { VistoriaTS } from "../../../models/vistoria";
+import { PedidoTS } from "../../../models/pedido";
 import Button from "../../form/button";
 import * as C from "../styles";
 
 interface TableBodyProps {
-	data: VistoriaTS[];
-	onOpenPedido: (pedido: VistoriaTS) => void;
+	data: PedidoTS[];
+	onOpenPedido: (pedido: PedidoTS) => void;
 }
 
 export interface DataTablePedidoProps {
-	data: VistoriaTS[];
+	data: PedidoTS[];
 	$itemsPerPage?: number;
 	hasPagination?: boolean;
 	background?: boolean;
-	onOpenPedido: (pedido: VistoriaTS) => void;
+	onOpenPedido: (pedido: PedidoTS) => void;
 }
 
 interface PaginationProps {

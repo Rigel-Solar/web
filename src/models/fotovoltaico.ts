@@ -1,3 +1,5 @@
+import { Foto } from "./foto";
+
 export interface IFotovoltaico {
 	quantidadeSf: number;
 	potenciaSf: number;
@@ -42,7 +44,7 @@ export interface IFotovoltaico {
 	tipoSuperficieDTO: TipoSuperficieDto;
 	id: number;
 	vistoriaDTO: VistoriaDto;
-	fotos?: Foto[];
+	fotos?: Array<Foto>;
 }
 
 interface CondicaoPadraoEntradaDto {
@@ -129,9 +131,4 @@ interface UsuarioDTO {
 	nome: string;
 	email: string;
 	senha: string;
-}
-
-interface Foto {
-	id: number;
-	foto: string;
 }

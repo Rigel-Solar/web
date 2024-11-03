@@ -7,21 +7,21 @@ import Search from "../../components/search";
 import DataTablePedido from "../../components/table/pedido";
 import useModal from "../../functions/use-modal";
 import useSearch from "../../functions/use-search";
-import { VistoriaTS } from "../../models/vistoria";
+import { PedidoTS } from "../../models/pedido";
 import { useFetch } from "../../services/hooks/useFetch";
 import { DefaultPageContainer } from "../styles";
 import * as C from "./styles";
 import ViewPedido from "./viewPedido";
 
 const Pedidos = () => {
-	const [pedidos, setPedidos] = useState<VistoriaTS[]>([]);
-	const [selectedPedido, setSelectedPedido] = useState<VistoriaTS | null>(null);
+	const [selectedPedido, setSelectedPedido] = useState<PedidoTS | null>(null);
 	const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
 	const { setHasEditedData } = useModal();
 
-	useFetch<VistoriaTS[]>("/Vistoria/getAll", ["vistoria"], {
-		onSuccess: (data) => setPedidos(data),
+	const {data: pedidos = []} = useFetch<PedidoTS[]>("/Vistoria/getAll", ["vistoria"], {
+		staleTime: 1000 * 6 * 60,
+		cacheTime: 1000 * 6 * 60,
 		keepPreviousData: true,
 		refetchOnWindowFocus: false,
 	});
@@ -33,7 +33,7 @@ const Pedidos = () => {
 		setSelectedPedido(null);
 	};
 
-	const handleOpenViewPedidoModal = (pedido: VistoriaTS) => {
+	const handleOpenViewPedidoModal = (pedido: PedidoTS) => {
 		setSelectedPedido(pedido);
 		setIsCreateModalOpen(false);
 	};
@@ -102,8 +102,8 @@ const Header = ({ onOpenModal, searchTerm, onSearchChange }: HeaderProps) => (
 );
 
 interface DataTableContainerProps {
-	data: VistoriaTS[];
-	onOpenPedido: (pedido: VistoriaTS) => void;
+	data: PedidoTS[];
+	onOpenPedido: (pedido: PedidoTS) => void;
 }
 
 const DataTableContainer = ({

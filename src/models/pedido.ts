@@ -23,14 +23,14 @@ interface Tecnico {
 	};
 }
 
-export interface VistoriaTS {
+export interface PedidoTS {
 	id: number;
 	fichaBanhos: any[];
 	fichaFotovoltaicos: any[];
 	fichaPiscinas: any[];
-	idClienteNavigation: Cliente;
-	idGestorNavigation: Gestor;
-	idTecnicoNavigation: Tecnico;
+	clienteDTO: Cliente;
+	gestorDTO: Gestor;
+	tecnicoDTO: Tecnico;
 	idGestor: number;
 	idTecnico: number;
 	idCliente: number;

@@ -17,11 +17,11 @@ import {
 } from "../../../components/modal/actionAlertModal";
 import AddNewOrder from "../../../components/modal/addNewOrder";
 import EditedFormPopUp from "../../../components/modal/editedFormPopUp";
-import { VistoriaTS } from "../../../models/vistoria";
+import { PedidoTS } from "../../../models/pedido";
 import { ModalContainer } from "../../cliente/createClient/styles";
 
 export interface ViewPedidoProps {
-	data: VistoriaTS;
+	data: PedidoTS;
 }
 
 const ViewPedido = ({ data }: ViewPedidoProps) => {
@@ -103,11 +103,11 @@ const ViewPedido = ({ data }: ViewPedidoProps) => {
 					<FormFieldsContainer>
 						<FormFieldsContainer columns={2}>
 							<FakeInput
-								value={data?.clienteDTO.nome}
+								value={data?.clienteDTO?.nome}
 								label="Nome do cliente"
 							/>
 							<FakeInput
-								value={data.tecnicoDTO.usuario.nome}
+								value={data.tecnicoDTO.usuario?.nome}
 								label="Técnico Responsável"
 							/>
 						</FormFieldsContainer>

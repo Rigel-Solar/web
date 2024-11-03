@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import Search from "../../components/search";
 import DataTableFotovoltaico from "../../components/table/fotovoltaico";
 import useSearch from "../../functions/use-search";
@@ -8,10 +8,10 @@ import { DefaultPageContainer } from "../styles";
 import * as C from "./styles";
 
 const Fotovoltaico = () => {
-	const [fotovoltaicos, setFotovoltaicos] = useState<IFotovoltaico[]>([]);
 
-	useFetch<IFotovoltaico[]>("/FichaFotovoltaico", ["fotovoltaico"], {
-		onSuccess: (data) => setFotovoltaicos(data),
+	const { data: fotovoltaicos = []} = useFetch<IFotovoltaico[]>("/FichaFotovoltaico", ["fotovoltaico"], {
+		staleTime: 1000 * 6 * 60,
+		cacheTime: 1000 * 6 * 60,
 		keepPreviousData: true,
 		refetchOnWindowFocus: false,
 	});

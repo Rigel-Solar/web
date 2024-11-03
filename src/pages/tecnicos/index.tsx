@@ -14,16 +14,15 @@ import ViewTecnico from "./modalTecnico/viewTecnico";
 import * as C from "./styles";
 
 const Tecnicos = () => {
-	const [technicians, setTechnicians] = useState<Technician[]>([]);
 	const [selectedTechnician, setSelectedTechnician] =
 		useState<Technician | null>(null);
 	const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
 	const { setHasEditedData } = useModal();
 
-	useFetch<Technician[]>("/Tecnico", ["tecnico"], {
-		onSuccess: (data) => setTechnicians(data),
-
+	const { data: technicians = [] } = useFetch<Technician[]>("/Tecnico", ["tecnico"], {
+		staleTime: 1000 * 6 * 60,
+		cacheTime: 1000 * 6 * 60,
 		keepPreviousData: true,
 		refetchOnWindowFocus: false,
 	});

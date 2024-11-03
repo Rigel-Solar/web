@@ -1,21 +1,20 @@
-import { ChangeEvent, useState } from "react";
-import { FiPlus } from "react-icons/fi";
-import Button from "../../components/form/button";
-import { Modal } from "../../components/modal";
-import EditedFormPopUp from "../../components/modal/editedFormPopUp";
-import Search from "../../components/search";
-import DataTableCliente from "../../components/table/cliente";
-import useModal from "../../functions/use-modal";
-import useSearch from "../../functions/use-search";
-import { Client } from "../../models/client";
-import { useFetch } from "../../services/hooks/useFetch";
-import { DefaultPageContainer } from "../styles";
-import ModalClient from "./createClient";
-import ViewClient from "./createClient/viewClient";
-import * as C from "./styles";
+import { ChangeEvent, useState } from 'react';
+import { FiPlus } from 'react-icons/fi';
+import Button from '../../components/form/button';
+import { Modal } from '../../components/modal';
+import EditedFormPopUp from '../../components/modal/editedFormPopUp';
+import Search from '../../components/search';
+import DataTableCliente from '../../components/table/cliente';
+import useModal from '../../functions/use-modal';
+import useSearch from '../../functions/use-search';
+import { Client } from '../../models/client';
+import { useFetch } from '../../services/hooks/useFetch';
+import { DefaultPageContainer } from '../styles';
+import ModalClient from './createClient';
+import ViewClient from './createClient/viewClient';
+import * as C from './styles';
 
 const Cliente = () => {
-	const [client, setClient] = useState<Client[]>([]);
 	const [selectedClient, setSelectedClient] = useState<Client | null>(null);
 	const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
@@ -27,9 +26,9 @@ const Cliente = () => {
 		setOpenConfirmCloseModal,
 	} = useModal();
 
-	useFetch<Client[]>(`/Cliente`, ["cliente"], {
-		onSuccess: (data) => setClient(data),
-
+	const { data: client = [] } = useFetch<Client[]>(`/Cliente`, ['cliente'], {
+		staleTime: 1000 * 6 * 60,
+		cacheTime: 1000 * 6 * 60,
 		keepPreviousData: true,
 		refetchOnWindowFocus: false,
 	});

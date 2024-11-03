@@ -1,25 +1,5 @@
+import { Foto } from "./foto";
 import { VistoriaTS } from "./vistoria";
-
-interface poolItem {
-	name: string | null;
-	value: string;
-}
-
-export interface Piscina {
-	orderId: number;
-	technician: string;
-	name: string;
-	city: string;
-	state: string;
-	street: string;
-	number: number;
-	imgUrl: Array<string>;
-	neighborhood: string;
-	date: string;
-	type: string;
-	cellphone: string;
-	poolItems: poolItem[];
-}
 
 export interface IPiscina {
 	comprimento: number;
@@ -32,7 +12,7 @@ export interface IPiscina {
 	idVistoria: number;
 	id: number;
 	vistoriaDTO: VistoriaTS;
-	imgUrl?: Array<string>;
+	fotos?: Array<Foto>;
 	area?: number;
 	volume?: number;
 }

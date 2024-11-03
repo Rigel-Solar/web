@@ -9,7 +9,7 @@ import { PiTrashLight } from "react-icons/pi";
 import { toast } from "sonner";
 import { concessionarias } from "../../../constants/concessionaria";
 import { addNewProps } from "../../../models/add-new";
-import { VistoriaTS } from "../../../models/vistoria";
+import { PedidoTS } from "../../../models/pedido";
 import { useMutationQuery } from "../../../services/hooks/useMutationQuery";
 import { OrderTS, orderSchema } from "../../../utils/pedidoSchema";
 import Button from "../../form/button";
@@ -33,7 +33,7 @@ import {
 } from "./styles";
 
 export interface AddNewOrderProps extends addNewProps {
-	data?: VistoriaTS;
+	data?: PedidoTS;
 }
 
 const AddNewOrder = ({
@@ -137,7 +137,7 @@ const AddNewOrder = ({
 		},
 	];
 
-	const { mutate: onDeleteOrder } = useMutationQuery(`/Vistoria/`, "delete");
+	const { mutate: onDeleteOrder } = useMutationQuery(`/Vistoria?id=${data?.id}`, "delete");
 
 	function onDelete() {
 		onDeleteOrder(

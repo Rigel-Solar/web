@@ -56,7 +56,6 @@ const TechnicianSelect = ({
 			}
 			setTechnicianOptions(() =>
 				data.map((tecnico) => {
-					console.log(tecnico);
 					return {
 						value: JSON.stringify(tecnico),
 						label: (
@@ -64,8 +63,8 @@ const TechnicianSelect = ({
 								className="multi-select-option"
 								style={{ display: "flex", alignItems: "center", gap: 10 }}
 							>
-								<Avatar variant="gray" alt={tecnico.usuario ? tecnico.usuario.nome : "Sem nome"} />
-								{tecnico.usuario ? tecnico.usuario.nome : "Sem nome"}
+								<Avatar variant="gray" alt={tecnico.usuario?.nome} />
+								{tecnico.usuario?.nome}
 							</div>
 						),
 					};
@@ -97,8 +96,8 @@ const TechnicianSelect = ({
 			value: JSON.stringify(data),
 			label: (
 				<div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-					<Avatar variant="gray" alt={data?.usuario.nome} />
-					{data.usuario.nome}
+					<Avatar variant="gray" alt={data?.usuario?.nome} />
+					{data.usuario?.nome}
 				</div>
 			),
 		};
