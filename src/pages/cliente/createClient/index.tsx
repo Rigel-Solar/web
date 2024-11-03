@@ -33,18 +33,20 @@ import { ModalContainer } from "./styles";
 
 export interface ModalClientProps extends addNewProps {
 	data?: Client;
+	refetch?(): void;
 }
 
 const ModalClient = ({
 	onSetEditedData,
 	onSuccess,
 	data,
+	refetch,
 	...props
 }: ModalClientProps) => {
 	const [openModal, setOpenModal] = useState(false);
 
 	const { mutate: onCreate, isLoading } = useMutationQuery(
-		data ? `/Cliente?id=${data?.id}` : "/Cliente",
+		data ? `/Cliente/${data?.id}` : "/Cliente",
 		data ? "put" : "post"
 	);
 
@@ -100,13 +102,13 @@ const ModalClient = ({
 		formData.endereco = `${data.endereco.city}, ${data.endereco.neighbourhood}, ${data.endereco.street}, ${data.endereco.number}, ${data.endereco.zipCode}`;
 		onCreate(formData, {
 			onSuccess: () => {
-				console.log("Form submitted:", formData);
 				toast.success(
 					`Cliente ${data ? "Atualizado" : "Cadastrado"} com sucesso!`,
 					{
 						duration: 2500,
 					}
 				);
+				// refetch?.();w
 			},
 			onError: () => {
 				toast.error(`Falha em ${data ? "Atualizar" : "Cadastrar"} Cliente!`, {

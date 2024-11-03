@@ -1,23 +1,34 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
+import { Modal } from "../../components/modal";
 import Search from "../../components/search";
 import DataTableFotovoltaico from "../../components/table/fotovoltaico";
+import { Fotovoltaicos } from "../../constants/fotovoltaico";
 import useSearch from "../../functions/use-search";
 import { IFotovoltaico } from "../../models/fotovoltaico";
-import { useFetch } from "../../services/hooks/useFetch";
 import { DefaultPageContainer } from "../styles";
+import ModalFotovoltaico from "./modalFotovoltaico";
 import * as C from "./styles";
 
 const Fotovoltaico = () => {
+	const [selectedFotovoltaico, setSelectedFotovoltaico] = useState<IFotovoltaico | null>(null);
 
-	const { data: fotovoltaicos = []} = useFetch<IFotovoltaico[]>("/FichaFotovoltaico", ["fotovoltaico"], {
-		staleTime: 1000 * 6 * 60,
-		cacheTime: 1000 * 6 * 60,
-		keepPreviousData: true,
-		refetchOnWindowFocus: false,
-	});
+	// const { data: fotovoltaicos = []} = useFetch<IFotovoltaico[]>("/FichaFotovoltaico", ["fotovoltaico"], {
+	// 	staleTime: 1000 * 6 * 60,
+	// 	cacheTime: 1000 * 6 * 60,
+	// 	keepPreviousData: true,
+	// 	refetchOnWindowFocus: false,
+	// });
 
 	const { searchTerm, handleSearchChange, filteredData } =
-		useSearch(fotovoltaicos);
+		useSearch(Fotovoltaicos);	
+
+		const handleOpenViewBanhoModal = (fotovoltaico: IFotovoltaico) => {
+			setSelectedFotovoltaico(fotovoltaico);
+		};
+	
+		const handleCloseModal = () => {
+			setSelectedFotovoltaico(null);
+		};
 
 	return (
 		<DefaultPageContainer>
@@ -25,9 +36,17 @@ const Fotovoltaico = () => {
 				<Header searchTerm={searchTerm} onSearchChange={handleSearchChange} />
 				<DataTableContainer
 					data={filteredData}
-					onOpenFotovoltaico={() => null}
+					onOpenFotovoltaico={handleOpenViewBanhoModal}
 				/>
 			</C.Container>
+
+			<Modal
+				open={!!selectedFotovoltaico}
+				onOpenChange={handleCloseModal}
+				position="center"
+			>
+				{selectedFotovoltaico && <ModalFotovoltaico data={selectedFotovoltaico} />}
+			</Modal>
 		</DefaultPageContainer>
 	);
 };

@@ -110,6 +110,7 @@ interface VistoriaDto {
 	id: number;
 	clienteDTO: ClienteDTO;
 	gestorDTO: GestorDTO;
+	tecnicoDTO: TecnicoDTO
 }
 
 interface ClienteDTO {
@@ -131,4 +132,13 @@ interface UsuarioDTO {
 	nome: string;
 	email: string;
 	senha: string;
+}
+
+interface TecnicoDTO {
+	crea: string;
+	usuario: {
+		nome: string;
+		email: string;
+		id: string;
+	};
 }

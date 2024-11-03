@@ -26,7 +26,7 @@ const Cliente = () => {
 		setOpenConfirmCloseModal,
 	} = useModal();
 
-	const { data: client = [] } = useFetch<Client[]>(`/Cliente`, ['cliente'], {
+	const { data: client = [], refetch } = useFetch<Client[]>(`/Cliente`, ['cliente'], {
 		staleTime: 1000 * 6 * 60,
 		cacheTime: 1000 * 6 * 60,
 		keepPreviousData: true,
@@ -74,6 +74,7 @@ const Cliente = () => {
 					onClose={handleCloseModal}
 					onSuccess={handleCloseModal}
 					onSetEditedData={setHasEditedData}
+					refetch={refetch}
 				/>
 			</Modal>
 
