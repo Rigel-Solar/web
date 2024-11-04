@@ -21,7 +21,6 @@ import {
 	Title,
 	TriggerButtons,
 	TriggerClose,
-	TriggerSuccess,
 } from "./styles";
 
 export interface ModalBanhoProps extends addNewProps {
@@ -169,7 +168,7 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 				<VisuallyHidden>Detalhes do pedido</VisuallyHidden>
 			</Description>
 			<TriggerButtons>
-				<TriggerSuccess onClick={props.onClose}>Salvar</TriggerSuccess>
+				<TriggerClose onClick={props.onClose}>Salvar</TriggerClose>
 			</TriggerButtons>
 
 			<Modal open={openModal} onOpenChange={onOpenChange} position="center">

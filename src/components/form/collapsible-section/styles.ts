@@ -24,9 +24,8 @@ export const Header = styled.button`
 	}
 `;
 
-export const Title = styled.span`
+export const Title = styled.p`
 	font-size: 16px;
-	font-weight: 500;
 	color: ${({ theme }) => theme.colors.brand.text};
 	text-align: left;
 `;

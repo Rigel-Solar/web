@@ -56,6 +56,7 @@ const ModalClient = ({
 		onDeleteClient(
 			{
 				onSuccess: () => {
+					refetch?.();
 					toast.success("Cliente deletado com sucesso!", { duration: 2500 });
 				},
 				onError: () => {

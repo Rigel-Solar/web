@@ -49,42 +49,43 @@ const TechnicianSelect = ({
 	>([]);
 	const [value, setValue] = useState<any>();
 
-	useFetch<Technician[]>(`/Tecnico`, ["tecnico"], {
+	useFetch<Technician[]>("/Tecnico", ["tecnico"], {
+		staleTime: 1000 * 6 * 60,
+		cacheTime: 1000 * 6 * 60,
+		keepPreviousData: true,
+		refetchOnWindowFocus: false,
 		onSuccess: (data) => {
+			let filteredData = data;
 			if (filter?.length) {
-				data = data.filter((tec) => filter.includes(tec.id));
+				filteredData = data.filter((tec) => filter.includes(tec.id));
 			}
+
 			setTechnicianOptions(() =>
-				data.map((tecnico) => {
-					return {
-						value: JSON.stringify(tecnico),
-						label: (
-							<div
-								className="multi-select-option"
-								style={{ display: "flex", alignItems: "center", gap: 10 }}
-							>
-								<Avatar variant="gray" alt={tecnico.usuario?.nome} />
-								{tecnico.usuario?.nome}
-							</div>
-						),
-					};
-				})
+				filteredData.map((tecnico) => ({
+					value: JSON.stringify(tecnico),
+					label: (
+						<div
+							className="multi-select-option"
+							style={{ display: "flex", alignItems: "center", gap: 10 }}
+						>
+							<Avatar variant="gray" alt={tecnico.usuario?.nome} />
+							{tecnico.usuario?.nome}
+						</div>
+					),
+				}))
 			);
 		},
 	});
 
 	useEffect(() => {
-		if (technicianOptions?.length) {
-			const findTechnician = technicianOptions?.filter?.((e: any) => {
-				const { id } = JSON.parse(e.value) as Technician;
-				if (defaultValue === id) {
-					return true;
-				}
-				return false;
+		if (technicianOptions?.length && defaultValue) {
+			const findTechnician = technicianOptions.find((option) => {
+				const { id } = JSON.parse(option.value) as Technician;
+				return defaultValue === id;
 			});
 
-			if (findTechnician?.length) {
-				setValue(findTechnician[0]);
+			if (findTechnician) {
+				setValue(findTechnician);
 			}
 		}
 	}, [defaultValue, technicianOptions]);
@@ -101,11 +102,9 @@ const TechnicianSelect = ({
 				</div>
 			),
 		};
-		setTechnicianOptions((old) => {
-			return [...old, newTechnician];
-		});
-		setValue(newTechnician);
 
+		setTechnicianOptions((old) => [...old, newTechnician]);
+		setValue(newTechnician);
 		onSelect(data?.id as string);
 		onSelectTechnicianData?.(data);
 	};
@@ -147,7 +146,6 @@ const TechnicianSelect = ({
 					setValue(data);
 					if (data) {
 						const { id } = JSON.parse(data.value) as Technician;
-
 						onSelect(id);
 						onSelectTechnicianData?.(JSON.parse(data.value) as Technician);
 					} else {

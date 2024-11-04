@@ -1,15 +1,18 @@
-import { VisuallyHidden } from '@radix-ui/themes';
-import { useEffect, useState } from 'react';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
-import CollapsibleSection from '../../../components/form/collapsible-section';
-import FakeInput from '../../../components/form/fakeInput';
-import { FormContainer, FormFieldsContainer } from '../../../components/form/styles';
-import Image from '../../../components/image';
-import { CloseButton } from '../../../components/image/styles';
-import { Modal } from '../../../components/modal';
-import useModal from '../../../functions/use-modal';
-import { addNewProps } from '../../../models/add-new';
-import { IFotovoltaico } from '../../../models/fotovoltaico';
+import { VisuallyHidden } from "@radix-ui/themes";
+import { useEffect, useState } from "react";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import CollapsibleSection from "../../../components/form/collapsible-section";
+import FakeInput from "../../../components/form/fakeInput";
+import {
+	FormContainer,
+	FormFieldsContainer,
+} from "../../../components/form/styles";
+import Image from "../../../components/image";
+import { CloseButton } from "../../../components/image/styles";
+import { Modal } from "../../../components/modal";
+import useModal from "../../../functions/use-modal";
+import { addNewProps } from "../../../models/add-new";
+import { IFotovoltaico } from "../../../models/fotovoltaico";
 import {
 	CarouselContainer,
 	Content,
@@ -18,8 +21,7 @@ import {
 	Title,
 	TriggerButtons,
 	TriggerClose,
-	TriggerSuccess,
-} from './styles';
+} from "./styles";
 
 export interface ModalFotovoltaicoProps extends addNewProps {
 	data: IFotovoltaico;
@@ -28,7 +30,13 @@ export interface ModalFotovoltaicoProps extends addNewProps {
 const ModalFotovoltaico = ({ data, ...props }: ModalFotovoltaicoProps) => {
 	const { openModal, onOpenChange, handleOpenModal } = useModal();
 	const [currentImage, setCurrentImage] = useState<string | null>(null);
-	const [enderecoArray, setEnderecoArray] = useState<string[]>(['', '', '', '', '']);
+	const [enderecoArray, setEnderecoArray] = useState<string[]>([
+		"",
+		"",
+		"",
+		"",
+		"",
+	]);
 
 	const handleImageClick = (src?: string) => {
 		if (src) {
@@ -40,7 +48,7 @@ const ModalFotovoltaico = ({ data, ...props }: ModalFotovoltaicoProps) => {
 	useEffect(() => {
 		if (data?.vistoriaDTO.clienteDTO.endereco) {
 			const parts = data.vistoriaDTO.clienteDTO.endereco
-				.split(', ')
+				.split(", ")
 				.map((part) => part.trim());
 			setEnderecoArray(parts);
 		}
@@ -74,12 +82,21 @@ const ModalFotovoltaico = ({ data, ...props }: ModalFotovoltaicoProps) => {
 					<FormContainer>
 						<FormFieldsContainer>
 							{data.vistoriaDTO.tecnicoDTO && (
-								<FakeInput label="Técnico" value={data.vistoriaDTO.tecnicoDTO.usuario?.nome} />
+								<FakeInput
+									label="Técnico"
+									value={data.vistoriaDTO.tecnicoDTO.usuario?.nome}
+								/>
 							)}
 
 							<FormFieldsContainer columns={2}>
-								<FakeInput label="Nome" value={data.vistoriaDTO.clienteDTO.nome} />
-								<FakeInput label="Tipo de Cliente" value={data.vistoriaDTO.clienteDTO.tipo} />
+								<FakeInput
+									label="Nome"
+									value={data.vistoriaDTO.clienteDTO.nome}
+								/>
+								<FakeInput
+									label="Tipo de Cliente"
+									value={data.vistoriaDTO.clienteDTO.tipo}
+								/>
 							</FormFieldsContainer>
 							<FormFieldsContainer columns={2}>
 								<FakeInput label="Cidade" value={enderecoArray[0]} />
@@ -102,52 +119,124 @@ const ModalFotovoltaico = ({ data, ...props }: ModalFotovoltaicoProps) => {
 					<FakeInput label="Potência do Módulo" value={data.potenciaSf} />
 					<FakeInput label="Dimensões do Módulo" value={data.dimensoesSf} />
 					<FakeInput label="Área de Ocupação" value={data.areaOcupacaoSf} />
-					<FakeInput label="Quantidade de Inversores" value={data.quantidadeInversorSf} />
+					<FakeInput
+						label="Quantidade de Inversores"
+						value={data.quantidadeInversorSf}
+					/>
 					<FakeInput label="Modelo do Inversor" value={data.modeloInversorSf} />
 				</CollapsibleSection>
 
 				<CollapsibleSection title="Padrão de Entrada">
-				  <FakeInput label="Concessionária de Energia" value={data.concessionariaEnergiaPe} />
+					<FakeInput
+						label="Concessionária de Energia"
+						value={data.concessionariaEnergiaPe}
+					/>
 					<FakeInput label="Tipo de Cliente" value={data.tipoClienteDTO.tipo} />
-					<FakeInput label="Demanda Contratada" value={data.demandaContratadaPe} />
+					<FakeInput
+						label="Demanda Contratada"
+						value={data.demandaContratadaPe}
+					/>
 					<FakeInput label="Tipo de Ligação" value={data.tipoLigacaoDTO.tipo} />
-					<FakeInput label="Tensão Nominal" value={data.tensaoNominalDTO.tensao} />
-					<FakeInput label="Condição Padrão de Entrada" value={data.condicaoPadraoEntradaDTO.condicao} />
-					<FakeInput label="Dimensão da Caixa Padrão" value={data.dimensaoCaixaPadraoPe} />
-					<FakeInput label="Modelo do Relogio" value={data.modeloRelogioDTO.modelo} />
-					<FakeInput label="Aterramento" value={data.aterramentoPe ? 'Sim' : 'Não'} />
-					<FakeInput label="Disjuntor do Padrão de Entrada" value={data.disjuntorPadraoEntradaPe} />
+					<FakeInput
+						label="Tensão Nominal"
+						value={data.tensaoNominalDTO.tensao}
+					/>
+					<FakeInput
+						label="Condição Padrão de Entrada"
+						value={data.condicaoPadraoEntradaDTO.condicao}
+					/>
+					<FakeInput
+						label="Dimensão da Caixa Padrão"
+						value={data.dimensaoCaixaPadraoPe}
+					/>
+					<FakeInput
+						label="Modelo do Relogio"
+						value={data.modeloRelogioDTO.modelo}
+					/>
+					<FakeInput
+						label="Aterramento"
+						value={data.aterramentoPe ? "Sim" : "Não"}
+					/>
+					<FakeInput
+						label="Disjuntor do Padrão de Entrada"
+						value={data.disjuntorPadraoEntradaPe}
+					/>
 					<FakeInput label="Bitola do Condutor" value={data.bitolaCondutorPe} />
 				</CollapsibleSection>
 
 				<CollapsibleSection title="Quadro Principal de Energia">
-					<FakeInput label="Disjuntor Quadro Principal" value={data.disjuntorQuadroPrincipalQpe} />
-					<FakeInput label="Condições Quadro Distribuição Principal de Energia" value={data.condicaoQuadroPrincipalDTO.condicao} />
-					<FakeInput label="Bitola do Condutor de Entrada no Quadro (Antes do Disjuntor Geral)" value={data.bitolaCondutorPe} />
+					<FakeInput
+						label="Disjuntor Quadro Principal"
+						value={data.disjuntorQuadroPrincipalQpe}
+					/>
+					<FakeInput
+						label="Condições Quadro Distribuição Principal de Energia"
+						value={data.condicaoQuadroPrincipalDTO.condicao}
+					/>
+					<FakeInput
+						label="Bitola do Condutor de Entrada no Quadro (Antes do Disjuntor Geral)"
+						value={data.bitolaCondutorPe}
+					/>
 					<FakeInput label="Aterramento" value={data.aterramentoPe} />
 				</CollapsibleSection>
 
 				<CollapsibleSection title="Local de Instalação dos Módulos">
-					<FakeInput label="Local" value={data.localInstalacaoModuloDTO.local} />
-					<FakeInput label="Idade do Telhado" value={data.idadeTelhadoDTO.idade} />
-					<FakeInput label="Material das Vigas do Telhado" value={data.materialVigasTelhadoDTO.condicao} />
-					<FakeInput label="Condições das Vigas" value={data.condicaoVigaDTO.condicao} />
+					<FakeInput
+						label="Local"
+						value={data.localInstalacaoModuloDTO.local}
+					/>
+					<FakeInput
+						label="Idade do Telhado"
+						value={data.idadeTelhadoDTO.idade}
+					/>
+					<FakeInput
+						label="Material das Vigas do Telhado"
+						value={data.materialVigasTelhadoDTO.condicao}
+					/>
+					<FakeInput
+						label="Condições das Vigas"
+						value={data.condicaoVigaDTO.condicao}
+					/>
 				</CollapsibleSection>
 
 				<CollapsibleSection title="Solo">
-					<FakeInput label="Dimensões Úteis (LxC)" value={`${data.larguraSolo} x ${data.comprimentoSolo}`} />
-					<FakeInput label="Nivelamento do Solo" value={data.nivelamentoSoloDTO.nivelamento} />
-					<FakeInput label="Tipo de Superfície" value={data.tipoSuperficieDTO.tipo} />
+					<FakeInput
+						label="Dimensões Úteis (LxC)"
+						value={`${data.larguraSolo} x ${data.comprimentoSolo}`}
+					/>
+					<FakeInput
+						label="Nivelamento do Solo"
+						value={data.nivelamentoSoloDTO.nivelamento}
+					/>
+					<FakeInput
+						label="Tipo de Superfície"
+						value={data.tipoSuperficieDTO.tipo}
+					/>
 				</CollapsibleSection>
 
 				<CollapsibleSection title="Telhado">
 					<FakeInput label="Acesso" value={data.telhadoAcessoDTO.acesso} />
 					<FakeInput label="Tipo de Telha" value={data.tipoTelha} />
-					<FakeInput label="Distância entre Ripas" value={data.distanciaRipasTelhado} />
-					<FakeInput label="Distância entre Caibros" value={data.distanciaCaibrosTelhado} />
-					<FakeInput label="Distância entre Terças" value={data.distanciaTercasTelhado} />
-					<FakeInput label="Distância Empena" value={data.distanciaEmpenaTelhado} />
-					<FakeInput label="Condição do Telhado" value={data.condicaoVigaDTO.condicao} />
+					<FakeInput
+						label="Distância entre Ripas"
+						value={data.distanciaRipasTelhado}
+					/>
+					<FakeInput
+						label="Distância entre Caibros"
+						value={data.distanciaCaibrosTelhado}
+					/>
+					<FakeInput
+						label="Distância entre Terças"
+						value={data.distanciaTercasTelhado}
+					/>
+					<FakeInput
+						label="Distância Empena"
+						value={data.distanciaEmpenaTelhado}
+					/>
+					<FakeInput
+						label="Condição do Telhado"
+						value={data.condicaoVigaDTO.condicao}
+					/>
 				</CollapsibleSection>
 			</Content>
 
@@ -155,7 +244,7 @@ const ModalFotovoltaico = ({ data, ...props }: ModalFotovoltaicoProps) => {
 				<VisuallyHidden>Detalhes do pedido</VisuallyHidden>
 			</Description>
 			<TriggerButtons>
-				<TriggerSuccess onClick={props.onClose}>Salvar</TriggerSuccess>
+				<TriggerClose onClick={props.onClose}>Salvar</TriggerClose>
 			</TriggerButtons>
 
 			<Modal open={openModal} onOpenChange={onOpenChange} position="center">

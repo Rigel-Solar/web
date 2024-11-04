@@ -21,7 +21,6 @@ import {
 	Title,
 	TriggerButtons,
 	TriggerClose,
-	TriggerSuccess,
 } from "./styles";
 
 export interface ModalPiscinaProps extends addNewProps {
@@ -171,7 +170,7 @@ const ModalPiscina = ({ data, ...props }: ModalPiscinaProps) => {
 				<VisuallyHidden>Detalhes do pedido</VisuallyHidden>
 			</Description>
 			<TriggerButtons>
-				<TriggerSuccess onClick={props.onClose}>Salvar</TriggerSuccess>
+				<TriggerClose onClick={props.onClose}>Salvar</TriggerClose>
 			</TriggerButtons>
 
 			<Modal open={openModal} onOpenChange={onOpenChange} position="center">

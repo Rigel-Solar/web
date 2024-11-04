@@ -48,6 +48,10 @@ const ClientSelect = ({
 	const [value, setValue] = useState<any>();
 
 	useFetch<Client[]>(`/Cliente`, ["client"], {
+		staleTime: 1000 * 6 * 60,
+		cacheTime: 1000 * 6 * 60,
+		keepPreviousData: true,
+		refetchOnWindowFocus: false,
 		onSuccess: (data) => {
 			if (filter?.length) {
 				data = data.filter((cl) => filter.includes(cl.id));

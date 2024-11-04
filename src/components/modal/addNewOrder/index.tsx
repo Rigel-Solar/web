@@ -59,7 +59,7 @@ const AddNewOrder = ({
 	const handleOpenModal = () => setOpenModal(true);
 
 	const { mutate: onCreate, isLoading } = useMutationQuery(
-		`/Vistoria/`,
+		data ? `/Vistoria/${data.id}` : "/Vistoria",
 		data ? "put" : "post"
 	);
 
@@ -137,7 +137,7 @@ const AddNewOrder = ({
 		},
 	];
 
-	const { mutate: onDeleteOrder } = useMutationQuery(`/Vistoria?id=${data?.id}`, "delete");
+	const { mutate: onDeleteOrder } = useMutationQuery(`/Vistoria/${data?.id}`, "delete");
 
 	function onDelete() {
 		onDeleteOrder(

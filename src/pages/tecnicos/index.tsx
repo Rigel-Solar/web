@@ -20,11 +20,9 @@ const Tecnicos = () => {
 
 	const { setHasEditedData } = useModal();
 
-	const { data: technicians = [] } = useFetch<Technician[]>("/Tecnico", ["tecnico"], {
+	const { data: technicians = [], refetch } = useFetch<Technician[]>("/Tecnico", ["tecnico"], {
 		staleTime: 1000 * 6 * 60,
 		cacheTime: 1000 * 6 * 60,
-		keepPreviousData: true,
-		refetchOnWindowFocus: false,
 	});
 
 	const { searchTerm, handleSearchChange, filteredData } =
@@ -62,6 +60,7 @@ const Tecnicos = () => {
 			{/* Modal de Criação */}
 			<Modal open={isCreateModalOpen} onOpenChange={handleCloseModal}>
 				<ModalTecnico
+					refetch={refetch}
 					onClose={handleCloseModal}
 					onSuccess={handleCloseModal}
 					onSetEditedData={setHasEditedData}
