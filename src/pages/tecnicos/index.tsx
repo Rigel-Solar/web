@@ -1,17 +1,17 @@
-import { ChangeEvent, useState } from "react";
-import { FiPlus } from "react-icons/fi";
-import Button from "../../components/form/button";
-import { Modal } from "../../components/modal";
-import Search from "../../components/search";
-import DataTableTecnico from "../../components/table/tecnico";
-import useModal from "../../functions/use-modal";
-import useSearch from "../../functions/use-search";
-import { Technician } from "../../models/technician";
-import { useFetch } from "../../services/hooks/useFetch";
-import { DefaultPageContainer } from "../styles";
-import ModalTecnico from "./modalTecnico";
-import ViewTecnico from "./modalTecnico/viewTecnico";
-import * as C from "./styles";
+import { ChangeEvent, useState } from 'react';
+import { FiPlus } from 'react-icons/fi';
+import Button from '../../components/form/button';
+import { Modal } from '../../components/modal';
+import Search from '../../components/search';
+import DataTableTecnico from '../../components/table/tecnico';
+import useModal from '../../functions/use-modal';
+import useSearch from '../../functions/use-search';
+import { Technician } from '../../models/technician';
+import { useFetch } from '../../services/hooks/useFetch';
+import { DefaultPageContainer } from '../styles';
+import ModalTecnico from './modalTecnico';
+import ViewTecnico from './modalTecnico/viewTecnico';
+import * as C from './styles';
 
 const Tecnicos = () => {
 	const [selectedTechnician, setSelectedTechnician] =
@@ -20,10 +20,14 @@ const Tecnicos = () => {
 
 	const { setHasEditedData } = useModal();
 
-	const { data: technicians = [], refetch } = useFetch<Technician[]>("/Tecnico", ["tecnico"], {
-		staleTime: 1000 * 6 * 60,
-		cacheTime: 1000 * 6 * 60,
-	});
+	const { data: technicians = [], refetch } = useFetch<Technician[]>(
+		'/Tecnico',
+		['tecnico'],
+		{
+			staleTime: 1000 * 6 * 60,
+			cacheTime: 1000 * 6 * 60,
+		}
+	);
 
 	const { searchTerm, handleSearchChange, filteredData } =
 		useSearch(technicians);
@@ -39,6 +43,7 @@ const Tecnicos = () => {
 	};
 
 	const handleCloseModal = () => {
+		refetch();
 		setIsCreateModalOpen(false);
 		setSelectedTechnician(null);
 	};
@@ -60,7 +65,6 @@ const Tecnicos = () => {
 			{/* Modal de Criação */}
 			<Modal open={isCreateModalOpen} onOpenChange={handleCloseModal}>
 				<ModalTecnico
-					refetch={refetch}
 					onClose={handleCloseModal}
 					onSuccess={handleCloseModal}
 					onSetEditedData={setHasEditedData}

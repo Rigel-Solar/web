@@ -46,6 +46,7 @@ const Cliente = () => {
 	};
 
 	const handleCloseModal = () => {
+		refetch();
 		setIsCreateModalOpen(false);
 		setSelectedClient(null);
 	};
@@ -74,7 +75,6 @@ const Cliente = () => {
 					onClose={handleCloseModal}
 					onSuccess={handleCloseModal}
 					onSetEditedData={setHasEditedData}
-					refetch={refetch}
 				/>
 			</Modal>
 

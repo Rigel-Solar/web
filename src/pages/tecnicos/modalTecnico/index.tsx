@@ -26,19 +26,17 @@ import PopUpDelete from "../../../components/modal/popUp/popUpDelete";
 import { addNewProps } from "../../../models/add-new";
 import { Technician } from "../../../models/technician";
 import { useMutationQuery } from "../../../services/hooks/useMutationQuery";
-import { tecnicoSchema, TecnicoTS } from "../../../utils/tecnicoSchema";
+import { TecnicoTS, tecnicoSchema } from "../../../utils/tecnicoSchema";
 import { ModalContainer } from "./styles";
 
 export interface ModalTecnicoProps extends addNewProps {
 	data?: Technician;
-	refetch?(): void;
 }
 
 const ModalTecnico = ({
 	onSetEditedData,
 	onSuccess,
 	data,
-	refetch,
 	...props
 }: ModalTecnicoProps) => {
 	const [openModal, setOpenModal] = useState(false);
@@ -77,7 +75,6 @@ const ModalTecnico = ({
 			{ id: data?.id },
 			{
 				onSuccess: () => {
-					refetch?.();
 					toast.success("Técnico deletado com sucesso!", { duration: 2500 });
 				},
 				onError: () => {
@@ -96,7 +93,6 @@ const ModalTecnico = ({
 	function onSubmit(formData: TecnicoTS) {
 		onCreate(formData, {
 			onSuccess: () => {
-				refetch?.();
 				toast.success(
 					`Técnico ${data ? "Atualizado" : "Cadastrado"} com sucesso!`,
 					{

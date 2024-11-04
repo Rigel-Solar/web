@@ -19,7 +19,7 @@ const Pedidos = () => {
 
 	const { setHasEditedData } = useModal();
 
-	const {data: pedidos = []} = useFetch<PedidoTS[]>("/Vistoria/getAll", ["vistoria"], {
+	const {data: pedidos = [], refetch} = useFetch<PedidoTS[]>("/Vistoria/getAll", ["vistoria"], {
 		staleTime: 1000 * 6 * 60,
 		cacheTime: 1000 * 6 * 60,
 		keepPreviousData: true,
@@ -39,6 +39,7 @@ const Pedidos = () => {
 	};
 
 	const handleCloseModal = () => {
+		refetch();
 		setIsCreateModalOpen(false);
 		setSelectedPedido(null);
 	};

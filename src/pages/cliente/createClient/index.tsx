@@ -33,14 +33,12 @@ import { ModalContainer } from "./styles";
 
 export interface ModalClientProps extends addNewProps {
 	data?: Client;
-	refetch?(): void;
 }
 
 const ModalClient = ({
 	onSetEditedData,
 	onSuccess,
 	data,
-	refetch,
 	...props
 }: ModalClientProps) => {
 	const [openModal, setOpenModal] = useState(false);
@@ -56,7 +54,6 @@ const ModalClient = ({
 		onDeleteClient(
 			{
 				onSuccess: () => {
-					refetch?.();
 					toast.success("Cliente deletado com sucesso!", { duration: 2500 });
 				},
 				onError: () => {
@@ -109,7 +106,6 @@ const ModalClient = ({
 						duration: 2500,
 					}
 				);
-				// refetch?.();w
 			},
 			onError: () => {
 				toast.error(`Falha em ${data ? "Atualizar" : "Cadastrar"} Cliente!`, {
