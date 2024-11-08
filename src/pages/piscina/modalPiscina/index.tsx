@@ -154,14 +154,14 @@ const ModalPiscina = ({ data, ...props }: ModalPiscinaProps) => {
 								<td className="quantity">{data.ambiente}</td>
 								<td>Ambiente aberto ou fechado ( A/F)</td>
 							</tr>
-							<tr>
+							{/* <tr>
 								<td className="quantity">{data.area ? data.area : 0}</td>
 								<td>Área</td>
 							</tr>
 							<tr>
 								<td className="quantity">{data.volume ? data.volume : 0}</td>
 								<td>Volume</td>
-							</tr>
+							</tr> */}
 						</tbody>
 					</Table>
 				</div>
