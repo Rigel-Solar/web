@@ -53,7 +53,7 @@ const ModalTecnico = ({
 	});
 
 	const { mutate: onCreate, isLoading } = useMutationQuery(
-		`/Tecnico/`,
+		data ? `/Tecnico/${data?.id}` : "/Tecnico",
 		data ? "put" : "post"
 	);
 
