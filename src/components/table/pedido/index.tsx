@@ -84,9 +84,8 @@ const TableHeader = () => (
 		<C.Row>
 			<Table.ColumnHeaderCell>Endereço</Table.ColumnHeaderCell>
 			<Table.ColumnHeaderCell>Pessoa</Table.ColumnHeaderCell>
-			<Table.ColumnHeaderCell>Código</Table.ColumnHeaderCell>
-			<Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
-			<Table.ColumnHeaderCell>Criado há</Table.ColumnHeaderCell>
+			<Table.ColumnHeaderCell>Técnico</Table.ColumnHeaderCell>
+			<Table.ColumnHeaderCell>Tipo</Table.ColumnHeaderCell>
 			<Table.ColumnHeaderCell />
 		</C.Row>
 	</C.Header>
@@ -98,14 +97,14 @@ const TableBody = ({ data, onOpenPedido }: TableBodyProps) => {
 			{data.map((item, index) => (
 				<C.Row key={index} onClick={() => onOpenPedido(item)}>
 					<Table.RowHeaderCell>
-						<div>
+					<div>
+							<p>{item.clienteDTO.endereco}</p>
 							<p>{item.clienteDTO.email}</p>
 						</div>
 					</Table.RowHeaderCell>
-					<C.Cell>{item.clienteDTO.tipo}</C.Cell>
-					<C.Cell>{item.idCliente}</C.Cell>
-					<C.Cell>(Não há)</C.Cell>
-					<C.Cell>(Não há)</C.Cell>
+					<C.Cell>Pessoa {item.clienteDTO.tipo}</C.Cell>
+					<C.Cell>{item.tecnicoDTO.usuario.nome}</C.Cell>
+					<C.Cell>{item.solucoes}</C.Cell>
 					<Options />
 				</C.Row>
 			))}

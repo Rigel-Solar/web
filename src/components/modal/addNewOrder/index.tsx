@@ -1,18 +1,16 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/themes";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineLeftCircle } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
-import { PiTrashLight } from "react-icons/pi";
 import { toast } from "sonner";
 import { concessionarias } from "../../../constants/concessionaria";
 import { addNewProps } from "../../../models/add-new";
 import { PedidoTS } from "../../../models/pedido";
 import { useMutationQuery } from "../../../services/hooks/useMutationQuery";
 import { OrderTS, orderSchema } from "../../../utils/pedidoSchema";
-import Button from "../../form/button";
 import ClientSelect from "../../form/clientSelect";
 import Input from "../../form/input";
 import SelectComponent from "../../form/select";
@@ -23,7 +21,6 @@ import {
 	ActionAlertDialogTitle,
 	ActionAlertDialogTriggerSuccess,
 } from "../actionAlertModal";
-import PopUpDelete from "../popUp/popUpDelete";
 import {
 	Content,
 	Description,
@@ -54,18 +51,10 @@ const AddNewOrder = ({
 		},
 	});
 
-	const [openModal, setOpenModal] = useState(false);
-
-	const handleOpenModal = () => setOpenModal(true);
-
 	const { mutate: onCreate, isLoading } = useMutationQuery(
 		data ? `/Vistoria/${data.id}` : "/Vistoria",
 		data ? "put" : "post"
 	);
-
-	const onOpenChange = () => {
-		setOpenModal(!openModal);
-	};
 
 	const handleSelectClient = (value: string) => {
 		setValue("idCliente", value.toString(), {
@@ -137,22 +126,6 @@ const AddNewOrder = ({
 		},
 	];
 
-	const { mutate: onDeleteOrder } = useMutationQuery(`/Vistoria/${data?.id}`, "delete");
-
-	function onDelete() {
-		onDeleteOrder(
-			{ id: data?.id },
-			{
-				onSuccess: () => {
-					toast.success("Pedido deletado com sucesso!", { duration: 2500 });
-				},
-				onError: () => {
-					toast.error("Falha ao deletar pedido!", { duration: 2500 });
-				},
-			}
-		);
-	}
-
 	function onSubmit(formData: OrderTS) {
 		onCreate(formData, {
 			onSuccess: () => {
@@ -171,25 +144,13 @@ const AddNewOrder = ({
 
 	return (
 		<ModalContainer>
-			<ActionAlertDialogHeader $between={!!data}>
+			<ActionAlertDialogHeader>
 				<DialogClose>
 					<AiOutlineLeftCircle size={20} />
 				</DialogClose>
 				<ActionAlertDialogTitle>
 					{data ? "Atualizar" : "Criar"} Pedido
 				</ActionAlertDialogTitle>
-				{data && (
-					<>
-						<Button buttonStyle="text" onClick={handleOpenModal}>
-							<PiTrashLight size={20} color="#ff4d4d" />
-						</Button>
-						<PopUpDelete
-							open={openModal}
-							onOpenChange={onOpenChange}
-							onDelete={onDelete}
-						/>
-					</>
-				)}
 			</ActionAlertDialogHeader>
 			<Content>
 				<FormContainer>

@@ -1,13 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/themes";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineLeftCircle } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
-import { PiTrashLight } from "react-icons/pi";
 import { toast } from "sonner";
-import Button from "../../../components/form/button";
 import Input from "../../../components/form/input";
 import {
 	FormContainer,
@@ -22,7 +20,6 @@ import {
 	ActionAlertDialogTriggerClose,
 	ActionAlertDialogTriggerSuccess,
 } from "../../../components/modal/actionAlertModal";
-import PopUpDelete from "../../../components/modal/popUp/popUpDelete";
 import { addNewProps } from "../../../models/add-new";
 import { Technician } from "../../../models/technician";
 import { useMutationQuery } from "../../../services/hooks/useMutationQuery";
@@ -39,14 +36,6 @@ const ModalTecnico = ({
 	data,
 	...props
 }: ModalTecnicoProps) => {
-	const [openModal, setOpenModal] = useState(false);
-
-	const handleOpenModal = () => setOpenModal(true);
-
-	const onOpenChange = () => {
-		setOpenModal(!openModal);
-	};
-
 	const {
 		register,
 		handleSubmit,
@@ -67,22 +56,6 @@ const ModalTecnico = ({
 		`/Tecnico/`,
 		data ? "put" : "post"
 	);
-
-	const { mutate: onDeleteTecnico } = useMutationQuery(`/Tecnico/`, "delete");
-
-	function onDelete() {
-		onDeleteTecnico(
-			{ id: data?.id },
-			{
-				onSuccess: () => {
-					toast.success("Técnico deletado com sucesso!", { duration: 2500 });
-				},
-				onError: () => {
-					toast.error("Falha ao deletar técnico!", { duration: 2500 });
-				},
-			}
-		);
-	}
 
 	useEffect(() => {
 		if (isDirty) {
@@ -111,25 +84,13 @@ const ModalTecnico = ({
 
 	return (
 		<ModalContainer>
-			<ActionAlertDialogHeader $between={!!data}>
+			<ActionAlertDialogHeader>
 				<DialogClose>
 					<AiOutlineLeftCircle size={20} />
 				</DialogClose>
 				<ActionAlertDialogTitle>
 					{data ? "Atualizar" : "Cadastrar"} Técnico
 				</ActionAlertDialogTitle>
-				{data && (
-					<>
-						<Button buttonStyle="text" onClick={handleOpenModal}>
-							<PiTrashLight size={20} color="#ff4d4d" />
-						</Button>
-						<PopUpDelete
-							open={openModal}
-							onOpenChange={onOpenChange}
-							onDelete={onDelete}
-						/>
-					</>
-				)}
 			</ActionAlertDialogHeader>
 			<ActionAlertDialogContent>
 				<FormContainer>

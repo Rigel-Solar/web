@@ -82,11 +82,11 @@ const DataTablePiscina = ({
 const TableHeader = () => (
 	<C.Header>
 		<C.Row>
+			<Table.ColumnHeaderCell>Cliente</Table.ColumnHeaderCell>
 			<Table.ColumnHeaderCell>Endereço</Table.ColumnHeaderCell>
 			<Table.ColumnHeaderCell>Pessoa</Table.ColumnHeaderCell>
-			<Table.ColumnHeaderCell>Código</Table.ColumnHeaderCell>
-			<Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
-			<Table.ColumnHeaderCell>Criado há</Table.ColumnHeaderCell>
+			<Table.ColumnHeaderCell>Técnico</Table.ColumnHeaderCell>
+			<Table.ColumnHeaderCell />
 			<Table.ColumnHeaderCell />
 		</C.Row>
 	</C.Header>
@@ -97,16 +97,11 @@ const TableBody = ({ data, onOpenPiscina }: TableBodyProps) => {
 		<C.Body>
 			{data.map((item, index) => (
 				<C.Row key={index} onClick={() => onOpenPiscina(item)}>
-					<Table.RowHeaderCell>
-						<div>
-							<p>{item.vistoriaDTO.idClienteNavigation.endereco}</p>
-							<p>{item.vistoriaDTO.idClienteNavigation.email}</p>
-						</div>
-					</Table.RowHeaderCell>
+					<C.Cell>{item.vistoriaDTO.idClienteNavigation.nome}</C.Cell>
+					<C.Cell>{item.vistoriaDTO.idClienteNavigation.endereco}</C.Cell>
 					<C.Cell>{item.vistoriaDTO.idClienteNavigation.tipo}</C.Cell>
-					<C.Cell>{item.vistoriaDTO.idCliente}</C.Cell>
-					<C.Cell>(Não há)</C.Cell>
-					<C.Cell>(Não há)</C.Cell>
+					<C.Cell>{item.vistoriaDTO.idTecnicoNavigation.usuario.nome}</C.Cell>
+					<C.Cell></C.Cell>
 					<Options />
 				</C.Row>
 			))}

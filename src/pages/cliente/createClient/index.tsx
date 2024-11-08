@@ -2,13 +2,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/themes";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { AiOutlineLeftCircle } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
-import { PiTrashLight } from "react-icons/pi";
 import { toast } from "sonner";
-import Button from "../../../components/form/button";
 import Input from "../../../components/form/input";
 import SelectComponent from "../../../components/form/select";
 import {
@@ -24,7 +22,6 @@ import {
 	ActionAlertDialogTriggerClose,
 	ActionAlertDialogTriggerSuccess,
 } from "../../../components/modal/actionAlertModal";
-import PopUpDelete from "../../../components/modal/popUp/popUpDelete";
 import { addNewProps } from "../../../models/add-new";
 import { Client } from "../../../models/client";
 import { useMutationQuery } from "../../../services/hooks/useMutationQuery";
@@ -41,27 +38,10 @@ const ModalClient = ({
 	data,
 	...props
 }: ModalClientProps) => {
-	const [openModal, setOpenModal] = useState(false);
-
 	const { mutate: onCreate, isLoading } = useMutationQuery(
 		data ? `/Cliente/${data?.id}` : "/Cliente",
 		data ? "put" : "post"
 	);
-
-	const { mutate: onDeleteClient } = useMutationQuery(`/Cliente?id=${data?.id}`, "delete");
-
-	function onDelete() {
-		onDeleteClient(
-			{
-				onSuccess: () => {
-					toast.success("Cliente deletado com sucesso!", { duration: 2500 });
-				},
-				onError: () => {
-					toast.error("Falha ao deletar cliente!", { duration: 2500 });
-				},
-			}
-		);
-	}
 
 	const options = [
 		{
@@ -73,12 +53,6 @@ const ModalClient = ({
 			value: "Pessoa Jurídica",
 		},
 	];
-
-	const handleOpenModal = () => setOpenModal(true);
-
-	const onOpenChange = () => {
-		setOpenModal(!openModal);
-	};
 
 	const {
 		register,
@@ -118,25 +92,13 @@ const ModalClient = ({
 
 	return (
 		<ModalContainer>
-			<ActionAlertDialogHeader $between={!!data}>
+			<ActionAlertDialogHeader>
 				<DialogClose>
 					<AiOutlineLeftCircle size={20} />
 				</DialogClose>
 				<ActionAlertDialogTitle>
 					{data ? "Atualizar" : "Cadastrar"} Cliente
 				</ActionAlertDialogTitle>
-				{data && (
-					<>
-						<Button buttonStyle="text" onClick={handleOpenModal}>
-							<PiTrashLight size={20} color="#ff4d4d" />
-						</Button>
-						<PopUpDelete
-							open={openModal}
-							onOpenChange={onOpenChange}
-							onDelete={onDelete}
-						/>
-					</>
-				)}
 			</ActionAlertDialogHeader>
 			<ActionAlertDialogContent>
 				<FormContainer autoComplete="off">
