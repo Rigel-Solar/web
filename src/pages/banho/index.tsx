@@ -12,7 +12,7 @@ import * as C from "./styles";
 const Banho = () => {
 	const [selectedBanho, setSelectedBanho] = useState<IBanho | null>(null);
 
-	const { data: banhos = []} = useFetch<IBanho[]>("/FichaBanho", ["banho"], {
+	const { data: banhos = []} = useFetch<IBanho[]>("/FichaBanho/GetAll", ["banho"], {
 		staleTime: 1000 * 6 * 60,
 		cacheTime: 1000 * 6 * 60,
 		keepPreviousData: true,

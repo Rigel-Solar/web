@@ -12,7 +12,7 @@ import * as C from "./styles";
 const Piscina = () => {
 	const [selectedPiscina, setSelectedPiscina] = useState<IPiscina | null>(null);
 
-	const { data: piscinas = []} = useFetch<IPiscina[]>("/FichaPiscina", ["piscina"], {
+	const { data: piscinas = []} = useFetch<IPiscina[]>("/FichaPiscina/GetAll", ["piscina"], {
 		staleTime: 1000 * 6 * 60,
 		cacheTime: 1000 * 6 * 60,
 		keepPreviousData: true,
