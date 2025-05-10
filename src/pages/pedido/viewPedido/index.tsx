@@ -107,11 +107,11 @@ const ViewPedido = ({ data }: ViewPedidoProps) => {
 								label="Nome do cliente"
 							/>
 							<FakeInput
-								value={data.tecnicoDTO.usuario?.nome}
+								value={data.idTecnicoNavigation.usuario?.nome}
 								label="Técnico Responsável"
 							/>
 						</FormFieldsContainer>
-						<FakeInput value={data?.clienteDTO.email} label="E-mail" />
+						<FakeInput value={data?.clienteDTO?.email} label="E-mail" />
 						<FormFieldsContainer columns={2}>
 							<FakeInput value={enderecoArray[0]} label="Cidade" />
 							<FakeInput value={enderecoArray[1]} label="Bairro" />
