@@ -28,7 +28,7 @@ export interface PedidoTS {
 	fichaBanhos: any[];
 	fichaFotovoltaicos: any[];
 	fichaPiscinas: any[];
-	clienteDTO: Cliente;
+	idClienteNavigation: Cliente;
 	gestorDTO: Gestor;
 	idTecnicoNavigation: Tecnico;
 	idGestor: number;

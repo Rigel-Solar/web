@@ -56,6 +56,8 @@ const AddNewOrder = ({
 		data ? "put" : "post"
 	);
 
+	const { mutate: onSendEmail } = useMutationQuery(`/SendEmail`);
+
 	const handleSelectClient = (value: string) => {
 		setValue("idCliente", value.toString(), {
 			shouldDirty: true,
@@ -127,8 +129,24 @@ const AddNewOrder = ({
 	];
 
 	function onSubmit(formData: OrderTS) {
+		console.log("alo");
 		onCreate(formData, {
 			onSuccess: () => {
+				// const emailHtml = render(
+				// 	<OrderCreatedEmail
+				// 		customerName={formData.idClienteNome}
+				// 		technicianName={formData.idTecnicoNome}
+				// 	/>
+				// );
+				const emailData = {
+					from: "gabriel.playhard10@gmail.com",
+  				to: formData.idClienteEmail,
+  				subject: `Pedido ${data ? "Atualizado" : "Criado"} com sucesso!`,
+  				content: "Pedido criado com sucesso!"
+				}
+				onSendEmail(emailData, {
+					onSuccess: () => console.log("Email enviado!")
+				});
 				toast.success(`Pedido ${data ? "Atualizado" : "Criado"} com sucesso!`, {
 					duration: 2500,
 				});
@@ -167,6 +185,22 @@ const AddNewOrder = ({
 									});
 								}
 							}}
+							onSelectClientEmail={(value) => {
+								if (value) {
+									setValue("idClienteEmail", value.toString(), {
+										shouldDirty: true,
+										shouldValidate: true,
+									});
+								}
+							}}
+							onSelectClientName={(value) => {
+								if (value) {
+									setValue("idClienteNome", value.toString(), {
+										shouldDirty: true,
+										shouldValidate: true,
+									});
+								}
+							}}
 							required
 						/>
 						<TechnicianSelect
@@ -174,6 +208,14 @@ const AddNewOrder = ({
 							onSelect={(value) => {
 								if (value) {
 									setValue("idTecnico", value.toString(), {
+										shouldDirty: true,
+										shouldValidate: true,
+									});
+								}
+							}}
+							onSelectTechnicianName={(value) => {
+								if (value) {
+									setValue("idTecnicoNome", value.toString(), {
 										shouldDirty: true,
 										shouldValidate: true,
 									});

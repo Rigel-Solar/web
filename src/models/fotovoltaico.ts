@@ -39,7 +39,7 @@ export interface IFotovoltaico {
 	nivelamentoSoloDTO: NivelamentoSoloDto;
 	telhadoAcessoDTO: TelhadoAcessoDto;
 	tensaoNominalDTO: TensaoNominalDto;
-	tipoClienteDTO: TipoClienteDto;
+	tipoidClienteNavigation: TipoidClienteNavigation;
 	tipoLigacaoDTO: TipoLigacaoDto;
 	tipoSuperficieDTO: TipoSuperficieDto;
 	id: number;
@@ -87,7 +87,7 @@ interface TensaoNominalDto {
 	tensao: string;
 }
 
-interface TipoClienteDto {
+interface TipoidClienteNavigation {
 	tipo: string;
 }
 
@@ -108,12 +108,12 @@ interface VistoriaDto {
 	valorContaLuz: number;
 	comentarios: string;
 	id: number;
-	clienteDTO: ClienteDTO;
+	idClienteNavigation: idClienteNavigation;
 	gestorDTO: GestorDTO;
 	tecnicoDTO: TecnicoDTO
 }
 
-interface ClienteDTO {
+interface idClienteNavigation {
 	tipo: string;
 	nome: string;
 	email: string;

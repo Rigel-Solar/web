@@ -100,9 +100,9 @@ const TableBody = ({ data, onOpenFotovoltaico }: TableBodyProps) => {
 		<C.Body>
 			{data.map((item, index) => (
 				<C.Row key={index} onClick={() => onOpenFotovoltaico(item)}>
-					<C.Cell>{item.vistoriaDTO.clienteDTO.nome}</C.Cell>
-					<C.Cell>{item.vistoriaDTO.clienteDTO.endereco}</C.Cell>
-					<C.Cell>{item.vistoriaDTO.clienteDTO.tipo}</C.Cell>
+					<C.Cell>{item.vistoriaDTO.idClienteNavigation.nome}</C.Cell>
+					<C.Cell>{item.vistoriaDTO.idClienteNavigation.endereco}</C.Cell>
+					<C.Cell>{item.vistoriaDTO.idClienteNavigation.tipo}</C.Cell>
 					<C.Cell>{item.vistoriaDTO.tecnicoDTO.usuario.nome}</C.Cell>
 					<C.Cell></C.Cell>
 					<Options />

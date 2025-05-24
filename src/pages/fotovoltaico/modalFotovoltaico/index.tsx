@@ -46,8 +46,8 @@ const ModalFotovoltaico = ({ data, ...props }: ModalFotovoltaicoProps) => {
 	};
 
 	useEffect(() => {
-		if (data?.vistoriaDTO.clienteDTO.endereco) {
-			const parts = data.vistoriaDTO.clienteDTO.endereco
+		if (data?.vistoriaDTO.idClienteNavigation.endereco) {
+			const parts = data.vistoriaDTO.idClienteNavigation.endereco
 				.split(", ")
 				.map((part) => part.trim());
 			setEnderecoArray(parts);
@@ -91,11 +91,11 @@ const ModalFotovoltaico = ({ data, ...props }: ModalFotovoltaicoProps) => {
 							<FormFieldsContainer columns={2}>
 								<FakeInput
 									label="Nome"
-									value={data.vistoriaDTO.clienteDTO.nome}
+									value={data.vistoriaDTO.idClienteNavigation.nome}
 								/>
 								<FakeInput
 									label="Tipo de Cliente"
-									value={data.vistoriaDTO.clienteDTO.tipo}
+									value={data.vistoriaDTO.idClienteNavigation.tipo}
 								/>
 							</FormFieldsContainer>
 							<FormFieldsContainer columns={2}>
@@ -131,7 +131,7 @@ const ModalFotovoltaico = ({ data, ...props }: ModalFotovoltaicoProps) => {
 						label="Concessionária de Energia"
 						value={data.concessionariaEnergiaPe}
 					/>
-					<FakeInput label="Tipo de Cliente" value={data.tipoClienteDTO.tipo} />
+					<FakeInput label="Tipo de Cliente" value={data.tipoidClienteNavigation.tipo} />
 					<FakeInput
 						label="Demanda Contratada"
 						value={data.demandaContratadaPe}

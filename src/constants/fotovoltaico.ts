@@ -40,7 +40,7 @@ export const Fotovoltaicos: IFotovoltaico[] = [
 		nivelamentoSoloDTO: { nivelamento: 'Adequado' },
 		telhadoAcessoDTO: { acesso: 'Escada' },
 		tensaoNominalDTO: { tensao: '220V' },
-		tipoClienteDTO: { tipo: 'Residencial' },
+		tipoidClienteNavigation: { tipo: 'Residencial' },
 		tipoLigacaoDTO: { tipo: 'Monofásico' },
 		tipoSuperficieDTO: { tipo: 'Plana' },
 		id: 12345,
@@ -53,7 +53,7 @@ export const Fotovoltaicos: IFotovoltaico[] = [
       valorContaLuz: 350,
       comentarios: 'Cliente interessado em economia',
       id: 56789,
-      clienteDTO: {
+      idClienteNavigation: {
         tipo: 'Pessoa Física',
         nome: 'João da Silva',
         email: 'joao.silva@email.com',
