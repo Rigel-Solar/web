@@ -71,7 +71,10 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 							<CarouselContainer
 								showThumbs={false}
 								emulateTouch
-								// onClickItem={(index) => handleImageClick(data.fotos)}
+								onClickItem={(index) => {
+									const foto = data.fotos?.[index]?.foto1;
+									handleImageClick(foto);
+								}}
 							>
 								{data.fotos.map((data, index) => (
 									<Image

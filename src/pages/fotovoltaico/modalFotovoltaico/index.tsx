@@ -68,7 +68,10 @@ const ModalFotovoltaico = ({ data, ...props }: ModalFotovoltaicoProps) => {
 				<div className="top">
 					{Array.isArray(data.fotos) && (
 						<div className="left-side">
-							<CarouselContainer showThumbs={false} emulateTouch>
+							<CarouselContainer showThumbs={false} emulateTouch onClickItem={(index) => {
+								const foto = data.fotos?.[index]?.foto1;
+								handleImageClick(foto);
+							}}>
 								{data.fotos.map((data, index) => (
 									<Image
 										src={data.foto1}

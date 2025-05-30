@@ -73,7 +73,10 @@ const ModalPiscina = ({ data, ...props }: ModalPiscinaProps) => {
 							<CarouselContainer
 								showThumbs={false}
 								emulateTouch
-								// onClickItem={(index) => handleImageClick(data.fotos![index])}
+								onClickItem={(index) => {
+									const foto = data.fotos?.[index]?.foto1;
+									handleImageClick(foto);
+								}}
 							>
 								{data.fotos.map((data, index) => (
 									<Image
