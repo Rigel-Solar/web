@@ -38,6 +38,8 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 		"",
 	]);
 
+	console.log("foto: ", data);
+
 	const handleImageClick = (src?: string) => {
 		if (src) {
 			setCurrentImage(src);
@@ -73,10 +75,10 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 							>
 								{data.fotos.map((data, index) => (
 									<Image
-										src={data.foto}
+										src={data.foto1}
 										alt={`Imagem ${index + 1}`}
 										key={index}
-										onClick={() => handleImageClick(data.foto)}
+										onClick={() => handleImageClick(data.foto1)}
 									/>
 								))}
 							</CarouselContainer>

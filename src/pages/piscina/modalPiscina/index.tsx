@@ -38,7 +38,11 @@ const ModalPiscina = ({ data, ...props }: ModalPiscinaProps) => {
 		"",
 	]);
 
+	console.log("aqui", data)
+
+
 	const handleImageClick = (src?: string) => {
+		console.log("src:", src)
 		if (src) {
 			setCurrentImage(src);
 			handleOpenModal();
@@ -73,10 +77,10 @@ const ModalPiscina = ({ data, ...props }: ModalPiscinaProps) => {
 							>
 								{data.fotos.map((data, index) => (
 									<Image
-										src={data.foto}
+										src={data.foto1}
 										alt={`Imagem ${index + 1}`}
 										key={index}
-										onClick={() => handleImageClick(data.foto)}
+										onClick={() => handleImageClick(data.foto1)}
 									/>
 								))}
 							</CarouselContainer>

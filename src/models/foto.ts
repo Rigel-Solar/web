@@ -1,4 +1,7 @@
 export interface Foto {
   id: number;
-  foto: string;
+  foto1: string;
+  idFichaBanho:number;
+  idFichaPiscina:number;
+  idFichaFotovoltaico:number;
 }

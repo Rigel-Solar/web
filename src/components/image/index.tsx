@@ -11,6 +11,7 @@ interface ImageProps {
 
 const Image = ({ src, alt, onClick }: ImageProps) => {
 	const { openModal, onOpenChange, handleOpenModal } = useModal();
+	console.log("src, alt", src, alt)
 
 	const handleClick = () => {
 		if (onClick) {

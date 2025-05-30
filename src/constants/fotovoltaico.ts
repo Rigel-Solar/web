@@ -80,7 +80,12 @@ export const Fotovoltaicos: IFotovoltaico[] = [
       }
     },
 		fotos: [
-			{ foto: 'https://rigelsolarapi.blob.core.windows.net/fotos/3mjrnfki.y3q.jpg', id: 1 },
+			{
+				foto1: 'https://rigelsolarapi.blob.core.windows.net/fotos/3mjrnfki.y3q.jpg', id: 1,
+				idFichaBanho: 0,
+				idFichaPiscina: 0,
+				idFichaFotovoltaico: 0
+			},
 		],
 	},
 ];
