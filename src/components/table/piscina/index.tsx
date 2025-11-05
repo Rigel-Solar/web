@@ -1,10 +1,10 @@
 import { Table, Theme } from "@radix-ui/themes";
 import { useState } from "react";
 import {
-	FaAngleLeft,
-	FaAngleRight,
-	FaAnglesLeft,
-	FaAnglesRight,
+    FaAngleLeft,
+    FaAngleRight,
+    FaAnglesLeft,
+    FaAnglesRight,
 } from "react-icons/fa6";
 import { SlOptions } from "react-icons/sl";
 import { IPiscina } from "../../../models/piscina";
@@ -100,7 +100,7 @@ const TableBody = ({ data, onOpenPiscina }: TableBodyProps) => {
 					<C.Cell>{item.vistoriaDTO.idClienteNavigation?.nome}</C.Cell>
 					<C.Cell>{item.vistoriaDTO.idClienteNavigation?.endereco}</C.Cell>
 					<C.Cell>{item.vistoriaDTO.idClienteNavigation?.tipo}</C.Cell>
-					<C.Cell>{item.vistoriaDTO.idTecnicoNavigation?.usuario?.nome}</C.Cell>
+					<C.Cell>{item.vistoriaDTO.idGestorNavigation?.idUsuarioNavigation?.nome}</C.Cell>
 					<C.Cell></C.Cell>
 					<Options />
 				</C.Row>

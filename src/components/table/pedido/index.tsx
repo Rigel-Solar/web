@@ -1,10 +1,10 @@
 import { Table, Theme } from "@radix-ui/themes";
 import { useState } from "react";
 import {
-	FaAngleLeft,
-	FaAngleRight,
-	FaAnglesLeft,
-	FaAnglesRight,
+    FaAngleLeft,
+    FaAngleRight,
+    FaAnglesLeft,
+    FaAnglesRight,
 } from "react-icons/fa6";
 import { SlOptions } from "react-icons/sl";
 import { PedidoTS } from "../../../models/pedido";
@@ -104,7 +104,7 @@ const TableBody = ({ data, onOpenPedido }: TableBodyProps) => {
 						</div>
 					</Table.RowHeaderCell>
 					<C.Cell>Pessoa {item.idClienteNavigation?.tipo}</C.Cell>
-					<C.Cell>{item.idTecnicoNavigation.usuario ? item.idTecnicoNavigation.usuario.nome : "Sem técnico"}</C.Cell>
+					<C.Cell>{item.idGestorNavigation.usuario ? item.idGestorNavigation.usuario.nome : "Sem técnico"}</C.Cell>
 					<C.Cell>{item?.solucoes}</C.Cell>
 					<Options />
 				</C.Row>

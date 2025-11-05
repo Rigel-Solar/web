@@ -100,7 +100,7 @@ const TableBody = ({ data, onOpenBanho }: TableBodyProps) => {
 					<C.Cell>{item.vistoriaDTO.idClienteNavigation?.nome}</C.Cell>
 					<C.Cell>{item.vistoriaDTO.idClienteNavigation?.endereco}</C.Cell>
 					<C.Cell>{item.vistoriaDTO.idClienteNavigation?.tipo}</C.Cell>
-					<C.Cell>{item.vistoriaDTO.idTecnicoNavigation?.usuario?.nome}</C.Cell>
+					<C.Cell>{item.vistoriaDTO.idGestorNavigation?.idUsuarioNavigation?.nome}</C.Cell>
 					<C.Cell></C.Cell>
 					<Options />
 				</C.Row>

@@ -30,7 +30,7 @@ export interface PedidoTS {
 	fichaPiscinas: any[];
 	idClienteNavigation: Cliente;
 	gestorDTO: Gestor;
-	idTecnicoNavigation: Tecnico;
+	idGestorNavigation: Tecnico;
 	idGestor: number;
 	idTecnico: number;
 	idCliente: number;

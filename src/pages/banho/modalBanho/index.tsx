@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import FakeInput from "../../../components/form/fakeInput";
 import {
-	FormContainer,
-	FormFieldsContainer,
+    FormContainer,
+    FormFieldsContainer,
 } from "../../../components/form/styles";
 import Image from "../../../components/image";
 import { CloseButton } from "../../../components/image/styles";
@@ -13,14 +13,14 @@ import useModal from "../../../functions/use-modal";
 import { addNewProps } from "../../../models/add-new";
 import { IBanho } from "../../../models/banho";
 import {
-	CarouselContainer,
-	Content,
-	Description,
-	Header,
-	Table,
-	Title,
-	TriggerButtons,
-	TriggerClose,
+    CarouselContainer,
+    Content,
+    Description,
+    Header,
+    Table,
+    Title,
+    TriggerButtons,
+    TriggerClose,
 } from "./styles";
 
 export interface ModalBanhoProps extends addNewProps {
@@ -90,10 +90,10 @@ const ModalBanho = ({ data, ...props }: ModalBanhoProps) => {
 
 					<FormContainer>
 						<FormFieldsContainer>
-							{data.vistoriaDTO.idTecnicoNavigation && (
+							{data.vistoriaDTO.idGestorNavigation && (
 								<FakeInput
 									label="Técnico"
-									value={data.vistoriaDTO.idTecnicoNavigation.usuario.nome}
+									value={data.vistoriaDTO.idGestorNavigation.idUsuarioNavigation?.nome}
 								/>
 							)}
 

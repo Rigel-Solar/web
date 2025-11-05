@@ -11,7 +11,10 @@ interface Cliente {
 interface Gestor {
 	id: number;
 	idUsuario: number;
-	idUsuarioNavigation: null;
+	idUsuarioNavigation: {
+		nome: string;
+		email: string;
+	};
 }
 
 interface Tecnico {

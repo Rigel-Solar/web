@@ -5,15 +5,15 @@ import { AiOutlineEdit, AiOutlineLeftCircle } from "react-icons/ai";
 import Button from "../../../components/form/button";
 import FakeInput from "../../../components/form/fakeInput";
 import {
-	FormContainer,
-	FormFieldsContainer,
+    FormContainer,
+    FormFieldsContainer,
 } from "../../../components/form/styles";
 import { Modal } from "../../../components/modal";
 import {
-	ActionAlertDialogContent,
-	ActionAlertDialogDescription,
-	ActionAlertDialogHeader,
-	ActionAlertDialogTitle,
+    ActionAlertDialogContent,
+    ActionAlertDialogDescription,
+    ActionAlertDialogHeader,
+    ActionAlertDialogTitle,
 } from "../../../components/modal/actionAlertModal";
 import AddNewOrder from "../../../components/modal/addNewOrder";
 import EditedFormPopUp from "../../../components/modal/editedFormPopUp";
@@ -107,7 +107,7 @@ const ViewPedido = ({ data }: ViewPedidoProps) => {
 								label="Nome do cliente"
 							/>
 							<FakeInput
-								value={data.idTecnicoNavigation.usuario?.nome}
+								value={data.idGestorNavigation.usuario?.nome}
 								label="Técnico Responsável"
 							/>
 						</FormFieldsContainer>

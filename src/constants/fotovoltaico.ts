@@ -57,7 +57,7 @@ export const Fotovoltaicos: IFotovoltaico[] = [
         tipo: 'Pessoa Física',
         nome: 'João da Silva',
         email: 'joao.silva@email.com',
-        endereco: 'Rua das Palmeiras, 123',
+        endereco: 'Franco da Rocha, Bairro Tal, Rua das Palmeiras, 123, 07809-060',
         latitude: -23.5505,
         longitude: -46.6333,
       },
@@ -73,7 +73,7 @@ export const Fotovoltaicos: IFotovoltaico[] = [
       tecnicoDTO: {
         crea: '0931093',
         usuario: {
-          nome: 'Malcolm',
+          nome: 'John Doe',
           email: 'malcolm@gmail.com',
           id: '3'
         }
@@ -81,7 +81,13 @@ export const Fotovoltaicos: IFotovoltaico[] = [
     },
 		fotos: [
 			{
-				foto1: 'https://rigelsolarapi.blob.core.windows.net/fotos/3mjrnfki.y3q.jpg', id: 1,
+				foto1: 'https://www.portalsolar.com.br/_next/image?url=https%3A%2F%2Fportalsolar-images.s3.us-east-2.amazonaws.com%2Flegacy.portalsolar.com.br%2FContent%2FEditorImages%2Fimages%2Ftemperatura-e-potencia-do-painel-solar.jpg&w=3840&q=100', id: 1,
+				idFichaBanho: 0,
+				idFichaPiscina: 0,
+				idFichaFotovoltaico: 0
+			},
+			{
+				foto1: 'https://lh7-rt.googleusercontent.com/docsz/AD_4nXfJWCrFIS38KRtakPgdqIMgRSH7gvJv-uaT-BsefiWWG0o0cRnU082pj1DEtAfxpjDhw1rCURMOUainMLiPJjZZ4p4IJ3oan7S3bTiY_RaIW_nuzZA1VnCMAMM3AnhmH5-T65SQD-8HfuC-GUd_85I4_g?key=weGRFNbl8v-yoK7Oj2zR8A', id: 2,
 				idFichaBanho: 0,
 				idFichaPiscina: 0,
 				idFichaFotovoltaico: 0
