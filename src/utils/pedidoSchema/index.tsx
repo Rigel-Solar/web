@@ -10,7 +10,7 @@ const orderSchema = z.object({
 	solucoes: z.string(),
 	pretendeInstalarEm: z.string(),
 	valorContaLuz: z.number(),
-	concessionarias: z.string(),
+	concessionaria: z.string(),
 	comentarios: z.string(),
 });
 

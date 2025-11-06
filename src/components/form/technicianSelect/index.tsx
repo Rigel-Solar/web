@@ -69,8 +69,8 @@ const TechnicianSelect = ({
 				value: JSON.stringify(tecnico),
 				label: (
 					<div className="multi-select-option" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-						<Avatar variant="gray" alt={tecnico.usuario?.nome} />
-						{tecnico.usuario?.nome}
+						<Avatar variant="gray" alt={tecnico.idUsuarioNavigation?.nome} />
+						{tecnico.idUsuarioNavigation?.nome}
 					</div>
 				),
 			}))
@@ -97,8 +97,8 @@ const TechnicianSelect = ({
 			value: JSON.stringify(data),
 			label: (
 				<div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-					<Avatar variant="gray" alt={data?.usuario?.nome} />
-					{data.usuario?.nome}
+					<Avatar variant="gray" alt={data?.idUsuarioNavigation?.nome} />
+					{data?.idUsuarioNavigation?.nome}
 				</div>
 			),
 		};
@@ -107,7 +107,7 @@ const TechnicianSelect = ({
 		setValue(newTechnician);
 		onSelect(data?.id as string);
 		onSelectTechnicianData?.(data);
-		onSelectTechnicianName?.(data?.usuario?.nome);
+		onSelectTechnicianName?.(data?.idUsuarioNavigation?.nome);
 	};
 
 	return (
@@ -149,7 +149,7 @@ const TechnicianSelect = ({
 						const technician = JSON.parse(data.value) as Technician;
 						onSelect(technician.id);
 						onSelectTechnicianData?.(technician);
-						onSelectTechnicianName?.(technician?.usuario?.nome);
+						onSelectTechnicianName?.(technician?.idUsuarioNavigation?.nome);
 					} else {
 						onSelect(null);
 						onSelectTechnicianData?.(undefined);

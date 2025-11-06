@@ -11,12 +11,16 @@ interface Cliente {
 interface Gestor {
 	id: number;
 	idUsuario: number;
-	idUsuarioNavigation: null;
+	idUsuarioNavigation: {
+		nome: string;
+		email: string;
+		id: string;
+	};
 }
 
 interface Tecnico {
 	crea: string;
-	usuario: {
+	idUsuarioNavigation: {
 		nome: string;
 		email: string;
 		id: string;
@@ -30,7 +34,8 @@ export interface PedidoTS {
 	fichaPiscinas: any[];
 	idClienteNavigation: Cliente;
 	gestorDTO: Gestor;
-	idGestorNavigation: Tecnico;
+	idGestorNavigation: Gestor;
+	idTecnicoNavigation: Tecnico;
 	idGestor: number;
 	idTecnico: number;
 	idCliente: number;

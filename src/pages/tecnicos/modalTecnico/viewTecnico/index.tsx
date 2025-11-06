@@ -103,8 +103,8 @@ const ViewTecnico = ({ data }: ViewTecnicoProps) => {
 			<ActionAlertDialogContent>
 				<FormContainer>
 					<FormFieldsContainer>
-						<FakeInput value={data.usuario ? data.usuario.nome : "Sem nome"} label="Nome do técnico" />
-						<FakeInput value={data.usuario ? data.usuario.email : "Sem email"} label="E-mail" />
+						<FakeInput value={data.idUsuarioNavigation ? data.idUsuarioNavigation.nome : "Sem nome"} label="Nome do técnico" />
+						<FakeInput value={data.idUsuarioNavigation ? data.idUsuarioNavigation.email : "Sem email"} label="E-mail" />
 						<FakeInput value={data.crea} label="CREA" />
 					</FormFieldsContainer>
 				</FormContainer>

@@ -129,7 +129,7 @@ const AddNewOrder = ({
 	];
 
 	function onSubmit(formData: OrderTS) {
-		console.log("alo");
+		console.log(formData);
 		onCreate(formData, {
 			onSuccess: () => {
 				// const emailHtml = render(
@@ -263,9 +263,9 @@ const AddNewOrder = ({
 							options={concessionarias}
 							required
 							label="Concessionarias"
-							error={errors.concessionarias?.message}
+							error={errors.concessionaria?.message}
 							onValueChange={(value: string) => {
-								setValue("concessionarias", value, {
+								setValue("concessionaria", value, {
 									shouldDirty: true,
 									shouldValidate: true,
 								});

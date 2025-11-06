@@ -1,7 +1,7 @@
 export interface Technician {
 	id: string;
 	crea: string;
-	usuario: {
+	idUsuarioNavigation: {
 		nome: string;
 		email: string;
 		id: string;
