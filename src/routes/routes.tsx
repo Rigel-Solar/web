@@ -1,4 +1,5 @@
 import Banho from "../pages/banho";
+import BI from "../pages/bi";
 import Cliente from "../pages/cliente";
 import Fotovoltaico from "../pages/fotovoltaico";
 import Pedido from "../pages/pedido/pedido";
@@ -18,4 +19,5 @@ export const MenuRoutes: RouteType[] = [
 	{ path: "/tecnicos", element: <Tecnicos /> },
 	{ path: "/clientes", element: <Cliente /> },
 	{ path: "/pedidos", element: <Pedido /> },
+	{ path: "/bi", element: <BI /> },
 ];
