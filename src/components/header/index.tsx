@@ -29,8 +29,8 @@ const getMenuItems = (): MenuSection[] => [
 	{
 		title: "",
 		items: [
-			{ label: "Home", icon: <Icons.home />, route: "/" },
-			{ label: "BI", icon: <Icons.home />, route: "/bi" },
+			// { label: "Home", icon: <Icons.home />, route: "/" },
+			{ label: "Home", icon: <Icons.home />, route: "/bi" },
 			{ label: "Pedidos", icon: <HiOutlineNewspaper size={18}/>, route: "/pedidos" },
 			{
 				label: "Fotovoltáico",
