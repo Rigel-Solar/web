@@ -9,7 +9,6 @@ export const Container = styled.main`
 	justify-content: center;
 	height: 90vh;
 	width: 100%;
-	background-color: ${({ theme }) => theme.colors.brand.background};
 `;
 
 export const IframeWrapper = styled.div`
